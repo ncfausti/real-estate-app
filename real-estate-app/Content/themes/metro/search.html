@@ -42,7 +42,7 @@
 		<script src="assets/js/ace-extra.min.js"></script>
 		<style>
 		/* Overide theme styles */
-		#nav-search-input { width: 300px; }
+		#nav-search-input { width: 230px; border:0px;}
 		.sidebar { width: 300px; }
 		.main-content { margin-left: 300px; }
 		.nav-list>li>.submenu:before, .nav-list>li>.submenu>li:before { 
@@ -67,7 +67,31 @@
 
 		.input-xs { width: 60px; }
 
-		
+		#expand-search-btn {
+			width: 66px;
+			height: 35px;
+		}
+
+		.input-icon { 
+			top: 4px;
+			left: 10px; 
+		}
+
+		#moreMenuOptions { 
+			position: absolute;
+			width: 500px;
+			height: 40px;
+			left: 300px;
+			top: 1px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			z-index: 1;
+			border-top: 0px;
+		}
+
+
+
+
 		</style>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -118,6 +142,15 @@
 											<input type="text" placeholder="Search by location or MLS #" class="nav-search-input" id="nav-search-input" autocomplete="off" />
 											<i class="icon-search nav-search-icon"></i>
 										</span>
+										<span onclick="javascript:showMoreOptions();" type="button" class="btn btn-sm btn-info" id="expand-search-btn">
+										More
+										<i class="icon-arrow-right"></i>
+									</span>
+									<div id="moreMenuOptions">
+										some more options here
+										<br>
+										and more here
+									</div>
 									</form>
 								</span>
 						</li>
@@ -2757,6 +2790,11 @@
 				});
 					console.log('hi');
 
+
+		// Expand primary search menu
+		function showMoreOptions() {
+			$('#moreMenuOptions').toggle();
+		}
 		</script>
 	</body>
 </html>
