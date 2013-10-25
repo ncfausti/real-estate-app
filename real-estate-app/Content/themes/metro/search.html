@@ -89,8 +89,9 @@
 			border-top: 0px;
 		}
 
-
-
+		.sm-text-input { width:120px;float:left; }
+		.cal-icon { width: 20px;height: 34px; }
+		.push-left { margin-left:30px;}
 
 		</style>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -2459,8 +2460,25 @@
 
 							<ul class="submenu">
 								<li>
-								<label for="openhouse">Open House </label>
 								
+								<div class="push-left">
+									<div>
+									Start Date:<br>
+									<input type="text" id="datepickerOH1" class="form-control sm-text-input" />
+									<span class="input-group-addon cal-icon">
+										<i class="icon-calendar"></i>
+									</span>
+									</div>
+									<br>
+									<div>
+									End Date:<br>
+									<input type="text" id="datepickerOH2" class="form-control sm-text-input" />
+									<span class="input-group-addon cal-icon">
+										<i class="icon-calendar"></i>
+									</span>
+									</div>
+								</div>
+
 								</li>
 							</ul>
 						</li>
@@ -2554,6 +2572,8 @@
 		<script src="assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+		<script src="assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
@@ -2598,6 +2618,39 @@
 					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
 					$(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
 				});
+
+			// Datepicker
+				$( "#datepickerOH1" ).datepicker({
+					showOtherMonths: true,
+					selectOtherMonths: false,
+					//isRTL:true,
+			
+					
+					/*
+					changeMonth: true,
+					changeYear: true,
+					
+					showButtonPanel: true,
+					beforeShow: function() {
+						//change button colors
+						var datepicker = $(this).datepicker( "widget" );
+						setTimeout(function(){
+							var buttons = datepicker.find('.ui-datepicker-buttonpane')
+							.find('button');
+							buttons.eq(0).addClass('btn btn-xs');
+							buttons.eq(1).addClass('btn btn-xs btn-success');
+							buttons.wrapInner('<span class="bigger-110" />');
+						}, 0);
+					}
+			*/
+				});
+
+				$( "#datepickerOH2" ).datepicker({
+					showOtherMonths: true,
+					selectOtherMonths: false,
+				});
+
+
 			
 			
 			
