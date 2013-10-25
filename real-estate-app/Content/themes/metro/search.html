@@ -147,7 +147,7 @@
 										<i class="icon-arrow-right"></i>
 									</span>
 									<div id="moreMenuOptions">
-										some more options here
+										Min Price
 										<br>
 										and more here
 									</div>
@@ -2323,18 +2323,18 @@
 <li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-building"></i>
-								<span class="menu-text">   Property Types </span>
+								<span class="menu-text">Property Types </span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
 							<ul class="submenu">
 								<li>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
+								<label for="property-type">Property Type </label><select class="form-control price-ddl" id="property-type">
+									<option value="-1">All</option>
+									<option value="condo">Condo/Townhouse</option>
+									<option value="single">Single Family</option>
+								</select>
 								</li>
 							</ul>
 						</li>
@@ -2348,14 +2348,18 @@
 
 							<ul class="submenu">
 								<li>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
+								<label for="features">Features </label><select class="form-control price-ddl" id="features">
+									<option value="golf">Golf Course</option>
+									<option value="hardwood">Hardwood Floors</option>
+									<option value="Patio">Patio</option>
+									<option value="fireplace">Fireplace</option>
+									<option value="gated">Gated Community</option>
+									<option value="pool">Pool</option>
+								</select>
 								</li>
 							</ul>
 						</li>
+<!--
 <li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-book"></i>
@@ -2374,6 +2378,7 @@
 								</li>
 							</ul>
 						</li>
+-->
 <li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-legal"></i>
@@ -2384,47 +2389,45 @@
 
 							<ul class="submenu">
 								<li>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
+								<label for="foreclosures">Foreclosures </label><select class="form-control price-ddl" id="foreclosures">
+									<option value="pre_foreclosure">Only Pre-foreclosure or short sale</option>
+									<option value="bank_owned">Only Include Lender/Bank owned (REO)</option>
+									<option value="exclude_foreclosure">Exclude Foreclosure related</option>
+								</select>
 								</li>
 							</ul>
 						</li>
 <li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-road"></i>
-								<span class="menu-text">   Parking </span>
+								<span class="menu-text">   Garages </span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
 							<ul class="submenu">
-								<li>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
+								<li style="padding-left: 42px;">
+									<input type="checkbox" value="garage" id="garages" />
+								<label for="garages" style="padding-bottom:2px;">Attached Garages Only </label>
+									
 								</li>
 							</ul>
 						</li>
 <li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-info-sign"></i>
-								<span class="menu-text">   Property Status </span>
+								<span class="menu-text">  Status </span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
 							<ul class="submenu">
 								<li>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
+								<label for="status">Status </label><select class="form-control price-ddl" id="status">
+									<option value="active">Active</option>
+									<option value="sold">Sold</option>
+									<option value="contract">Under Contract</option>
+								</select>
 								</li>
 							</ul>
 						</li>
@@ -2456,11 +2459,8 @@
 
 							<ul class="submenu">
 								<li>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
-								Hello<br>
+								<label for="openhouse">Open House </label>
+								
 								</li>
 							</ul>
 						</li>
