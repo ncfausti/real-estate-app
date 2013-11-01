@@ -269,19 +269,99 @@
 																
 															</select>
 														</span>
-													<br>
+														<button class="btn">Search</button>
 												</div>
 
 												<div id="zip" class="tab-pane">
-													
+													<span>
+														<div class="inl-block" style="vertical-align:top;">
+														State:
+														<select>
+															<option value="PA">PA</option>
+															<option value="NJ">NJ</option>
+															<option value="DE">DE</option>
+														</select>
+													</div>
+														<div class="inl-block">
+															House # or Street Name: <input type="text" class="w120"><button class="btn btn-sm btn-primary">Update</button><br>
+															&nbsp;&nbsp;&nbsp;And/Or<br>
+															Zip Code: <input style="margin-left:92px;" type="text" class="w120"><button class="btn btn-primary btn-sm">Update</button>
+														</div>
+													</span>
+													<button class="btn" style="margin-left:12px;">Search</button>
 												</div>
 
 												<div id="school" class="tab-pane">
+													State:
+													<select>
+														<option value="PA">PA</option>
+														<option value="NJ">NJ</option>
+														<option value="DE">DE</option>
+													</select>
+													<br>
 													
+													<span class="multi-select-cities">
+													School Districts:<br>
+													<select multiple="multiple" class="w120 inl-block" name="schools-select-from" id="schools-select-from" >
+														
+																<option value="AL">School District 1</option>
+																<option value="AK">School district 2</option>
+																<option value="AZ">School District 3</option>
+																<option value="AR">School District 4</option>
+																<option value="AL">School District 5</option>
+																<option value="AK">School district 6</option>
+																<option value="AZ">School District 7</option>
+																<option value="AR">School District 8</option>
+																
+													</select>
+															<span class="inl-block">
+															<a class="btn btn-sm btn-success" href="JavaScript:void(0);" id="btn-add-schools">Add >></a>
+															<br>
+															<a href="JavaScript:void(0);" id="btn-remove-schools" class="btn btn-sm btn-danger"><< Remove</a>
+															</span>
+															<select multiple="multiple" class="w120 inl-block" name="schools-select-to" id="schools-select-to">
+																
+															</select>
+														</span>
+														<button class="btn">Search</button>
 												</div>
 
 												<div id="county" class="tab-pane">
-													
+													State:
+													<select>
+														<option value="PA">PA</option>
+														<option value="NJ">NJ</option>
+														<option value="DE">DE</option>
+													</select>
+													<br>
+													County:<br>
+													<select>
+														<option value="-1">All</option>
+														<option value="bucks">Bucks</option>
+														<option value="montgomery">Montgomery</option>
+														<option value="delaware">Delaware</option>
+													</select><br>
+													<span class="multi-select-township">
+													Township/Area/Subdivision:<br>
+													<select multiple="multiple" class="w120 inl-block" name="townships-select-from" id="townships-select-from" >
+																<option value="AL">Township 1</option>
+																<option value="AL">Township 2</option>
+																<option value="AL">Township 3</option>
+																<option value="AL">Township 4</option>
+																<option value="AL">Township 5</option>
+																<option value="AL">Township 6</option>
+																<option value="AL">Township 7</option>
+													</select>
+															<span class="inl-block">
+															<a class="btn btn-sm btn-success" href="JavaScript:void(0);" id="btn-add-townships">Add >></a>
+															<br>
+															<a href="JavaScript:void(0);" id="btn-remove-townships" class="btn btn-sm btn-danger"><< Remove</a>
+															</span>
+															<select multiple="multiple" class="w120 inl-block" name="townships-select-to" id="townships-select-to">
+																
+															</select>
+														</span>
+														<button class="btn">Search</button>
 												</div>
 
 											</div>
@@ -292,7 +372,7 @@
 									</form>
 								</span>
 						</li>
-
+<li style="text-align:center;" class="btn-warning" id="additional-li">Additional Criteria</li>
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-dollar"></i>
@@ -302,6 +382,7 @@
 							</a>
 
 							<ul class="submenu">
+
 								<li>
 								<label for="min-price">Min $</label><select class="form-control price-ddl" id="min-price">
 									<option value="-1">No Min</option>
@@ -2932,7 +3013,44 @@
 			        });
 			    });
 			
-			});
+	
+
+			// School district Selector
+				$('#btn-add-schools').click(function(){
+			        $('#schools-select-from option:selected').each( function() {
+			               $('#schools-select-to').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+			            $(this).remove();
+			        });
+			    });
+
+			    $('#btn-remove-schools').click(function(){
+			        $('#schools-select-to option:selected').each( function() {
+			            $('#schools-select-from').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+			            $(this).remove();
+			        });
+			    });
+
+			 // School district Selector
+				$('#btn-add-townships').click(function(){
+			        $('#townships-select-from option:selected').each( function() {
+			               $('#townships-select-to').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+			            $(this).remove();
+			        });
+			    });
+
+			    $('#btn-remove-townships').click(function(){
+			        $('#townships-select-to option:selected').each( function() {
+			            $('#townships-select-from').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+			            $(this).remove();
+			        });
+			    });
+			
+
+			    // Modify to only add this click function if the <li> is not already in the top area
+			    $(".dropdown-toggle").click(function() { console.log($(this).parent().insertBefore("#additional-li"))});
+
+
+			});  // End document.ready handler
 
 
 		// Horizontal two point slider for sq ft.
