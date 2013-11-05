@@ -2454,9 +2454,9 @@
 									<div style="text-align:center;">
 										Sq ft:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-sq-ft"1 disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-sq-ft"1 readonly> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-sq-ft">
+											<input type="text" class="input-sm input-xs" id="max-sq-ft" readonly>
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -2482,9 +2482,9 @@
 									<div style="text-align:center;padding-bottom:12px;" id="acres-div" name="acres-div">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-lot-size-acres"  disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-lot-size-acres"  readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-lot-size-acres" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-lot-size-acres" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -2499,9 +2499,9 @@
 								<div style="text-align:center;padding:12px 0px 30px 0px;" id="lot-size-div" name="lot-size-div">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-lot-size"  disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-lot-size"  readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-lot-size" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-lot-size" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -2524,9 +2524,9 @@
 								<div style="text-align:center;">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-days-listed"  disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-days-listed"  readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-days-listed" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-days-listed" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -2574,9 +2574,9 @@
 								<div style="text-align:center;">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-price-drop" value="15000" disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-price-drop" disabled="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-price-drop" value="35000" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-price-drop" disabled="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -3054,7 +3054,6 @@
 
 
 		// Horizontal two point slider for sq ft.
-
 		$( "#slider-range" ).css('width','200px').css('height','10px').slider({
 					orientation: "horizontal",
 					range: true,
@@ -3067,8 +3066,9 @@
 							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
-						$('#max-sq-ft').text(val);
-				//	console.log(val);
+						
+						$('#min-sq-ft').val(ui.values[0]);
+						$('#max-sq-ft').val(ui.values[1]);
 
 					}
 				}).find('a').on('blur', function(){
@@ -3088,6 +3088,8 @@
 							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-price-drop').val(ui.values[0]);
+						$('#max-price-drop').val(ui.values[1]);
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -3106,6 +3108,8 @@ $( "#slider-range-year-built" ).css('width','200px').css('height','10px').slider
 							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-year-built').val(ui.values[0]);
+						$('#max-year-built').val(ui.values[1]);
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -3124,6 +3128,8 @@ $( "#slider-range-days-listed" ).css('width','200px').css('height','10px').slide
 							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-days-listed').val(ui.values[0]);
+						$('#max-days-listed').val(ui.values[1]);
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -3142,6 +3148,8 @@ $( "#slider-range-lot-size" ).css('width','200px').css('height','10px').slider({
 							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-lot-size').val(ui.values[0]);
+						$('#max-lot-size').val(ui.values[1]);
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -3160,6 +3168,8 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-lot-size-acres').val(ui.values[0]);
+						$('#max-lot-size-acres').val(ui.values[1]);
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
