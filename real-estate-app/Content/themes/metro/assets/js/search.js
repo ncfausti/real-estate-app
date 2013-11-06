@@ -110,7 +110,13 @@
 var debugGlobal;
 	
 		function updatePropertyText() {
-			$('#price-menu-prop').text('$'+$('#min-price').val()+' to $'+$('#max-price').val());
+			var max;
+			if ($('#max-price').val() == '-1')
+				max  = 'No Max'; 
+			else
+				max = $('#max-price').val();
+
+			$('#price-menu-prop').text('$'+$('#min-price').val()+' to $' + max);
 		}
 		
 		$('#min-price').change(function() {
