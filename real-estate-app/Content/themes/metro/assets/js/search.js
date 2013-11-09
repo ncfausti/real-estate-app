@@ -22,8 +22,23 @@
 				});
 
 			
-				$( "#datepickerOH1" ).datepicker({ showOtherMonths: true, selectOtherMonths: false});
-				$( "#datepickerOH2" ).datepicker({showOtherMonths: true,selectOtherMonths: false});
+						
+				$( "#datepickerOH1" ).datepicker({ 
+					showOtherMonths: true, 
+					selectOtherMonths: false, 
+					onSelect: function() { 
+						updatePropertyText('#datepickerOH1');
+					} 
+				});
+
+				$( "#datepickerOH2" ).datepicker({ 
+					showOtherMonths: true, 
+					selectOtherMonths: false,
+					 onSelect: function() { 
+					 	updatePropertyText('#datepickerOH2');
+					 } 
+					});
+				
 
 			// Cities Selector
 				$('#btn-add').click(function(){
@@ -302,30 +317,202 @@ var debugG;
 			}
 
 			// Features
+			if(e == '#ckGolf' || e =='#ckHardwood' || e == '#ckPatio' || e == '#ckGated' || e == '#ckPool' || e == '#ckFireplace' )
+			{
+				
+				var featureTypes = $('#features-menu-prop');
+				var golf = $('#ckGolf');
+				var wood = $('#ckHardwood');
+				var patio = $('#ckPatio');
+				var gated = $('#ckGated');
+				var pool = $('#ckPool');
+				var fire = $('#ckFireplace');
+
+				if(golf.prop('checked')) {
+					golf = 'Gl ';
+				}
+				else
+					golf = ''
+
+				if(wood.prop('checked')) {
+					wood = 'Wd';
+				}
+				else
+					wood = ''
+				
+
+				if(patio.prop('checked')) {
+					patio = 'Pt';
+				}
+				else
+					patio = '';
+
+				if(gated.prop('checked')) {
+					gated = 'Gt';
+				}
+				else
+					gated = ''
+
+				if(pool.prop('checked')) {
+					pool = 'Pl';
+				}
+				else
+					pool = ''
+
+				if(fire.prop('checked')) {
+					fire = 'FP';
+				}
+				else
+					fire = '';
+
+				//console.log("Log: "+golf);
+				featureTypes.text(golf + ' ' + wood + ' ' + patio + ' ' + gated + ' ' + pool + ' ' + fire );
+				featureTypes.css('display','inline');
+			}
+
 			// Foreclosures
+			// Property Types
+			if(e == '#ckForeclosure' || e =='#ckBankOwned' || e == '#ckExcludeForeclosures')
+			{
+				var foreclosureTypes = $('#foreclosures-menu-prop');
+				var foreclosure = $('#ckForeclosure');
+				var bank = $('#ckBankOwned');
+				var exclude = $('#ckExcludeForeclosures');
+
+				if(foreclosure.prop('checked')) {
+					foreclosure = 'Foreclosed';
+				}
+				else
+					foreclosure = ' '
+				if(bank.prop('checked')) {
+					bank = 'Bank';
+				}
+				else
+					bank = ' '
+				if(exclude.prop('checked')) {
+					exclude = 'None';
+				}
+				else
+					exclude = ' ';
+				foreclosureTypes.text(foreclosure + ' ' + bank + ' ' + exclude );
+				foreclosureTypes.css('display','inline');
+			}
+
 			// Garages
+			if(e == '#ckGarages')
+			{
+				var garages = $('#garages-menu-prop');
+				var garage = $('#ckGarages');
+				
+
+				if(garage.prop('checked')) {
+					garage = 'Garages Only';
+				}
+				else
+					garage = ' '
+			
+				garages.text(garage);
+				garages.css('display','inline');
+			}
+			
 			// Status
+			// Property Types
+			if(e == '#ckActive' || e =='#ckContract' || e == '#ckSold')
+			{
+				var statusType = $('#status-menu-prop');
+				var active = $('#ckActive');
+				var contract = $('#ckContract');
+				var sold = $('#ckSold');
+
+				if(active.prop('checked')) {
+					active = 'Active';
+				}
+				else
+					active = ' '
+				if(contract.prop('checked')) {
+					contract = 'Contract';
+				}
+				else
+					contract = ' '
+				if(sold.prop('checked')) {
+					sold = 'Sold';
+				}
+				else
+					sold = ' ';
+				statusType.text(active + ' ' + contract + ' ' + sold );
+				statusType.css('display','inline');
+			}
 			// Photos
+			if(e == '#ckPhotos')
+			{
+				var photos = $('#photos-menu-prop');
+				var photo = $('#ckPhotos');
+				
+
+				if(photo.prop('checked')) {
+					photo = 'With Photos Only';
+				}
+				else
+					photo = ' '
+			
+				photos.text(photo);
+				photos.css('display','inline');
+			}
 			// Open Houses
+			if(e == '#datepickerOH1' || e == '#datepickerOH2')
+			{
+				var dates = $('#openhouses-menu-prop');
+				var date1 = $('#datepickerOH1');
+				var date2 = $('#datepickerOH2');
+
+/*
+				if(date1.val() == '' ) {
+					date1 = date1.val();
+				}
+				else
+					date1 = ' '
+
+				if(date2.prop('checked')) {
+					date2 = date2.val();
+				}
+				else
+					date2 = ' '
+			*/
+
+				dates.text(date1.val() + ' to' + date2.val());
+				dates.css('display','inline');
+			}
 
 		}
-
+		// Non slider property update event handlers
 		$('#min-price').change(function() { updatePropertyText('#min-price'); });
 		$('#max-price').change(function() { updatePropertyText('#max-price'); });
 		$('#bedroom-number').change(function() { updatePropertyText('#bedroom-number'); });
 		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
-	//	$('#min-sq-ft').change(function() { updatePropertyText('#min-sq-ft'); });  	SET updatePropertyText() on slider event handler
-		$('#max-sq-ft').change(function() { updatePropertyText('#max-sq-ft'); });
+
 		$('#ckLand').change(function() { updatePropertyText('#ckLand'); });
 		$('#ckCondo').change(function() { updatePropertyText('#ckCondo'); });
 		$('#ckSingle').change(function() { updatePropertyText('#ckSingle'); });
 		
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#ckGolf').change(function() { updatePropertyText('#ckGolf'); });
+		$('#ckHardwood').change(function() { updatePropertyText('#ckHardwood'); });
+		$('#ckPatio').change(function() { updatePropertyText('#ckPatio'); });
+		$('#ckGated').change(function() { updatePropertyText('#ckGated'); });
+		$('#ckPool').change(function() { updatePropertyText('#ckPool'); });
+		$('#ckFireplace').change(function() { updatePropertyText('#ckFireplace'); });
+
+		$('#ckForeclosure').change(function() { updatePropertyText('#ckForeclosure'); });
+		$('#ckExcludeForeclosures').change(function() { updatePropertyText('#ckExcludeForeclosures'); });
+		$('#ckBankOwned').change(function() { updatePropertyText('#ckBankOwned'); });
+		
+		$('#ckGarages').change(function() { updatePropertyText('#ckGarages'); });
+
+		$('#ckActive').change(function() { updatePropertyText('#ckActive'); });
+		$('#ckContract').change(function() { updatePropertyText('#ckContract'); });
+		$('#ckSold').change(function() { updatePropertyText('#ckSold'); });
+
+		$('#ckPhotos').change(function() { updatePropertyText('#ckPhotos'); });
+
 
 
 
@@ -370,7 +557,53 @@ var debugG;
 				$('#min-price-drop').val('');
 				$('#max-price-drop').val('');
 			}
-		}
+			if (menuID == 'propertytypes-menu-prop') {
+				$('#ckLand').prop('checked', false);
+				$('#ckCondo').prop('checked', false);
+				$('#ckSingle').prop('checked', false);
+				
+			}
+			if (menuID == 'features-menu-prop') {
+				$('#ckGolf').prop('checked', false);
+				$('#ckHardwood').prop('checked', false);
+				$('#ckPatio').prop('checked', false);
+				$('#ckGated').prop('checked', false);
+				$('#ckPool').prop('checked', false);
+				$('#ckFireplace').prop('checked', false);
+				
+			}
+			if(menuID == 'foreclosures-menu-prop') {
+				$('#ckForeclosure').prop('checked', false);
+				$('#ckBankOwned').prop('checked', false);
+				$('#ckExcludeForeclosures').prop('checked', false);
+			}
+
+			if(menuID == 'garages-menu-prop')
+				
+				$('#ckGarages').prop('checked', false);
+
+			if(menuID == 'status-menu-prop') {
+				$('#ckActive').prop('checked', false);
+				$('#ckSold').prop('checked', false);
+				$('#ckContract').prop('checked', false);
+			}
+
+			if(menuID == 'photos-menu-prop'){
+				
+				$('#ckPhotos').prop('checked', false);
+
+			}
+
+			if(menuID == 'openhouses-menu-prop'){
+				
+				$('#datepickerOH1').val('');
+				$('#datepickerOH2').val('');
+
+
+			}
+
+
+		}	
 
 		// Horizontal two point slider for sq ft.
 		$( "#slider-range" ).css('width','200px').css('height','10px').slider({
@@ -390,10 +623,8 @@ var debugG;
 						updatePropertyText('#min-sq-ft');
 						$('#max-sq-ft').val(ui.values[1]);
 						updatePropertyText('#max-sq-ft');
-
-
-
 					}
+
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
 				});
