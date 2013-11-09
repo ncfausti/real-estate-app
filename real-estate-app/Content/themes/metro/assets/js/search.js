@@ -21,18 +21,9 @@
 					$(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
 				});
 
-			// Datepicker
-				$( "#datepickerOH1" ).datepicker({
-					showOtherMonths: true,
-					selectOtherMonths: false,
-					//isRTL:true,
 			
-					});
-
-				$( "#datepickerOH2" ).datepicker({
-					showOtherMonths: true,
-					selectOtherMonths: false,
-					});
+				$( "#datepickerOH1" ).datepicker({ showOtherMonths: true, selectOtherMonths: false});
+				$( "#datepickerOH2" ).datepicker({showOtherMonths: true,selectOtherMonths: false});
 
 			// Cities Selector
 				$('#btn-add').click(function(){
@@ -58,14 +49,12 @@
 			            $(this).remove();
 			        });
 			    });
-
 			    $('#btn-remove-schools').click(function(){
 			        $('#schools-select-to option:selected').each( function() {
 			            $('#schools-select-from').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
 			            $(this).remove();
 			        });
 			    });
-
 			 // School district Selector
 				$('#btn-add-townships').click(function(){
 			        $('#townships-select-from option:selected').each( function() {
@@ -73,25 +62,26 @@
 			            $(this).remove();
 			        });
 			    });
-
 			    $('#btn-remove-townships').click(function(){
 			        $('#townships-select-to option:selected').each( function() {
 			            $('#townships-select-from').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
 			            $(this).remove();
 			        });
 			    });
-			
 			    
 			    $(".dropdown-toggle").click(function(e) { 
-			    	console.log(e.target.className);
-			    	//console.log('div clicked was: ' + e);
-			    	// TODO:
-			    	// Modify to only add this click function if the <li> is not already in the top area
+			    //	console.log(e);
+			    	debugGlobal = $(e.target);
 			    	if( !$(this).hasClass('selected') && e.target.className.toString() != 'x-icon' )  {
 			    		$(this).parent().insertBefore("#additional-li");
-			    		addTitleText($(this).parent());
+			    		//console.log(debugGlobal.prev());
+			    		addTitleText([$(this).parent().find('.x-icon'), $(e.target)]);
 			    		$(this).addClass('selected');
 			    	}
+
+			  //  	else if(e.target.className.toString() == 'x-icon') {
+			  //  		addTitleText([$(this).parent().find('.x-icon'), $(e.target)]);
+			  //  	}
 			    });
 
 			});  // End document.ready handler
@@ -102,34 +92,208 @@
 // not in "Additional Properties"
 
 		function addTitleText(params) {
-			params.find('.x-icon').css('display','block');
-			params.find('.x-icon').click(function(){
-			removeFromSelected( params.find('.x-icon').parent().parent().parent() );
+			params[0].css('display','block');
+			params[0].click(function(){
+			removeFromSelected( params[0].parent().parent().parent() );
 			});
 		}
-var debugGlobal;
-	
-		function updatePropertyText() {
-			var max;
-			if ($('#max-price').val() == '-1')
-				max  = 'No Max'; 
-			else
-				max = $('#max-price').val();
 
-			$('#price-menu-prop').text('$'+$('#min-price').val()+' to $' + max);
+var debugG;
+	
+		function updatePropertyText(e) {
+			var text;
+			
+			// Price
+			if(e == '#max-price' || e =='#min-price')
+			{
+				var minText;
+				var maxText;
+				var priceMenuText = $('#price-menu-prop');
+				var minPrice = $('#min-price');
+				var maxPrice = $('#max-price');
+
+				if (minPrice.val() == '-1')
+					minText = 'No Min'
+				else
+					minText = minPrice.val();
+
+				if (maxPrice.val() == '-1')
+					maxText  = 'No Max'; 
+				else 
+					maxText = maxPrice.val();
+				
+				priceMenuText.text('$' + minText +' to $' + maxText);
+				priceMenuText.css('display','inline');
+			}
+
+			// Bedrooms
+			if(e == '#bedroom-number')
+			{
+				if ($('#bedroom-number').val() == '-1')
+					text  = 'Any';
+				else
+					text = $('#bedroom-number').val();
+
+				$('#bedrooms-menu-prop').text(text + " bedrooms");
+			}
+			
+			// Bathrooms
+			if(e == '#bath-number')
+			{
+				if ($('#bath-number').val() == '-1')
+					text  = 'Any';
+				else
+					text = $('#bath-number').val();
+
+				$('#bathrooms-menu-prop').text(text + " baths");
+			}
+
+			// Home Size
+			if(e == '#min-sq-ft' || e =='#max-sq-ft')
+			{
+				var homesizeSqFt = $('#homesize-menu-prop');
+				var min = $('#min-sq-ft');
+				var max = $('#max-sq-ft');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				homesizeSqFt.text(min +' to ' + max + 'sq ft');
+				homesizeSqFt.css('display','inline');
+			}
+
+			// Lot Size - acres
+			if(e == '#min-lot-size-acres' || e =='#max-lot-size-acres')
+			{
+				var lotSizeAcres = $('#lotsize-menu-prop');
+				var min = $('#min-lot-size-acres');
+				var max = $('#max-lot-size-acres');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				lotSizeAcres.text(min +' to ' + max + ' acres');
+				lotSizeAcres.css('display','inline');
+			}
+
+			// Lot Size - sq ft
+			if(e == '#min-lot-size' || e =='#max-lot-size')
+			{
+				var lotSizeAcres = $('#lotsize-menu-prop');
+				var min = $('#min-lot-size');
+				var max = $('#max-lot-size');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				lotSizeAcres.text(min +' to ' + max + ' sq ft');
+				lotSizeAcres.css('display','inline');
+			}
+
+			// Days Listed
+			if(e == '#min-days-listed' || e =='#max-days-listed')
+			{
+				var daysListed = $('#dayslisted-menu-prop');
+				var min = $('#min-days-listed');
+				var max = $('#max-days-listed');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				daysListed.text(min +' to ' + max + 'days');
+				daysListed.css('display','inline');
+			}
+
+			// Year Built
+			// Price Drops
+			// Property Types
+			// Features
+			// Foreclosures
+			// Garages
+			// Status
+			// Photos
+			// Open Houses
+
 		}
-		
-		$('#min-price').change(function() {
-			updatePropertyText();
-		});
-		$('#max-price').change(function() {
-			updatePropertyText();
-		});
+
+		$('#min-price').change(function() { updatePropertyText('#min-price'); });
+		$('#max-price').change(function() { updatePropertyText('#max-price'); });
+		$('#bedroom-number').change(function() { updatePropertyText('#bedroom-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+	//	$('#min-sq-ft').change(function() { updatePropertyText('#min-sq-ft'); });  	SET updatePropertyText() on slider event handler
+		$('#max-sq-ft').change(function() { updatePropertyText('#max-sq-ft'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+
+
+
+
 		function removeFromSelected(listItem) {
-			  $(listItem[0]).find('.x-icon').css('display','none');
-			  $(listItem[0]).insertAfter("#additional-li");
-			  $(listItem[0]).children().first().removeClass('selected');
-			  
+			  var menuID;
+			  var item = $(listItem);
+			  item.find('.x-icon').css('display','none');
+			  item.insertAfter("#additional-li");
+			  item.children().first().removeClass('selected');
+			  item.find('.prop-text').first().css('display','none')
+			  menuID = item.find('.prop-text')[0].id;
+			  console.log(menuID);
+			  // Clear out form values and put back to defaults
+			  if (menuID == 'price-menu-prop'){
+			  	$('#min-price').val('-1');
+			  	$('#max-price').val('-1');
+			  }
+			  if (menuID == 'bedrooms-menu-prop')
+				$('#bedroom-number').val('-1');	
+
+			  if (menuID == 'homesize-menu-prop'){
+				$('#min-sq-ft').val('');		  
+				$('#max-sq-ft').val('');		  
+			}
+			 if (menuID == 'lotsize-menu-prop'){
+				$('#min-lot-size').val('');
+				$('#min-lot-size-acres').val('');	  
+				$('#max-lot-size').val('');		  
+				$('#max-lot-size-acres').val('');		  
+				
+			}
+			if (menuID == 'dayslisted-menu-prop') {
+				$('#min-days-listed').val('');
+				$('#max-days-listed').val('');
+
+			}
 		}
 
 		// Horizontal two point slider for sq ft.
@@ -147,7 +311,11 @@ var debugGlobal;
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
 						
 						$('#min-sq-ft').val(ui.values[0]);
+						updatePropertyText('#min-sq-ft');
 						$('#max-sq-ft').val(ui.values[1]);
+						updatePropertyText('#max-sq-ft');
+
+
 
 					}
 				}).find('a').on('blur', function(){
@@ -208,7 +376,10 @@ $( "#slider-range-days-listed" ).css('width','200px').css('height','10px').slide
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
 						$('#min-days-listed').val(ui.values[0]);
+						updatePropertyText('#min-days-listed');
 						$('#max-days-listed').val(ui.values[1]);
+						updatePropertyText('#max-days-listed');
+
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -228,7 +399,9 @@ $( "#slider-range-lot-size" ).css('width','200px').css('height','10px').slider({
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
 						$('#min-lot-size').val(ui.values[0]);
+						updatePropertyText('#min-lot-size');
 						$('#max-lot-size').val(ui.values[1]);
+						updatePropertyText('#max-lot-size');
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -248,7 +421,10 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
 						$('#min-lot-size-acres').val(ui.values[0]);
+						updatePropertyText('#min-lot-size-acres');
 						$('#max-lot-size-acres').val(ui.values[1]);
+						updatePropertyText('#max-lot-size-acres');
+
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
