@@ -233,8 +233,74 @@ var debugG;
 			}
 
 			// Year Built
+			if(e == '#min-year-built' || e =='#max-year-built')
+			{
+				var yearBuilt = $('#yearbuilt-menu-prop');
+				var min = $('#min-year-built');
+				var max = $('#max-year-built');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				yearBuilt.text(min +' to ' + max);
+				yearBuilt.css('display','inline');
+			}
+
 			// Price Drops
+			if(e == '#min-price-drop' || e =='#max-price-drop')
+			{
+				var priceDrops = $('#pricedrops-menu-prop');
+				var min = $('#min-price-drop');
+				var max = $('#max-price-drop');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				priceDrops.text(min +' to ' + max);
+				priceDrops.css('display','inline');
+			}
+
 			// Property Types
+			if(e == '#ckLand' || e =='#ckCondo' || e == '#ckSingle')
+			{
+				var propTypes = $('#propertytypes-menu-prop');
+				var land = $('#ckLand');
+				var condo = $('#ckCondo');
+				var single = $('#ckSingle');
+
+				if(land.prop('checked')) {
+					land = 'Land';
+				}
+				else
+					land = ' '
+				if(condo.prop('checked')) {
+					condo = 'Condo';
+				}
+				else
+					condo = ' '
+				if(single.prop('checked')) {
+					single = 'Single';
+				}
+				else
+					single = ' ';
+				propTypes.text(land + ' ' + condo + ' ' + single );
+				propTypes.css('display','inline');
+			}
+
 			// Features
 			// Foreclosures
 			// Garages
@@ -250,7 +316,10 @@ var debugG;
 		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
 	//	$('#min-sq-ft').change(function() { updatePropertyText('#min-sq-ft'); });  	SET updatePropertyText() on slider event handler
 		$('#max-sq-ft').change(function() { updatePropertyText('#max-sq-ft'); });
-		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
+		$('#ckLand').change(function() { updatePropertyText('#ckLand'); });
+		$('#ckCondo').change(function() { updatePropertyText('#ckCondo'); });
+		$('#ckSingle').change(function() { updatePropertyText('#ckSingle'); });
+		
 		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
 		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
 		$('#bath-number').change(function() { updatePropertyText('#bath-number'); });
@@ -292,7 +361,14 @@ var debugG;
 			if (menuID == 'dayslisted-menu-prop') {
 				$('#min-days-listed').val('');
 				$('#max-days-listed').val('');
-
+			}
+			if (menuID == 'yearbuilt-menu-prop') {
+				$('#min-year-built').val('');
+				$('#max-year-built').val('');
+			}
+			if (menuID == 'pricedrops-menu-prop') {
+				$('#min-price-drop').val('');
+				$('#max-price-drop').val('');
 			}
 		}
 
@@ -336,7 +412,9 @@ var debugG;
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
 						$('#min-price-drop').val(ui.values[0]);
+						updatePropertyText('#min-price-drop');
 						$('#max-price-drop').val(ui.values[1]);
+						updatePropertyText('#max-price-drop');
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
@@ -356,7 +434,11 @@ $( "#slider-range-year-built" ).css('width','200px').css('height','10px').slider
 						}
 						$(ui.handle.firstChild).show().children().eq(1).text(val);
 						$('#min-year-built').val(ui.values[0]);
+						updatePropertyText('#min-year-built');
+
 						$('#max-year-built').val(ui.values[1]);
+						updatePropertyText('#max-year-built');
+
 					}
 				}).find('a').on('blur', function(){
 					$(this.firstChild).hide();
