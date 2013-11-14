@@ -1,5 +1,6 @@
 		/* Overide theme styles */
-		#nav-search-input { width: 230px; border:0px;}
+		#nav-search-input { width: 228px; border:0px;}
+
 		.sidebar { width: 300px; }
 		.main-content { margin-left: 300px; }
 		.nav-list>li>.submenu:before, .nav-list>li>.submenu>li:before { 
@@ -58,3 +59,24 @@
 		.inl-block {display:inline-block;}
 		.x-icon {color:#333;float:right;margin-right:18px;font-weight:bold;display:none;z-index:10;}
 		.prop-text { color: #555;padding-left:18px;font-family:sans-serif;font-size:11px;font-weight:bold;}
+		#navbar {margin-bottom: 12px;}
+		#search-tab-content { padding:0px;}
+
+		.results-address {font-weight:bold; color: orange; }
+		.results-price {  }
+		.results-price { float:right; margin-right: 12px; }
+		.results-property { padding:12px; background-color:#fff; }
+		.results-property-info { float:right;}
+		.results-property-info span { margin-top:24px;text-align: center;display:inline-block; }
+		.results-detail-btn {	float:right;
+								height: 36px;
+								width: 100px;
+								font-size: 11px;
+								margin:12px 12px 0px 0px; 
+							}
+		#results-tab { max-height: 545px; overflow: scroll; }
+		.alt-property { background-color:#eee; }
+
+
+
+
