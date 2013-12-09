@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="assets/css/ace.min.css" />
 		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -37,6 +38,19 @@
 		<script src="assets/js/html5shiv.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?address=philadelphia+pa&sensor=false"></script>
+	     <script type="text/javascript">
+	      function initialize() {
+	        var mapOptions = {
+	          center: new google.maps.LatLng(39.778, -75.591),
+	          zoom: 8
+	        };
+	        var map = new google.maps.Map(document.getElementById("map-canvas"),
+	            mapOptions);
+	      }
+	      google.maps.event.addDomListener(window, 'load', initialize);
+	    </script>
+
 	</head>
 
 	<body>
@@ -2832,7 +2846,7 @@
 		<div class="results-property linearbg">
 			<div>
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
-				<span class="results-city">San Diego</span><span class="results-price badge badge-success">$550,000</span>
+				<span class="results-city">San Diego</span><span class="results-price">$550,000</span>
 			</div>
 			<div>
 				<span>
@@ -2840,26 +2854,12 @@
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Sq.Ft</span><br>
-						1900
-						</span>
-					<span>
-						<span class="label label-sm label-info arrowed arrowed-right">Beds</span><br>
-						5
-						</span>
-						<br>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Baths</span><br>
-						2.5
-						</span>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Built</span><br>
-						1979
-						</span>
-					</span>
-					<br>
-					<a href="#" class="badge badge-yellow results-detail-btn results-detail-btn" style="font-size:12px;height:18px;">Show Details</a>
+					<table class="details-table">
+						<tr><td class="tl"><span class="tdspanl">SQ.FT<br>1900</span></td><td class="tr"><span class="tdspanr">BEDS<br>4</span></td></tr>
+						<tr><td class="bl"><span class="tdspanl">BATH<br>2.5</span></td><td class="br"><span class="tdspanr">BUILT<br>2003</span></td></tr>
+					</table>
+					
+					<a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>
 
 				</span>
 			</div>
@@ -2867,7 +2867,7 @@
 		<div class="results-property linearbg">
 			<div>
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
-				<span class="results-city">San Diego</span><span class="results-price badge badge-success">$550,000</span>
+				<span class="results-city">San Diego</span><span class="results-price">$550,000</span>
 			</div>
 			<div>
 				<span>
@@ -2875,26 +2875,12 @@
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Sq.Ft</span><br>
-						1900
-						</span>
-					<span>
-						<span class="label label-sm label-info arrowed arrowed-right">Beds</span><br>
-						5
-						</span>
-						<br>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Baths</span><br>
-						2.5
-						</span>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Built</span><br>
-						1979
-						</span>
-					</span>
-					<br>
-					<a href="#" class="badge badge-yellow results-detail-btn results-detail-btn" style="font-size:12px;height:18px;">Show Details</a>
+					<table class="details-table">
+						<tr><td class="tl"><span class="tdspanl">SQ.FT<br>1900</span></td><td class="tr"><span class="tdspanr">BEDS<br>4</span></td></tr>
+						<tr><td class="bl"><span class="tdspanl">BATH<br>2.5</span></td><td class="br"><span class="tdspanr">BUILT<br>2003</span></td></tr>
+					</table>
+					
+					<a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>
 
 				</span>
 			</div>
@@ -2902,7 +2888,7 @@
 		<div class="results-property linearbg">
 			<div>
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
-				<span class="results-city">San Diego</span><span class="results-price badge badge-success">$550,000</span>
+				<span class="results-city">San Diego</span><span class="results-price">$550,000</span>
 			</div>
 			<div>
 				<span>
@@ -2910,34 +2896,19 @@
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Sq.Ft</span><br>
-						1900
-						</span>
-					<span>
-						<span class="label label-sm label-info arrowed arrowed-right">Beds</span><br>
-						5
-						</span>
-						<br>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Baths</span><br>
-						2.5
-						</span>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Built</span><br>
-						1979
-						</span>
-					</span>
-					<br>
-					<a href="#" class="badge badge-yellow results-detail-btn results-detail-btn" style="font-size:12px;height:18px;">Show Details</a>
+					<table class="details-table">
+						<tr><td class="tl"><span class="tdspanl">SQ.FT<br>1900</span></td><td class="tr"><span class="tdspanr">BEDS<br>4</span></td></tr>
+						<tr><td class="bl"><span class="tdspanl">BATH<br>2.5</span></td><td class="br"><span class="tdspanr">BUILT<br>2003</span></td></tr>
+					</table>
+					
+					<a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>
 
 				</span>
 			</div>
-		</div>
-		<div class="results-property linearbg">
+		</div><div class="results-property linearbg">
 			<div>
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
-				<span class="results-city">San Diego</span><span class="results-price badge badge-success">$550,000</span>
+				<span class="results-city">San Diego</span><span class="results-price">$550,000</span>
 			</div>
 			<div>
 				<span>
@@ -2945,60 +2916,12 @@
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Sq.Ft</span><br>
-						1900
-						</span>
-					<span>
-						<span class="label label-sm label-info arrowed arrowed-right">Beds</span><br>
-						5
-						</span>
-						<br>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Baths</span><br>
-						2.5
-						</span>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Built</span><br>
-						1979
-						</span>
-					</span>
-					<br>
-					<a href="#" class="badge badge-yellow results-detail-btn results-detail-btn" style="font-size:12px;height:18px;">Show Details</a>
-				</span>
-			</div>
-		</div>
-		<div class="results-property linearbg">
-			<div>
-				<div class="results-address">3142 Lighthouse Ridge Ln</div>
-				<span class="results-city">San Diego</span><span class="results-price badge badge-success">$550,000</span>
-			</div>
-			<div>
-				<span>
-					<img src="http://cdn.freshome.com/wp-content/uploads/2013/09/View-M4-House.jpg" width=120 height =120 />
-				</span>
-				<span class="results-property-info">
-					<span class="property-spans">
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Sq.Ft</span><br>
-						1900
-						</span>
-					<span>
-						<span class="label label-sm label-info arrowed arrowed-right">Beds</span><br>
-						5
-						</span>
-						<br>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Baths</span><br>
-						2.5
-						</span>
-					<span>
-						<span class="label label-sm label-primary arrowed arrowed-right">Built</span><br>
-						1979
-						</span>
-					</span>
-					<br>
-					<a href="#" class="badge badge-yellow results-detail-btn results-detail-btn" style="font-size:12px;height:18px;">Show Details</a>
+					<table class="details-table">
+						<tr><td class="tl"><span class="tdspanl">SQ.FT<br>1900</span></td><td class="tr"><span class="tdspanr">BEDS<br>4</span></td></tr>
+						<tr><td class="bl"><span class="tdspanl">BATH<br>2.5</span></td><td class="br"><span class="tdspanr">BUILT<br>2003</span></td></tr>
+					</table>
+					
+					<a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>
 
 				</span>
 			</div>
@@ -3026,15 +2949,15 @@
 					</div>
 
 					<div class="page-content">
-						<div class="page-header">
-							<h1>
-									<i class="icon-globe"></i> Map
+						<div class="page-header" style="display:none;">
+							<!--<h1>
+								<!--	<i class="icon-globe"></i> Map
 								<!--
 								<small>
 									<i class="icon-double-angle-right"></i>
 								</small>
-								-->
-							</h1>
+								
+							</h1>-->
 						</div><!-- /.page-header -->
 
 						<div class="row">
@@ -3043,7 +2966,7 @@
 
 								<div class="row">
 									<div class="col-sm-12">
-									MAP GOES HERE
+									   <div id="map-canvas"/>
 									</div><!-- /span -->
 								</div><!-- /row -->
 
@@ -3053,10 +2976,6 @@
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
 			</div><!-- /.main-container-inner -->
-
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->
