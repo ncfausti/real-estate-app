@@ -99,6 +99,20 @@
 			  //  	}
 			    });
 
+			    // Update number of results viewing text at top or results tab
+			    // are these closures? since I can not access them globally, but am still
+			    // able to access them in scroll() function call
+			    var results_tab =  $('#results-tab'); 
+			   // var results_tab_height = 545; //results_tab.height();
+			    var min_viewing = $('#min-view-count');
+			    var max_viewing = $('#max-view-count');
+
+			    results_tab.scroll(function() {
+			    	// refactor to only update text if numbers change
+			    	min_viewing.text(Math.floor( (results_tab.scrollTop() + 300) / 210));
+			    	max_viewing.text(Math.floor( (results_tab.scrollTop() + 300)  / 210) + 2);
+			    })
+
 			});  // End document.ready handler
 		
 

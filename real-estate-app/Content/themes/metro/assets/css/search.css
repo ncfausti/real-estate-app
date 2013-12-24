@@ -186,3 +186,10 @@
 body{font-family:sans-serif;}
 .page-content{ padding-top:0px; }
 #ui-datepicker-div { display:none;}
+.viewing-count {
+	color: red;
+	position: fixed;
+	width: 286px;
+	background-color: white;
+	padding: 6px;
+}
