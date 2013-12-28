@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-}
+ }
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="Content/themes/metro/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="Content/themes/metro/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="Content/themes/metro/assets/css/ace-skins.min.css" />
+		
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="Content/themes/metro/assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -40,7 +41,7 @@
 		<script src="Content/themes/metro/assets/js/html5shiv.js"></script>
 		<script src="Content/themes/metro/assets/js/respond.min.js"></script>
 		<![endif]-->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?address=philadelphia+pa&sensor=false"></script>
+		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?address=philadelphia+pa&sensor=false"></script>
 	     <script type="text/javascript">
 	         function initialize() {
 	             var mapOptions = {
@@ -52,6 +53,7 @@
 	         }
 	         google.maps.event.addDomListener(window, 'load', initialize);
 	    </script>
+
 	</head>
 
 	<body>
@@ -2842,8 +2844,11 @@
 					</ul><!-- /.nav-list -->
 	</div>
 
-		<div class="tab-pane" id="results-tab">
+	<div class="tab-pane" id="results-tab">
 		<!-- all results go in here -->
+		<div class="viewing-count">
+			Viewing: <span id="min-view-count">1</span>-<span id="max-view-count">3</span> of <span id="total-view-count">4</span>
+		</div>
 		<div class="results-property linearbg">
 			<div>
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
@@ -2951,14 +2956,14 @@
 
 					<div class="page-content">
 						<div class="page-header" style="display:none;">
-							<h1>
-									<i class="icon-globe"></i> Map
+							<!--<h1>
+								<!--	<i class="icon-globe"></i> Map
 								<!--
 								<small>
 									<i class="icon-double-angle-right"></i>
 								</small>
-								-->
-							</h1>
+								
+							</h1>-->
 						</div><!-- /.page-header -->
 
 						<div class="row">
@@ -2967,7 +2972,7 @@
 
 								<div class="row">
 									<div class="col-sm-12">
-									<div id="map-canvas"/>
+									   <div id="map-canvas"/>
 									</div><!-- /span -->
 								</div><!-- /row -->
 
@@ -2977,7 +2982,6 @@
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
 			</div><!-- /.main-container-inner -->
-
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->
@@ -2992,7 +2996,7 @@
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='Content/themes/metro/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
