@@ -165,7 +165,7 @@
 /*sidebar override*/
 .sidebar { background-color:#fff;border:0px;margin-top: 5px; }
 .tab-content { border-right: 4px solid #eee; }
-.breadcrumbs { background-color: #fff; }
+.breadcrumbs { background-color: #fff;border-bottom: none;}
 .tabbable { width: 303px; }
 .navbar {display:none;}
 .details-table {margin: 18px 0px 0px 0px; font-size:12px;}
@@ -192,4 +192,5 @@ body{font-family:sans-serif;}
 	width: 286px;
 	background-color: white;
 	padding: 6px;
+	border-bottom:1px solid #eee;
 }
