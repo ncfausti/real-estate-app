@@ -93,10 +93,6 @@
 			    		addTitleText([$(this).parent().find('.x-icon'), $(e.target)]);
 			    		$(this).addClass('selected');
 			    	}
-
-			  //  	else if(e.target.className.toString() == 'x-icon') {
-			  //  		addTitleText([$(this).parent().find('.x-icon'), $(e.target)]);
-			  //  	}
 			    });
 
 			    // Update number of results viewing text at top or results tab

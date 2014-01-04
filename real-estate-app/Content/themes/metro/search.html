@@ -198,7 +198,7 @@
 <div class="tabbable">
 <ul class="nav nav-tabs" id="search-results-tabs">
 	<li class="active">
-		<a data-toggle="tab" href="#search-tab">
+		<a data-toggle="tab" href="#search-tab" id="search-tab-link"class="linearbg-reverse">
 			<!--<i class="green icon-home bigger-110"></i>-->
 			Search
 		</a>
@@ -212,20 +212,14 @@
 <div class="tab-content" id="search-tab-content">
 	<div class="tab-pane active" id="search-tab">
 		<ul class="nav nav-list">
-						<li class="active primary-search-li">
+						<li class="active primary-search-li linearbg">
 								<span class="menu-text">  
 									<form class="form-search">
-										<span class="input-icon">
-											<input type="text" placeholder="Search by MLS #" class="nav-search-input" id="nav-search-input" autocomplete="off" />
-											<i class="icon-search nav-search-icon"></i>
+										<span class="mls-search-span">
+											<input type="text" placeholder="Search by MLS #" class="nav-search-input" id="nav-search-input" autocomplete="off"></input><i class="icon-search" id="mls-search-icon"></i>
+										<span class="advanced-search-link" onclick="javascript:showMoreOptions();">Avanced Search</span>
+
 										</span>
-										<span onclick="javascript:showMoreOptions();" type="button" class="btn btn-sm btn-info" id="expand-search-btn">
-										Search
-										<i class="icon-arrow-right"></i>
-									</span>
-									<div class="moreOptionsLink btn btn-sm btn-success" onclick="javascript:showMoreOptions();" type="button">
-										Search by Zip, City, State, County,<br> School district and more…
-									</div>
 									<div id="moreMenuOptions">
 <!-- 
 
@@ -234,7 +228,7 @@
 
 
 -->
-										<div class="tabbable">
+										<div class="tabbable" id="advanced-search-tabs">
 											<ul class="nav nav-tabs" id="myTab">
 												<li class="active">
 													<a data-toggle="tab" href="#city">
@@ -455,11 +449,12 @@
 									</form>
 								</span>
 						</li>
-<li style="text-align:center;" class="btn-warning" id="additional-li">Additional Criteria</li>
+<li style="text-align:center;" class="linearbg" id="additional-li">ADD ADDITIONAL CRITERIA:</li>
+
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-dollar"></i>
-								<span class="menu-text"> Price  <span id="price-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
+								<span class="menu-text"> Price  <span id="price-menu-prop" class="prop-text"></span><span class="x-icon">x</span></span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
@@ -2943,12 +2938,13 @@
 					</ul><!-- /.nav-list -->
 	</div>
 
+
 	<div class="tab-pane" id="results-tab">
 		<!-- all results go in here -->
-		<div class="viewing-count">
+		<div class="viewing-count linearbg">
 			Viewing: <span id="min-view-count">1</span>-<span id="max-view-count">3</span> of <span id="total-view-count">4</span>
 		</div>
-		<div class="results-property linearbg">
+		<div class="results-property first linearbg">
 			<div>
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
 				<span class="results-city">San Diego</span><span class="results-price">$550,000</span>
@@ -3042,36 +3038,20 @@
 				</div>
 
 				<div class="main-content">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home home-icon"></i>
-								<a href="#">Home</a>
-							</li>
-							<li class="active">Search</li>
-						</ul><!-- .breadcrumb -->
-
-					</div>
-
 					<div class="page-content">
-						<div class="page-header" style="display:none;">
-							<!--<h1>
-								<!--	<i class="icon-globe"></i> Map
-								<!--
-								<small>
-									<i class="icon-double-angle-right"></i>
-								</small>
-								
-							</h1>-->
-						</div><!-- /.page-header -->
-
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- MAP CONTENT BEGINS -->
 
 								<div class="row">
 									<div class="col-sm-12">
-									   <div id="map-canvas"/>
+										<div class="map-icon-row linearbg-reverse">
+											<i class="active icon-globe home-icon"></i> Map
+										</div>
+										<div id="listings-displayed-row" class="linearbg">
+											<span class="listings-showing-on-map">35 listings displayed</span>
+										</div>
+									   <div id="map-canvas" />
 									</div><!-- /span -->
 								</div><!-- /row -->
 
