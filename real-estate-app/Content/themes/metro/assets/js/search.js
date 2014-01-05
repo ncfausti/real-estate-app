@@ -151,24 +151,28 @@ var debugG;
 				priceMenuText.css('display','inline');
 			}
 
+			//
+			// FIX ME
+			//
+
 			// Bedrooms
-			if(e == '#bedroom-number')
+			if(e == '#min-rooms-slider' || e == '#max-rooms-slider')
 			{
-				if ($('#bedroom-number').val() == '-1')
+				if ($('#min-rooms-slider').val() == '0')
 					text  = 'Any';
 				else
-					text = $('#bedroom-number').val();
+					text = $('#min-rooms-slider').val() + " to " + $('#max-rooms-slider').val();
 
 				$('#bedrooms-menu-prop').text(text + " bedrooms");
 			}
 			
 			// Bathrooms
-			if(e == '#bath-number')
+			if(e == '#min-bath-slider' || e == 'max-bath-slider')
 			{
-				if ($('#bath-number').val() == '-1')
+				if ($('#min-bath-slider').val() == '0')
 					text  = 'Any';
 				else
-					text = $('#bath-number').val();
+					text = $('#min-bath-slider').val() + " to " + $('#max-bath-slider').val();
 
 				$('#bathrooms-menu-prop').text(text + " baths");
 			}
@@ -284,6 +288,27 @@ var debugG;
 				var priceDrops = $('#pricedrops-menu-prop');
 				var min = $('#min-price-drop');
 				var max = $('#max-price-drop');
+
+				if (min.val() == '')
+					min = 'No Min'
+				else
+					min = min.val();
+
+				if (max.val() == '')
+					max  = 'No Max'; 
+				else 
+					max = max.val();
+				
+				priceDrops.text(min +' to ' + max);
+				priceDrops.css('display','inline');
+			}
+
+		    // Price of house
+			if(e == '#min-price-slider' || e =='#max-price-slider')
+			{
+				var priceDrops = $('#price-menu-prop');
+				var min = $('#min-price-slider');
+				var max = $('#max-price-slider');
 
 				if (min.val() == '')
 					min = 'No Min'
@@ -661,13 +686,86 @@ var debugG;
 					$(this.firstChild).hide();
 				});
 
+//	Slider for price of house
+		$( "#slider-range-price" ).css('width','200px').css('height','10px').slider({
+					orientation: "horizontal",
+					range: true,
+					min: 0,
+					max: 3000000,
+					step: 5000,
+					values: [ 200000, 800000 ],
+					slide: function( event, ui ) {
+						var val = ui.values[$(ui.handle).index()-1]+"";
+						if(! ui.handle.firstChild ) {
+							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
+						}
+						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-price-slider').val(ui.values[0]);
+						updatePropertyText('#min-price-slider');
+						$('#max-price-slider').val(ui.values[1]);
+						updatePropertyText('#max-price-slider');
+					}
+				}).find('a').on('blur', function(){
+					$(this.firstChild).hide();
+				});
+
+// Slider for number of rooms
+$( "#slider-range-rooms" ).css('width','200px').css('height','10px').slider({
+					orientation: "horizontal",
+					range: true,
+					min: 0,
+					max: 7,
+					values: [ 0, 7 ],
+					slide: function( event, ui ) {
+						var val = ui.values[$(ui.handle).index()-1]+"";
+						if(! ui.handle.firstChild ) {
+							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
+						}
+						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-rooms-slider').val(ui.values[0]);
+						updatePropertyText('#min-rooms-slider');
+
+						$('#max-rooms-slider').val(ui.values[1]);
+						updatePropertyText('#max-rooms-slider');
+
+					}
+				}).find('a').on('blur', function(){
+					$(this.firstChild).hide();
+				});
+
+// Slider for number of baths
+$( "#slider-range-baths" ).css('width','200px').css('height','10px').slider({
+					orientation: "horizontal",
+					range: true,
+					min: 0,
+					max: 5,
+					step: .5,
+					values: [ 1, 3],
+					slide: function( event, ui ) {
+						var val = ui.values[$(ui.handle).index()-1]+"";
+						if(! ui.handle.firstChild ) {
+							$(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
+						}
+						$(ui.handle.firstChild).show().children().eq(1).text(val);
+						$('#min-bath-slider').val(ui.values[0]);
+						updatePropertyText('#min-bath-slider');
+
+						$('#max-bath-slider').val(ui.values[1]);
+						updatePropertyText('#max-bath-slider');
+
+					}
+				}).find('a').on('blur', function(){
+					$(this.firstChild).hide();
+				});
+
+
 // Slider for year built
 $( "#slider-range-year-built" ).css('width','200px').css('height','10px').slider({
 					orientation: "horizontal",
 					range: true,
-					min: 1900,
-					max: 2013,
-					values: [ 1970, 2013 ],
+					min: 0,
+					max: 100,
+					values: [ 0, 30 ],
 					slide: function( event, ui ) {
 						var val = ui.values[$(ui.handle).index()-1]+"";
 						if(! ui.handle.firstChild ) {
