@@ -89,9 +89,13 @@
 			    	debugGlobal = $(e.target);
 			    	if( !$(this).hasClass('selected') && e.target.className.toString() != 'x-icon' )  {
 			    		$(this).parent().insertBefore("#additional-li");
+			    		$(this).addClass('caps-text')
 			    		//console.log(debugGlobal.prev());
 			    		addTitleText([$(this).parent().find('.x-icon'), $(e.target)]);
 			    		$(this).addClass('selected');
+			    	// Readjust height of advanced search content
+			    		console.log($('#search-tab').height());
+
 			    	}
 			    });
 
@@ -158,9 +162,6 @@ var debugG;
 			// Bedrooms
 			if(e == '#min-rooms-slider' || e == '#max-rooms-slider')
 			{
-				if ($('#min-rooms-slider').val() == '0')
-					text  = 'Any';
-				else
 					text = $('#min-rooms-slider').val() + " to " + $('#max-rooms-slider').val();
 
 				$('#bedrooms-menu-prop').text(text + " bedrooms");
@@ -194,7 +195,7 @@ var debugG;
 				else 
 					max = max.val();
 				
-				homesizeSqFt.text(min +' to ' + max + 'sq ft');
+				homesizeSqFt.text(min +' to ' + max + ' sq ft');
 				homesizeSqFt.css('display','inline');
 			}
 
@@ -236,7 +237,7 @@ var debugG;
 				else 
 					max = max.val();
 				
-				lotSizeAcres.text(min +' to ' + max + ' sq ft');
+				lotSizeAcres.text(formatMoney(min) +' to ' + formatMoney(max) + ' sq ft');
 				lotSizeAcres.css('display','inline');
 			}
 
@@ -257,7 +258,7 @@ var debugG;
 				else 
 					max = max.val();
 				
-				daysListed.text(min +' to ' + max + 'days');
+				daysListed.text(min +' to ' + max + ' days');
 				daysListed.css('display','inline');
 			}
 
@@ -278,7 +279,7 @@ var debugG;
 				else 
 					max = max.val();
 				
-				yearBuilt.text(min +' to ' + max);
+				yearBuilt.text(min +' to ' + max + ' years');
 				yearBuilt.css('display','inline');
 			}
 
@@ -299,7 +300,7 @@ var debugG;
 				else 
 					max = max.val();
 				
-				priceDrops.text(min +' to ' + max);
+				priceDrops.text('$'+formatMoney(min) +' to $' + formatMoney(max));
 				priceDrops.css('display','inline');
 			}
 
@@ -320,7 +321,7 @@ var debugG;
 				else 
 					max = max.val();
 				
-				priceDrops.text(min +' to ' + max);
+				priceDrops.text('$'+formatMoney(min) +' to $' + formatMoney(max));
 				priceDrops.css('display','inline');
 			}
 
@@ -347,7 +348,9 @@ var debugG;
 				}
 				else
 					single = ' ';
-				propTypes.text(land + ' ' + condo + ' ' + single );
+				var ptext = land + ' ' + condo + ' ' + single;
+
+				propTypes.text(ptext);
 				propTypes.css('display','inline');
 			}
 
@@ -557,6 +560,7 @@ var debugG;
 			  var item = $(listItem);
 			  item.find('.x-icon').css('display','none');
 			  item.insertAfter("#additional-li");
+			  item.children().first().removeClass('caps-text');
 			  item.children().first().removeClass('selected');
 			  item.find('.prop-text').first().css('display','none')
 			  menuID = item.find('.prop-text')[0].id;
@@ -851,7 +855,10 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 					$(this.firstChild).hide();
 				});
 
-
+		function formatMoney(n) {
+			n = parseInt(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+			return n.substring(0,n.length -3)
+		}
 		// Expand primary search menu
 		function showMoreOptions() {
 			$('#moreMenuOptions').toggle(100);
@@ -882,3 +889,11 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 
 		// Toggle forclosure input
 		$('#sliderrange-lot-size :input').prop('disabled', false);
+
+		var showAdvancedSearch = function () {
+			//$('#search-tab-content').addClass('w800');
+			//$('#properties-ul').addClass('w299');
+			$('#advanced-search-content').removeClass('hidden-advanced-content');
+
+		}
+

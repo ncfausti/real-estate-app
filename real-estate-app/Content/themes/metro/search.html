@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
 		
 		<!--[if lte IE 8]>
+
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
 		<!-- inline styles related to this page -->
@@ -43,12 +44,22 @@
      	  var RealEstate = {};
 
 	      function initialize() {
+
 	        var mapOptions = {
 	          center: new google.maps.LatLng(39.778, -75.591),
 	          zoom: 8
 	        };
+
 	        var map = new google.maps.Map(document.getElementById("map-canvas"),
 	            mapOptions);
+
+	        var deleteShapeDiv = document.createElement('div');
+	        deleteShapeDiv.className = 'delete-shape-div';
+	        $(deleteShapeDiv).click(function() { RealEstate.deleteShape(); })
+
+	        deleteShapeDiv.innerHTML = "<div class='delete-button'><span>Clear</span><div>";
+	        map.controls[google.maps.ControlPosition.TOP_LEFT].push(deleteShapeDiv);
+
 	       	var drawingManager = new google.maps.drawing.DrawingManager();
 	      	drawingManager.setMap(map);
 	      	drawingManager.setOptions({
@@ -75,13 +86,14 @@
 			});
 
 			google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-				//var radius = polygon.get
+				//clear current shape if one is present
+				RealEstate.deleteShape();
 				RealEstate.polygon1 = polygon;
 				console.log(polygon);
 			});
 
 			google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
-				//var radius = polygon.get
+				RealEstate.deleteShape();
 				RealEstate.circle1 = circle;
 				console.log(circle.getRadius());
 			});
@@ -95,6 +107,13 @@
       		title: 'Philadelphia, PA'
   	 	});
 	   } // End Initialize()
+
+	   RealEstate.deleteShape = function(){
+  	 		if(RealEstate.polygon1)
+					RealEstate.polygon1.setMap(null);
+			if (RealEstate.circle1)
+					RealEstate.circle1.setMap(null);
+  	 	}
 
 	      google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -211,13 +230,19 @@
 </ul>
 <div class="tab-content" id="search-tab-content">
 	<div class="tab-pane active" id="search-tab">
-		<ul class="nav nav-list">
+		<div id="advanced-search-content" class="hidden-advanced-content" >
+			<div id="advanced-search-header" class="linearbg">
+				header
+			</div>
+			some stuff here
+		</div>
+		<ul class="nav nav-list" id="properties-ul">
 						<li class="active primary-search-li linearbg">
 								<span class="menu-text">  
 									<form class="form-search">
 										<span class="mls-search-span">
 											<input type="text" placeholder="Search by MLS #" class="nav-search-input" id="nav-search-input" autocomplete="off"></input><i class="icon-search" id="mls-search-icon"></i>
-										<span class="advanced-search-link" onclick="javascript:showMoreOptions();">Avanced Search</span>
+										<span class="advanced-search-link" onclick="javascript:showMoreOptions();">Advanced Search</span>
 
 										</span>
 									<div id="moreMenuOptions">
@@ -497,9 +522,9 @@
 									<div style="text-align:center;">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-rooms-slider" disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-rooms-slider" readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-rooms-slider" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-rooms-slider" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -537,9 +562,9 @@
 									<div style="text-align:center;">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-bath-slider" disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-bath-slider" readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-bath-slider" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-bath-slider" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
@@ -610,7 +635,7 @@
 											<br>
 
 											<div class="col-xs-3 col-md-2">
-											<div id="slider-range-lot-size-acres" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" style="height: 200px;margin: 12px 0px 0px 48px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
+											<div id="slider-range-lot-size-acres" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;margin: 12px 0px 0px 48px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
 										</div>
 									</div>
 									<br>
@@ -627,7 +652,7 @@
 											<br>
 
 											<div class="col-xs-3 col-md-2">
-											<div id="slider-range-lot-size" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" style="height: 200px;margin: 12px 0px 0px 48px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
+											<div id="slider-range-lot-size" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;margin: 12px 0px 0px 48px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
 										</div>
 									</div>
 								</li>
@@ -652,7 +677,7 @@
 											<br>
 
 											<div class="col-xs-3 col-md-2">
-											<div id="slider-range-days-listed" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
+											<div id="slider-range-days-listed" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
 										</div>
 									</div>
 								</li>
@@ -671,13 +696,13 @@
 								<div style="text-align:center;">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-year-built" disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-year-built" readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-year-built" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-year-built" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
-											<div id="slider-range-year-built" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
+											<div id="slider-range-year-built" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
 										</div>
 									</div>
 								</li>
@@ -696,13 +721,13 @@
 								<div style="text-align:center;">
 										From:&nbsp;
 										<!-- min -->
-											<input type="text" class="input-sm input-xs" id="min-price-drop" disabled="true"> to 
+											<input type="text" class="input-sm input-xs" id="min-price-drop" readonly="true"> to 
 											<!-- max -->
-											<input type="text" class="input-sm input-xs" id="max-price-drop" disabled="true">
+											<input type="text" class="input-sm input-xs" id="max-price-drop" readonly="true">
 											<br>
 
 											<div class="col-xs-3 col-md-2">
-											<div id="slider-range-price-drop" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
+											<div id="slider-range-price-drop" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
 											</div>
 									</div>
 								</li>
@@ -728,14 +753,14 @@
 
 									<div class="checkbox">
 										<label>
-											<input name="ckCondo" id="ckCondo" class="ace ace-checkbox-2" type="checkbox">
+											<input name="ckCondo" id="ckCondo" class="ace ace-checkbox-2" type="checkbox" checked>
 											<span class="lbl"> Condo/Townhouse</span>
 										</label>
 									</div>
 
 									<div class="checkbox">
 										<label>
-											<input name="ckSingle" id="ckSingle" class="ace ace-checkbox-2" type="checkbox">
+											<input name="ckSingle" id="ckSingle" class="ace ace-checkbox-2" type="checkbox" checked>
 											<span class="lbl"> Single Family</span>
 										</label>
 									</div>
@@ -975,10 +1000,10 @@
 						<li style="height:46px;text-align:center;">
 							<a href="#" style="line-height:40px;">
 								<span class="menu-text">
-								<button class="btn btn-sm btn-warning">
+								<button class="btn btn-sm btn-primary">
 								<i class="icon-reply bigger-110"></i>
 												
-												<span class="bigger-110 no-text-shadow">Reset</span>
+												<span class="bigger-110 no-text-shadow black-text">Reset</span>
 											</button>
 										</span>
 							</a>
