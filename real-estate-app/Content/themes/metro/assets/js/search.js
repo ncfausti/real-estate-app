@@ -85,16 +85,15 @@
 			    });
 			    
 			    $(".dropdown-toggle").click(function(e) { 
-			    //	console.log(e);
-			    	debugGlobal = $(e.target);
 			    	if( !$(this).hasClass('selected') && e.target.className.toString() != 'x-icon' )  {
 			    		$(this).parent().insertBefore("#additional-li");
 			    		$(this).addClass('caps-text')
-			    		//console.log(debugGlobal.prev());
 			    		addTitleText([$(this).parent().find('.x-icon'), $(e.target)]);
 			    		$(this).addClass('selected');
+
 			    	// Readjust height of advanced search content
-			    		console.log($('#search-tab').height());
+			    		//console.log( $('#properties-ul').height() );
+			    		$('#advanced-search-content').css('min-height', getPropertyListHeight());
 
 			    	}
 			    });
@@ -113,8 +112,15 @@
 			    	max_viewing.text(Math.floor( (results_tab.scrollTop() + 300)  / 210) + 2);
 			    })
 
+			    $('#advanced-search-link').click( function() {showAdvancedSearch();} );
 			});  // End document.ready handler
 		
+		var getPropertyListHeight = function() {
+		/*	for(var i = 0;i<1000;i++) {
+				;
+			}
+		*/
+		 return $('#properties-ul').height() }
 
 // Add property values to title bar 
 // for each property in "Selected Properties area", i.e. 

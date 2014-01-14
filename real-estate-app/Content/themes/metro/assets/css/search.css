@@ -45,7 +45,7 @@
 			height: 35px;
 		}
 
-		#moreMenuOptions { 
+		#moreMenuOptions { /*
 			position: absolute;
 			width: 600px;
 			height: 300px;
@@ -56,6 +56,7 @@
 			z-index: 1;
 			border-top: 0px;
 			border-left:0px;
+			*/
 		}
 
 		.sm-text-input { width:120px;float:left; }
@@ -188,7 +189,7 @@
 .property-spans { margin:12px 0px 0px 7px;width:108px; }
 /*sidebar override*/
 .sidebar { background-color:#fff;border:0px;margin-top: 5px; }
-.tab-content { border: 0px;border-right: 3px solid #9ACAFF; box-shadow: 3px 3px 3px}
+.tab-content { border: 0px;box-shadow: 3px 3px 3px}
 .breadcrumbs { background-color: #fff;border-bottom: none;}
 .tabbable { width: 303px; border-left:1px solid #9ACAFF;border-bottom:2px solid #9ACAFF;border-radius:3px;}
 .navbar {display:none;}
@@ -200,7 +201,8 @@
 .details-table .tr { padding:0px 6px 4px 0px;border-top:0px;border-right:0px; }
 .details-table .bl { padding:5px 0px 0px 6px;border-bottom:0px;border-left:0px; }
 .details-table .br { padding:5px 6px 0px 0px;border-bottom:0px;border-right:0px; }
-#map-canvas { min-height:516px;max-width:670px;
+#map-canvas { min-height:515px;
+			max-width:670px;
 			border-left:3px solid #9ACAFF;
 			border-right:3px solid #9ACAFF;
 			border-bottom:3px solid #9ACAFF;
@@ -268,7 +270,11 @@ border: 1px solid #ccc;
 border-left: 0px; }
 .icon-search:hover { cursor:pointer; }
 #my-tab { width:560px; }
-#advanced-search-tabs { width:600px;min-height:300px;border-left:0px; }
+#advanced-search-tabs { 
+	width:600px;
+	min-height:300px;
+	border:none; 
+}
 .btn { border-radius: 6px; }
 .ui-slider .ui-slider-handle { 
 	width: 10px; 
@@ -357,21 +363,27 @@ input[type="text"]:disabled { background: #feb;color:#333; }
 #advanced-search-content{ 
 	background-color:#fff;
 	background-color: #fff;
-	min-height: 300px;
-	position: fixed;
+	min-height: 547px;
+	position: absolute;
 	z-index: 1;
-	left: 380px;
-	top:68px;
-	width:600px;
+	left: 300px;
+	top: 0px;
+	border-bottom: 2px solid #9acaff;
+	width: 600px;
+	border-right: 2px solid #9ACAFF;
+	box-shadow: 3px 3px 3px;
+	border-bottom-right-radius:3px;
 }
 #advanced-search-header { 
 	min-height: 79px;
 	border-bottom: 1px solid #ddd;
+	margin-bottom: -35px;
 }
 
+#search-tab-content {border-bottom: 2px solid #9ACAFF;
+border-right: 2px solid #9ACAFF;}
 
-
-
+.multi-select-cities .btn { width: 94px; }
 
 
 
