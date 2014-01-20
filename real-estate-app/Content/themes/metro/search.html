@@ -39,7 +39,7 @@
 		<script src="assets/js/html5shiv.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing&address=philadelphia+pa&sensor=false"></script>
+		<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing&address=philadelphia+pa&sensor=false"></script> -->
 	     <script type="text/javascript">
      	  var RealEstate = {};
 
@@ -230,9 +230,9 @@
 </ul>
 <div class="tab-content" id="search-tab-content">
 	<div class="tab-pane active" id="search-tab">
-		<div id="advanced-search-content" class="hidden-advanced-content" >
-			<div id="advanced-search-header" class="linearbg">
-			</div>
+		<div id="advanced-search-content" class="hidden-advanced-content expose" >
+			<!--<div id="advanced-search-header" class="linearbg">
+			</div>-->
 			
 			<div class="tabbable" id="advanced-search-tabs">
 											<ul class="nav nav-tabs" id="myTab">
@@ -267,23 +267,24 @@
 
 											<div class="tab-content">
 												<div id="city" class="tab-pane active">
+													<div class="inner-tab-content">
 													State:
 													<select>
 														<option value="PA">PA</option>
 														<option value="NJ">NJ</option>
 														<option value="DE">DE</option>
 													</select>
-													<br>
-													County:<br>
+													
+													<span style="margin-left:42px;"></span>County:
 													<select>
 														<option value="-1">All</option>
 														<option value="bucks">Bucks</option>
 														<option value="montgomery">Montgomery</option>
 														<option value="delaware">Delaware</option>
 													</select><br>
-													<span class="multi-select-cities">
+													<div class="multi-select-cities">
 													Cities:<br>
-													<select multiple="multiple" class="w120 inl-block" name="cities-select-from" id="cities-select-from" >
+													<select multiple="multiple" class="w120 inl-block select-cities expose" name="cities-select-from" id="cities-select-from" >
 														
 																<option value="AL">Alabama</option>
 																<option value="AK">Alaska</option>
@@ -341,11 +342,12 @@
 															<br>
 															<a href="JavaScript:void(0);" id="btn-remove" class="btn btn-sm btn-danger"><< Remove</a>
 															</span>
-															<select multiple="multiple" class="w120 inl-block" name="cities-select-to" id="cities-select-to">
+															<select multiple="multiple" class="w120 inl-block select-cities" name="cities-select-to" id="cities-select-to">
 																
 															</select>
-														</span>
-														<button class="btn">Search</button>
+														</div>
+														<button class="btn btn-primary" id="city-search-btn">Search</button>
+													</div>
 												</div>
 
 												<div id="zip" class="tab-pane">
@@ -410,7 +412,7 @@
 														<option value="DE">DE</option>
 													</select>
 													<br>
-													County:<br>
+													<span style="display:inline-block;margin-left:18px;"></span>County:<br>
 													<select>
 														<option value="-1">All</option>
 														<option value="bucks">Bucks</option>
@@ -442,13 +444,15 @@
 
 											</div>
 										</div>
-		</div>
+		</div>		
+		<div id="overlay"></div>
+
 		<ul class="nav nav-list" id="properties-ul">
-						<li class="active primary-search-li linearbg">
+						<li class="active primary-search-li linearbg" style="z-index:0;">
 								<span class="menu-text">  
 									<form class="form-search">
 										<span class="mls-search-span">
-											<input type="text" placeholder="Search by MLS #" class="nav-search-input" id="nav-search-input" autocomplete="off"></input><i class="icon-search" id="mls-search-icon"></i>
+											<input type="text" placeholder="Search by MLS #" class="nav-search-input expose" id="nav-search-input" autocomplete="off"></input><i class="icon-search" id="mls-search-icon"></i>
 										<span class="advanced-search-link" id="advanced-search-link">Advanced Search</span>
 
 										</span>
@@ -460,14 +464,14 @@
 									</form>
 								</span>
 						</li>
-<li style="text-align:center;" class="linearbg" id="additional-li">ADD ADDITIONAL CRITERIA:</li>
+<li style="text-align:center;" class="linearbg expose" id="additional-li">ADD ADDITIONAL CRITERIA:</li>
 
-						<li>
+						<li class="expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-dollar"></i>
 								<span class="menu-text"> Price  <span id="price-menu-prop" class="prop-text"></span><span class="x-icon">x</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -493,12 +497,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-group"></i>
 								<span class="menu-text">   Bedrooms <span id="bedrooms-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -535,12 +539,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-male"></i>
 								<span class="menu-text">  Bathrooms <span id="bathrooms-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -574,12 +578,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-home"></i>
 								<span class="menu-text">  Home Size  <span id="homesize-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -600,12 +604,12 @@
 
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-move"></i>
 								<span class="menu-text">  Lot Size <span id="lotsize-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -644,12 +648,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-time"></i>
 								<span class="menu-text">   Days Listed <span id="dayslisted-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -669,12 +673,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-calendar"></i>
 								<span class="menu-text">   Years Old <span id="yearbuilt-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -694,12 +698,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-level-down"></i>
 								<span class="menu-text">   Price Drops <span id="pricedrops-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -719,12 +723,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-building"></i>
 								<span class="menu-text">Property Types <span id="propertytypes-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -756,12 +760,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-star"></i>
 								<span class="menu-text">   Features <span id="features-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -812,12 +816,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-legal"></i>
 								<span class="menu-text"> Foreclosures <span id="foreclosures-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -874,12 +878,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-road"></i>
 								<span class="menu-text">   Garages <span id="garages-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -890,12 +894,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-info-sign"></i>
 								<span class="menu-text">  Status <span id="status-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -925,12 +929,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-camera"></i>
 								<span class="menu-text">   Photos <span id="photos-menu-prop" class="prop-text"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -946,12 +950,12 @@
 								</li>
 							</ul>
 						</li>
-<li>
+<li class="linearbg expose">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-signin"></i>
 								<span class="menu-text">   Open Houses <span id="openhouses-menu-prop" class="prop-text" style="padding-left:0px;"></span><span class="x-icon">X</span></span>
 
-								<b class="arrow icon-angle-down"></b>
+								<b class="arrow icon-angle-right"></b>
 							</a>
 
 							<ul class="submenu">
@@ -983,8 +987,8 @@
 							</ul>
 						</li>
 
-						<li style="height:46px;text-align:center;">
-							<a href="#" style="line-height:40px;">
+						<li style="height:46px;text-align:center;" class="linearbg expose">
+							<a href="#" style="line-height:40px;min-height:44px;">
 								<span class="menu-text">
 								<button class="btn btn-sm btn-primary">
 								<i class="icon-reply bigger-110"></i>
@@ -1013,7 +1017,7 @@
 			</div>
 			<div>
 				<span>
-					<img src="http://cdn.freshome.com/wp-content/uploads/2013/09/View-M4-House.jpg" width=120 height =120 />
+					<img src="assets/img/View-M4-House.jpg" width=120 height =120 />
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
@@ -1034,7 +1038,7 @@
 			</div>
 			<div>
 				<span>
-					<img src="http://cdn.freshome.com/wp-content/uploads/2013/09/View-M4-House.jpg" width=120 height =120 />
+					<img src="assets/img/View-M4-House.jpg" width=120 height =120 />
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
@@ -1055,7 +1059,7 @@
 			</div>
 			<div>
 				<span>
-					<img src="http://cdn.freshome.com/wp-content/uploads/2013/09/View-M4-House.jpg" width=120 height =120 />
+					<img src="assets/img/View-M4-House.jpg" width=120 height =120 />
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
@@ -1075,7 +1079,7 @@
 			</div>
 			<div>
 				<span>
-					<img src="http://cdn.freshome.com/wp-content/uploads/2013/09/View-M4-House.jpg" width=120 height =120 />
+					<img src="assets/img/View-M4-House.jpg" width=120 height =120 />
 				</span>
 				<span class="results-property-info">
 					<span class="property-spans">
@@ -1175,5 +1179,6 @@
 
 		<!-- inline scripts related to this page -->
 		<script src="assets/js/search.js"></script>
+
 	</body>
 </html>
