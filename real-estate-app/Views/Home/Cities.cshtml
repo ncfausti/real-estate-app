@@ -1,0 +1,21 @@
+﻿@model IEnumerable<real_estate_app.Models.StateCountyCity>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    if (Request.QueryString["state"] ==  "PA")
+    {
+        if(item.State == "PA") 
+        {
+            <option value="@item.City">@item.City</option>        
+        }
+    }
+    else if (Request.QueryString["state"] ==  "NJ")
+    {
+        if(item.State == "NJ") 
+        {
+            <option value="@item.City">@item.City</option>       
+        }
+    } 
+}

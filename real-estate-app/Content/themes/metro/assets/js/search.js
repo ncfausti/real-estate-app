@@ -925,4 +925,13 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 
 		    });
 		});
-				
+
+		$("#select-state").change(function (e) {
+		    $.ajax({
+		        url: "/Home/Cities?state="+e.target.value, success: function (result) {
+		            console.log(e.target.value);
+		            $("#cities-select-from").html(result);
+		        }
+		    });
+		});
+        

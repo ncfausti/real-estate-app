@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MLSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MLSModelStoreContainer">
+          <EntitySet Name="AllProperty" EntityType="MLSModel.Store.AllProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media" EntityType="MLSModel.Store.Media" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateCountyCity" EntityType="MLSModel.Store.StateCountyCity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateCountyTownship" EntityType="MLSModel.Store.StateCountyTownship" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateSchoolDistrict" EntityType="MLSModel.Store.StateSchoolDistrict" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AllProperty">
+          <Key>
+            <PropertyRef Name="ListingID" />
+          </Key>
+          <Property Name="AnnualLeasePrice" Type="varchar" />
+          <Property Name="BasementType" Type="varchar" />
+          <Property Name="CloseDate" Type="varchar" />
+          <Property Name="ClosePrice" Type="varchar" />
+          <Property Name="InteriorSquareFeetSource" Type="varchar" />
+          <Property Name="RoomList" Type="varchar" />
+          <Property Name="LandOnly" Type="varchar" />
+          <Property Name="ListDate" Type="varchar" />
+          <Property Name="ListPrice" Type="varchar" />
+          <Property Name="ListingID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ListingKey" Type="varchar" />
+          <Property Name="LocaleListingStatus" Type="varchar" />
+          <Property Name="ModificationTimestamp" Type="varchar" />
+          <Property Name="SourceModificationTimestamp" Type="varchar" />
+          <Property Name="OffMarketDate" Type="varchar" />
+          <Property Name="Ownership" Type="varchar" />
+          <Property Name="PoolType" Type="varchar" />
+          <Property Name="PropertyType" Type="varchar" />
+          <Property Name="SourceCreationTimestamp" Type="varchar" />
+          <Property Name="StatusChangeDate" Type="varchar" />
+          <Property Name="WaterFront" Type="varchar" />
+          <Property Name="WaterFrontage" Type="varchar" />
+          <Property Name="YearInBusiness" Type="varchar" />
+          <Property Name="YearRenovated" Type="varchar" />
+          <Property Name="GreenRemarks" Type="varchar" />
+          <Property Name="EnvironmentallyFriendly" Type="varchar" />
+          <Property Name="TypeOfContingency" Type="varchar" />
+          <Property Name="Basement" Type="varchar" />
+          <Property Name="CentralAir" Type="varchar" />
+          <Property Name="Design" Type="varchar" />
+          <Property Name="DiningKitchen" Type="varchar" />
+          <Property Name="Exterior" Type="varchar" />
+          <Property Name="ExteriorAmenities" Type="varchar" />
+          <Property Name="ExteriorFeatures" Type="varchar" />
+          <Property Name="Fencing" Type="varchar" />
+          <Property Name="Fireplace" Type="varchar" />
+          <Property Name="FireplaceCount" Type="varchar" />
+          <Property Name="FireplaceFeatures" Type="varchar" />
+          <Property Name="Furnished" Type="varchar" />
+          <Property Name="Handicap" Type="varchar" />
+          <Property Name="InteriorFeatures" Type="varchar" />
+          <Property Name="NewConstruction" Type="varchar" />
+          <Property Name="PropertyCondition" Type="varchar" />
+          <Property Name="Roof" Type="varchar" />
+          <Property Name="Storage" Type="varchar" />
+          <Property Name="Styles" Type="varchar" />
+          <Property Name="Type" Type="varchar" />
+          <Property Name="FloorPlan" Type="varchar" />
+          <Property Name="Bathrooms" Type="varchar" />
+          <Property Name="BathsFull" Type="varchar" />
+          <Property Name="BathsHalf" Type="varchar" />
+          <Property Name="Beds" Type="varchar" />
+          <Property Name="Entrance" Type="varchar" />
+          <Property Name="Floor" Type="varchar" />
+          <Property Name="MainEntrance" Type="varchar" />
+          <Property Name="LandSqFt" Type="varchar" />
+          <Property Name="NetSQFT" Type="varchar" />
+          <Property Name="BedroomFourth1Length" Type="varchar" />
+          <Property Name="BedroomFourth1Width" Type="varchar" />
+          <Property Name="BedroomMaster1Length" Type="varchar" />
+          <Property Name="BedroomMaster1Width" Type="varchar" />
+          <Property Name="BedroomSecond1Length" Type="varchar" />
+          <Property Name="BedroomSecond1Width" Type="varchar" />
+          <Property Name="BedroomThird1Length" Type="varchar" />
+          <Property Name="BedroomThird1Width" Type="varchar" />
+          <Property Name="DiningRoomLength" Type="varchar" />
+          <Property Name="DiningRoomWidth" Type="varchar" />
+          <Property Name="FamilyRoomLength" Type="varchar" />
+          <Property Name="FamilyRoomWidth" Type="varchar" />
+          <Property Name="Kitchen1Length" Type="varchar" />
+          <Property Name="Kitchen1Width" Type="varchar" />
+          <Property Name="LivingRoomLength" Type="varchar" />
+          <Property Name="LivingRoomWidth" Type="varchar" />
+          <Property Name="MainBedroom" Type="varchar" />
+          <Property Name="OtherRm1Length" Type="varchar" />
+          <Property Name="OtherRm1Width" Type="varchar" />
+          <Property Name="OtherRm2Length" Type="varchar" />
+          <Property Name="OtherRm2Width" Type="varchar" />
+          <Property Name="OtherRm3Length" Type="varchar" />
+          <Property Name="OtherRm3Width" Type="varchar" />
+          <Property Name="OtherRm4Length" Type="varchar" />
+          <Property Name="OtherRm4Width" Type="varchar" />
+          <Property Name="TotalRooms" Type="varchar" />
+          <Property Name="LaundryRoomLength" Type="varchar" />
+          <Property Name="LaundryRoomWidth" Type="varchar" />
+          <Property Name="Utilities" Type="varchar" />
+          <Property Name="Cooling" Type="varchar" />
+          <Property Name="Heating" Type="varchar" />
+          <Property Name="HotWater" Type="varchar" />
+          <Property Name="LaundryType" Type="varchar" />
+          <Property Name="SewerSeptic" Type="varchar" />
+          <Property Name="Water" Type="varchar" />
+          <Property Name="HOAFee" Type="varchar" />
+          <Property Name="MoveInFee" Type="varchar" />
+          <Property Name="HOAFee2" Type="varchar" />
+          <Property Name="CurrentFinancing" Type="varchar" />
+          <Property Name="FinancingTypeCashFinancingType" Type="varchar" />
+          <Property Name="ContractInfo" Type="varchar" />
+          <Property Name="PropertyOption" Type="varchar" />
+          <Property Name="VOWAVM" Type="varchar" />
+          <Property Name="VOWComment" Type="varchar" />
+          <Property Name="OpenHouse" Type="varchar" />
+          <Property Name="MaxPhotoTms" Type="varchar" />
+          <Property Name="TotalPhotos" Type="varchar" />
+          <Property Name="PhotoManager" Type="varchar" />
+          <Property Name="Tours" Type="varchar" />
+          <Property Name="InclusionRemarks" Type="varchar" />
+          <Property Name="Remarks" Type="varchar" />
+          <Property Name="Lot" Type="varchar" />
+          <Property Name="Description" Type="varchar" />
+          <Property Name="LandUse" Type="varchar" />
+          <Property Name="LandUseCode" Type="varchar" />
+          <Property Name="LeaseInEffect" Type="varchar" />
+          <Property Name="LeaseTerm" Type="varchar" />
+          <Property Name="LeasedUnits" Type="varchar" />
+          <Property Name="LotAreaAcre" Type="varchar" />
+          <Property Name="LotDimDepth" Type="varchar" />
+          <Property Name="LotDimWidth" Type="varchar" />
+          <Property Name="LotDimensions" Type="varchar" />
+          <Property Name="PorchDeck" Type="varchar" />
+          <Property Name="PropertyAge" Type="varchar" />
+          <Property Name="HasGarageFlag" Type="varchar" />
+          <Property Name="GarageSpaces" Type="varchar" />
+          <Property Name="GarageType" Type="varchar" />
+          <Property Name="AltAgentFirstName" Type="varchar" />
+          <Property Name="AltAgentGeneration" Type="varchar" />
+          <Property Name="AltAgentID" Type="varchar" />
+          <Property Name="AltAgentLastName" Type="varchar" />
+          <Property Name="AltAgentMiddleInitial" Type="varchar" />
+          <Property Name="AltAgentNickname" Type="varchar" />
+          <Property Name="AltAgentPreferredFirstName" Type="varchar" />
+          <Property Name="AltAgentPreferredLastName" Type="varchar" />
+          <Property Name="ListAgentFirstName" Type="varchar" />
+          <Property Name="ListAgentGeneration" Type="varchar" />
+          <Property Name="ListAgentAgentID" Type="varchar" />
+          <Property Name="ListAgentLastName" Type="varchar" />
+          <Property Name="ListAgentMiddleInitial" Type="varchar" />
+          <Property Name="ListAgentNickname" Type="varchar" />
+          <Property Name="ListAgentPreferredFirstName" Type="varchar" />
+          <Property Name="ListAgentPreferredLastName" Type="varchar" />
+          <Property Name="ListOfficeOfficeID" Type="varchar" />
+          <Property Name="ListOfficeOfficePhone" Type="varchar" />
+          <Property Name="ListOfficeName" Type="varchar" />
+          <Property Name="ListOfficePostalCode" Type="varchar" />
+          <Property Name="SaleAgentFirstName" Type="varchar" />
+          <Property Name="SaleAgentGeneration" Type="varchar" />
+          <Property Name="SaleAgentAgentID" Type="varchar" />
+          <Property Name="SaleAgentLastName" Type="varchar" />
+          <Property Name="SaleAgentMiddleInitial" Type="varchar" />
+          <Property Name="SaleAgentNickname" Type="varchar" />
+          <Property Name="SaleAgentPreferredFirstName" Type="varchar" />
+          <Property Name="SaleAgentPreferredLastName" Type="varchar" />
+          <Property Name="SaleOfficeOfficeID" Type="varchar" />
+          <Property Name="SaleOfficeName" Type="varchar" />
+          <Property Name="Agent" Type="varchar" />
+          <Property Name="Owner" Type="varchar" />
+          <Property Name="PropertyManagement" Type="varchar" />
+          <Property Name="ShowingContacts" Type="varchar" />
+          <Property Name="LeaseType" Type="varchar" />
+          <Property Name="Participants" Type="varchar" />
+          <Property Name="Property" Type="varchar" />
+          <Property Name="Latitude" Type="varchar" />
+          <Property Name="Longitude" Type="varchar" />
+          <Property Name="Address" Type="varchar" />
+          <Property Name="StreetSuffix" Type="varchar" />
+          <Property Name="AddressExportAllowed" Type="varchar" />
+          <Property Name="CityName" Type="varchar" />
+          <Property Name="County" Type="varchar" />
+          <Property Name="CrossStreet" Type="varchar" />
+          <Property Name="DisplayStreetNumber" Type="varchar" />
+          <Property Name="FullStreetAddress" Type="varchar" />
+          <Property Name="PostalCode" Type="varchar" />
+          <Property Name="State" Type="varchar" />
+          <Property Name="StreetDirPrefix" Type="varchar" />
+          <Property Name="StreetName" Type="varchar" />
+          <Property Name="StreetNumber" Type="varchar" />
+          <Property Name="UnitNumber" Type="varchar" />
+          <Property Name="Zip4" Type="varchar" />
+          <Property Name="AssociationFeePaymentFreq" Type="varchar" />
+          <Property Name="CommunityFeeIncludes" Type="varchar" />
+          <Property Name="CondoAssociation" Type="varchar" />
+          <Property Name="CondoCoopProjName" Type="varchar" />
+          <Property Name="ElementarySchool" Type="varchar" />
+          <Property Name="ElementarySchool2" Type="varchar" />
+          <Property Name="HOA" Type="varchar" />
+          <Property Name="HighSchool" Type="varchar" />
+          <Property Name="HousingForOlderPersons" Type="varchar" />
+          <Property Name="MiddleSchool" Type="varchar" />
+          <Property Name="MiddleSchool2" Type="varchar" />
+          <Property Name="Pool" Type="varchar" />
+          <Property Name="PropertySubdivision" Type="varchar" />
+          <Property Name="Roads" Type="varchar" />
+          <Property Name="Subdivision" Type="varchar" />
+          <Property Name="Location" Type="varchar" />
+          <Property Name="ListingArea" Type="varchar" />
+          <Property Name="LocationTypes" Type="varchar" />
+          <Property Name="LotDescription" Type="varchar" />
+          <Property Name="LotImprovement" Type="varchar" />
+          <Property Name="LotNumber" Type="varchar" />
+          <Property Name="SchoolDistrict" Type="varchar" />
+          <Property Name="TrafficCount" Type="varchar" />
+          <Property Name="AreaException" Type="varchar" />
+          <Property Name="MapPushpin" Type="varchar" />
+          <Property Name="LandAssessmentAmount" Type="varchar" />
+          <Property Name="TaxYear" Type="varchar" />
+          <Property Name="TotalAssessment" Type="varchar" />
+          <Property Name="TotalTaxes" Type="varchar" />
+          <Property Name="SepticExpiryDate" Type="varchar" />
+          <Property Name="WellDepth" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ListingID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+          <Property Name="Number" Type="nchar" MaxLength="10" />
+          <Property Name="DisplayOrder" Type="nchar" MaxLength="10" />
+          <Property Name="Caption" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="Created_TMS" Type="datetime" />
+          <Property Name="Modified_TMS" Type="datetime" />
+          <Property Name="URLThumb" Type="nvarchar(max)" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateCountyCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="County" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateCountyTownship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="County" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Township" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateSchoolDistrict">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="SchoolDistrict" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MLSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MLSEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AllProperties" EntityType="MLSModel.AllProperty" />
+          <EntitySet Name="Media" EntityType="MLSModel.Medium" />
+          <EntitySet Name="StateCountyCities" EntityType="MLSModel.StateCountyCity" />
+          <EntitySet Name="StateCountyTownships" EntityType="MLSModel.StateCountyTownship" />
+          <EntitySet Name="StateSchoolDistricts" EntityType="MLSModel.StateSchoolDistrict" />
+        </EntityContainer>
+        <EntityType Name="AllProperty">
+          <Key>
+            <PropertyRef Name="ListingID" />
+          </Key>
+          <Property Name="AnnualLeasePrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BasementType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CloseDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ClosePrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="InteriorSquareFeetSource" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="RoomList" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LandOnly" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListPrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListingID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ListingKey" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LocaleListingStatus" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ModificationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SourceModificationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OffMarketDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Ownership" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PoolType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PropertyType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SourceCreationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="StatusChangeDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="WaterFront" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="WaterFrontage" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="YearInBusiness" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="YearRenovated" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="GreenRemarks" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="EnvironmentallyFriendly" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TypeOfContingency" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Basement" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CentralAir" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Design" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="DiningKitchen" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Exterior" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ExteriorAmenities" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ExteriorFeatures" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Fencing" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Fireplace" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FireplaceCount" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FireplaceFeatures" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Furnished" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Handicap" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="InteriorFeatures" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="NewConstruction" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PropertyCondition" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Roof" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Storage" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Styles" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FloorPlan" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Bathrooms" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BathsFull" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BathsHalf" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Beds" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Entrance" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Floor" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MainEntrance" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LandSqFt" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="NetSQFT" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomFourth1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomFourth1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomMaster1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomMaster1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomSecond1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomSecond1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomThird1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="BedroomThird1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="DiningRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="DiningRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FamilyRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FamilyRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Kitchen1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Kitchen1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LivingRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LivingRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MainBedroom" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm2Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm2Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm3Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm3Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm4Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OtherRm4Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TotalRooms" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LaundryRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LaundryRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Utilities" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Cooling" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Heating" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HotWater" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LaundryType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SewerSeptic" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Water" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HOAFee" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MoveInFee" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HOAFee2" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CurrentFinancing" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FinancingTypeCashFinancingType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ContractInfo" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PropertyOption" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="VOWAVM" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="VOWComment" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="OpenHouse" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MaxPhotoTms" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TotalPhotos" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PhotoManager" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Tours" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="InclusionRemarks" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Remarks" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Lot" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LandUse" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LandUseCode" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LeaseInEffect" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LeaseTerm" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LeasedUnits" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotAreaAcre" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotDimDepth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotDimWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotDimensions" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PorchDeck" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PropertyAge" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HasGarageFlag" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="GarageSpaces" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="GarageType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentGeneration" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentMiddleInitial" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentNickname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentPreferredFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AltAgentPreferredLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentGeneration" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentAgentID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentMiddleInitial" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentNickname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentPreferredFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListAgentPreferredLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListOfficeOfficeID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListOfficeOfficePhone" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListOfficeName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListOfficePostalCode" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentGeneration" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentAgentID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentMiddleInitial" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentNickname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentPreferredFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleAgentPreferredLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleOfficeOfficeID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SaleOfficeName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Agent" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Owner" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PropertyManagement" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ShowingContacts" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LeaseType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Participants" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Property" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Latitude" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Longitude" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="StreetSuffix" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AddressExportAllowed" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CityName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="County" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CrossStreet" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayStreetNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="FullStreetAddress" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="StreetDirPrefix" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="StreetName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="StreetNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="UnitNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Zip4" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AssociationFeePaymentFreq" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CommunityFeeIncludes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CondoAssociation" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="CondoCoopProjName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ElementarySchool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ElementarySchool2" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HOA" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HighSchool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="HousingForOlderPersons" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MiddleSchool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MiddleSchool2" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Pool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="PropertySubdivision" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Roads" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Subdivision" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Location" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="ListingArea" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LocationTypes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotDescription" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotImprovement" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LotNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SchoolDistrict" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TrafficCount" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="AreaException" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="MapPushpin" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="LandAssessmentAmount" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TaxYear" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TotalAssessment" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="TotalTaxes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="SepticExpiryDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="WellDepth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Medium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ListingID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Number" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="DisplayOrder" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Caption" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="URL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Created_TMS" Type="DateTime" Precision="3" />
+          <Property Name="Modified_TMS" Type="DateTime" Precision="3" />
+          <Property Name="URLThumb" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateCountyCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="County" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateCountyTownship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="County" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Township" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateSchoolDistrict">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="SchoolDistrict" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MLSModelStoreContainer" CdmEntityContainer="MLSEntities">
+          <EntitySetMapping Name="AllProperties">
+            <EntityTypeMapping TypeName="MLSModel.AllProperty">
+              <MappingFragment StoreEntitySet="AllProperty">
+                <ScalarProperty Name="AnnualLeasePrice" ColumnName="AnnualLeasePrice" />
+                <ScalarProperty Name="BasementType" ColumnName="BasementType" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="ClosePrice" ColumnName="ClosePrice" />
+                <ScalarProperty Name="InteriorSquareFeetSource" ColumnName="InteriorSquareFeetSource" />
+                <ScalarProperty Name="RoomList" ColumnName="RoomList" />
+                <ScalarProperty Name="LandOnly" ColumnName="LandOnly" />
+                <ScalarProperty Name="ListDate" ColumnName="ListDate" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="ListingID" ColumnName="ListingID" />
+                <ScalarProperty Name="ListingKey" ColumnName="ListingKey" />
+                <ScalarProperty Name="LocaleListingStatus" ColumnName="LocaleListingStatus" />
+                <ScalarProperty Name="ModificationTimestamp" ColumnName="ModificationTimestamp" />
+                <ScalarProperty Name="SourceModificationTimestamp" ColumnName="SourceModificationTimestamp" />
+                <ScalarProperty Name="OffMarketDate" ColumnName="OffMarketDate" />
+                <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+                <ScalarProperty Name="PoolType" ColumnName="PoolType" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="SourceCreationTimestamp" ColumnName="SourceCreationTimestamp" />
+                <ScalarProperty Name="StatusChangeDate" ColumnName="StatusChangeDate" />
+                <ScalarProperty Name="WaterFront" ColumnName="WaterFront" />
+                <ScalarProperty Name="WaterFrontage" ColumnName="WaterFrontage" />
+                <ScalarProperty Name="YearInBusiness" ColumnName="YearInBusiness" />
+                <ScalarProperty Name="YearRenovated" ColumnName="YearRenovated" />
+                <ScalarProperty Name="GreenRemarks" ColumnName="GreenRemarks" />
+                <ScalarProperty Name="EnvironmentallyFriendly" ColumnName="EnvironmentallyFriendly" />
+                <ScalarProperty Name="TypeOfContingency" ColumnName="TypeOfContingency" />
+                <ScalarProperty Name="Basement" ColumnName="Basement" />
+                <ScalarProperty Name="CentralAir" ColumnName="CentralAir" />
+                <ScalarProperty Name="Design" ColumnName="Design" />
+                <ScalarProperty Name="DiningKitchen" ColumnName="DiningKitchen" />
+                <ScalarProperty Name="Exterior" ColumnName="Exterior" />
+                <ScalarProperty Name="ExteriorAmenities" ColumnName="ExteriorAmenities" />
+                <ScalarProperty Name="ExteriorFeatures" ColumnName="ExteriorFeatures" />
+                <ScalarProperty Name="Fencing" ColumnName="Fencing" />
+                <ScalarProperty Name="Fireplace" ColumnName="Fireplace" />
+                <ScalarProperty Name="FireplaceCount" ColumnName="FireplaceCount" />
+                <ScalarProperty Name="FireplaceFeatures" ColumnName="FireplaceFeatures" />
+                <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+                <ScalarProperty Name="Handicap" ColumnName="Handicap" />
+                <ScalarProperty Name="InteriorFeatures" ColumnName="InteriorFeatures" />
+                <ScalarProperty Name="NewConstruction" ColumnName="NewConstruction" />
+                <ScalarProperty Name="PropertyCondition" ColumnName="PropertyCondition" />
+                <ScalarProperty Name="Roof" ColumnName="Roof" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="Styles" ColumnName="Styles" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FloorPlan" ColumnName="FloorPlan" />
+                <ScalarProperty Name="Bathrooms" ColumnName="Bathrooms" />
+                <ScalarProperty Name="BathsFull" ColumnName="BathsFull" />
+                <ScalarProperty Name="BathsHalf" ColumnName="BathsHalf" />
+                <ScalarProperty Name="Beds" ColumnName="Beds" />
+                <ScalarProperty Name="Entrance" ColumnName="Entrance" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="MainEntrance" ColumnName="MainEntrance" />
+                <ScalarProperty Name="LandSqFt" ColumnName="LandSqFt" />
+                <ScalarProperty Name="NetSQFT" ColumnName="NetSQFT" />
+                <ScalarProperty Name="BedroomFourth1Length" ColumnName="BedroomFourth1Length" />
+                <ScalarProperty Name="BedroomFourth1Width" ColumnName="BedroomFourth1Width" />
+                <ScalarProperty Name="BedroomMaster1Length" ColumnName="BedroomMaster1Length" />
+                <ScalarProperty Name="BedroomMaster1Width" ColumnName="BedroomMaster1Width" />
+                <ScalarProperty Name="BedroomSecond1Length" ColumnName="BedroomSecond1Length" />
+                <ScalarProperty Name="BedroomSecond1Width" ColumnName="BedroomSecond1Width" />
+                <ScalarProperty Name="BedroomThird1Length" ColumnName="BedroomThird1Length" />
+                <ScalarProperty Name="BedroomThird1Width" ColumnName="BedroomThird1Width" />
+                <ScalarProperty Name="DiningRoomLength" ColumnName="DiningRoomLength" />
+                <ScalarProperty Name="DiningRoomWidth" ColumnName="DiningRoomWidth" />
+                <ScalarProperty Name="FamilyRoomLength" ColumnName="FamilyRoomLength" />
+                <ScalarProperty Name="FamilyRoomWidth" ColumnName="FamilyRoomWidth" />
+                <ScalarProperty Name="Kitchen1Length" ColumnName="Kitchen1Length" />
+                <ScalarProperty Name="Kitchen1Width" ColumnName="Kitchen1Width" />
+                <ScalarProperty Name="LivingRoomLength" ColumnName="LivingRoomLength" />
+                <ScalarProperty Name="LivingRoomWidth" ColumnName="LivingRoomWidth" />
+                <ScalarProperty Name="MainBedroom" ColumnName="MainBedroom" />
+                <ScalarProperty Name="OtherRm1Length" ColumnName="OtherRm1Length" />
+                <ScalarProperty Name="OtherRm1Width" ColumnName="OtherRm1Width" />
+                <ScalarProperty Name="OtherRm2Length" ColumnName="OtherRm2Length" />
+                <ScalarProperty Name="OtherRm2Width" ColumnName="OtherRm2Width" />
+                <ScalarProperty Name="OtherRm3Length" ColumnName="OtherRm3Length" />
+                <ScalarProperty Name="OtherRm3Width" ColumnName="OtherRm3Width" />
+                <ScalarProperty Name="OtherRm4Length" ColumnName="OtherRm4Length" />
+                <ScalarProperty Name="OtherRm4Width" ColumnName="OtherRm4Width" />
+                <ScalarProperty Name="TotalRooms" ColumnName="TotalRooms" />
+                <ScalarProperty Name="LaundryRoomLength" ColumnName="LaundryRoomLength" />
+                <ScalarProperty Name="LaundryRoomWidth" ColumnName="LaundryRoomWidth" />
+                <ScalarProperty Name="Utilities" ColumnName="Utilities" />
+                <ScalarProperty Name="Cooling" ColumnName="Cooling" />
+                <ScalarProperty Name="Heating" ColumnName="Heating" />
+                <ScalarProperty Name="HotWater" ColumnName="HotWater" />
+                <ScalarProperty Name="LaundryType" ColumnName="LaundryType" />
+                <ScalarProperty Name="SewerSeptic" ColumnName="SewerSeptic" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="HOAFee" ColumnName="HOAFee" />
+                <ScalarProperty Name="MoveInFee" ColumnName="MoveInFee" />
+                <ScalarProperty Name="HOAFee2" ColumnName="HOAFee2" />
+                <ScalarProperty Name="CurrentFinancing" ColumnName="CurrentFinancing" />
+                <ScalarProperty Name="FinancingTypeCashFinancingType" ColumnName="FinancingTypeCashFinancingType" />
+                <ScalarProperty Name="ContractInfo" ColumnName="ContractInfo" />
+                <ScalarProperty Name="PropertyOption" ColumnName="PropertyOption" />
+                <ScalarProperty Name="VOWAVM" ColumnName="VOWAVM" />
+                <ScalarProperty Name="VOWComment" ColumnName="VOWComment" />
+                <ScalarProperty Name="OpenHouse" ColumnName="OpenHouse" />
+                <ScalarProperty Name="MaxPhotoTms" ColumnName="MaxPhotoTms" />
+                <ScalarProperty Name="TotalPhotos" ColumnName="TotalPhotos" />
+                <ScalarProperty Name="PhotoManager" ColumnName="PhotoManager" />
+                <ScalarProperty Name="Tours" ColumnName="Tours" />
+                <ScalarProperty Name="InclusionRemarks" ColumnName="InclusionRemarks" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LandUse" ColumnName="LandUse" />
+                <ScalarProperty Name="LandUseCode" ColumnName="LandUseCode" />
+                <ScalarProperty Name="LeaseInEffect" ColumnName="LeaseInEffect" />
+                <ScalarProperty Name="LeaseTerm" ColumnName="LeaseTerm" />
+                <ScalarProperty Name="LeasedUnits" ColumnName="LeasedUnits" />
+                <ScalarProperty Name="LotAreaAcre" ColumnName="LotAreaAcre" />
+                <ScalarProperty Name="LotDimDepth" ColumnName="LotDimDepth" />
+                <ScalarProperty Name="LotDimWidth" ColumnName="LotDimWidth" />
+                <ScalarProperty Name="LotDimensions" ColumnName="LotDimensions" />
+                <ScalarProperty Name="PorchDeck" ColumnName="PorchDeck" />
+                <ScalarProperty Name="PropertyAge" ColumnName="PropertyAge" />
+                <ScalarProperty Name="HasGarageFlag" ColumnName="HasGarageFlag" />
+                <ScalarProperty Name="GarageSpaces" ColumnName="GarageSpaces" />
+                <ScalarProperty Name="GarageType" ColumnName="GarageType" />
+                <ScalarProperty Name="AltAgentFirstName" ColumnName="AltAgentFirstName" />
+                <ScalarProperty Name="AltAgentGeneration" ColumnName="AltAgentGeneration" />
+                <ScalarProperty Name="AltAgentID" ColumnName="AltAgentID" />
+                <ScalarProperty Name="AltAgentLastName" ColumnName="AltAgentLastName" />
+                <ScalarProperty Name="AltAgentMiddleInitial" ColumnName="AltAgentMiddleInitial" />
+                <ScalarProperty Name="AltAgentNickname" ColumnName="AltAgentNickname" />
+                <ScalarProperty Name="AltAgentPreferredFirstName" ColumnName="AltAgentPreferredFirstName" />
+                <ScalarProperty Name="AltAgentPreferredLastName" ColumnName="AltAgentPreferredLastName" />
+                <ScalarProperty Name="ListAgentFirstName" ColumnName="ListAgentFirstName" />
+                <ScalarProperty Name="ListAgentGeneration" ColumnName="ListAgentGeneration" />
+                <ScalarProperty Name="ListAgentAgentID" ColumnName="ListAgentAgentID" />
+                <ScalarProperty Name="ListAgentLastName" ColumnName="ListAgentLastName" />
+                <ScalarProperty Name="ListAgentMiddleInitial" ColumnName="ListAgentMiddleInitial" />
+                <ScalarProperty Name="ListAgentNickname" ColumnName="ListAgentNickname" />
+                <ScalarProperty Name="ListAgentPreferredFirstName" ColumnName="ListAgentPreferredFirstName" />
+                <ScalarProperty Name="ListAgentPreferredLastName" ColumnName="ListAgentPreferredLastName" />
+                <ScalarProperty Name="ListOfficeOfficeID" ColumnName="ListOfficeOfficeID" />
+                <ScalarProperty Name="ListOfficeOfficePhone" ColumnName="ListOfficeOfficePhone" />
+                <ScalarProperty Name="ListOfficeName" ColumnName="ListOfficeName" />
+                <ScalarProperty Name="ListOfficePostalCode" ColumnName="ListOfficePostalCode" />
+                <ScalarProperty Name="SaleAgentFirstName" ColumnName="SaleAgentFirstName" />
+                <ScalarProperty Name="SaleAgentGeneration" ColumnName="SaleAgentGeneration" />
+                <ScalarProperty Name="SaleAgentAgentID" ColumnName="SaleAgentAgentID" />
+                <ScalarProperty Name="SaleAgentLastName" ColumnName="SaleAgentLastName" />
+                <ScalarProperty Name="SaleAgentMiddleInitial" ColumnName="SaleAgentMiddleInitial" />
+                <ScalarProperty Name="SaleAgentNickname" ColumnName="SaleAgentNickname" />
+                <ScalarProperty Name="SaleAgentPreferredFirstName" ColumnName="SaleAgentPreferredFirstName" />
+                <ScalarProperty Name="SaleAgentPreferredLastName" ColumnName="SaleAgentPreferredLastName" />
+                <ScalarProperty Name="SaleOfficeOfficeID" ColumnName="SaleOfficeOfficeID" />
+                <ScalarProperty Name="SaleOfficeName" ColumnName="SaleOfficeName" />
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="PropertyManagement" ColumnName="PropertyManagement" />
+                <ScalarProperty Name="ShowingContacts" ColumnName="ShowingContacts" />
+                <ScalarProperty Name="LeaseType" ColumnName="LeaseType" />
+                <ScalarProperty Name="Participants" ColumnName="Participants" />
+                <ScalarProperty Name="Property" ColumnName="Property" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StreetSuffix" ColumnName="StreetSuffix" />
+                <ScalarProperty Name="AddressExportAllowed" ColumnName="AddressExportAllowed" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CrossStreet" ColumnName="CrossStreet" />
+                <ScalarProperty Name="DisplayStreetNumber" ColumnName="DisplayStreetNumber" />
+                <ScalarProperty Name="FullStreetAddress" ColumnName="FullStreetAddress" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="StreetDirPrefix" ColumnName="StreetDirPrefix" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+                <ScalarProperty Name="AssociationFeePaymentFreq" ColumnName="AssociationFeePaymentFreq" />
+                <ScalarProperty Name="CommunityFeeIncludes" ColumnName="CommunityFeeIncludes" />
+                <ScalarProperty Name="CondoAssociation" ColumnName="CondoAssociation" />
+                <ScalarProperty Name="CondoCoopProjName" ColumnName="CondoCoopProjName" />
+                <ScalarProperty Name="ElementarySchool" ColumnName="ElementarySchool" />
+                <ScalarProperty Name="ElementarySchool2" ColumnName="ElementarySchool2" />
+                <ScalarProperty Name="HOA" ColumnName="HOA" />
+                <ScalarProperty Name="HighSchool" ColumnName="HighSchool" />
+                <ScalarProperty Name="HousingForOlderPersons" ColumnName="HousingForOlderPersons" />
+                <ScalarProperty Name="MiddleSchool" ColumnName="MiddleSchool" />
+                <ScalarProperty Name="MiddleSchool2" ColumnName="MiddleSchool2" />
+                <ScalarProperty Name="Pool" ColumnName="Pool" />
+                <ScalarProperty Name="PropertySubdivision" ColumnName="PropertySubdivision" />
+                <ScalarProperty Name="Roads" ColumnName="Roads" />
+                <ScalarProperty Name="Subdivision" ColumnName="Subdivision" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ListingArea" ColumnName="ListingArea" />
+                <ScalarProperty Name="LocationTypes" ColumnName="LocationTypes" />
+                <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+                <ScalarProperty Name="LotImprovement" ColumnName="LotImprovement" />
+                <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
+                <ScalarProperty Name="SchoolDistrict" ColumnName="SchoolDistrict" />
+                <ScalarProperty Name="TrafficCount" ColumnName="TrafficCount" />
+                <ScalarProperty Name="AreaException" ColumnName="AreaException" />
+                <ScalarProperty Name="MapPushpin" ColumnName="MapPushpin" />
+                <ScalarProperty Name="LandAssessmentAmount" ColumnName="LandAssessmentAmount" />
+                <ScalarProperty Name="TaxYear" ColumnName="TaxYear" />
+                <ScalarProperty Name="TotalAssessment" ColumnName="TotalAssessment" />
+                <ScalarProperty Name="TotalTaxes" ColumnName="TotalTaxes" />
+                <ScalarProperty Name="SepticExpiryDate" ColumnName="SepticExpiryDate" />
+                <ScalarProperty Name="WellDepth" ColumnName="WellDepth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="MLSModel.Medium">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="ListingID" ColumnName="ListingID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Created_TMS" ColumnName="Created_TMS" />
+                <ScalarProperty Name="Modified_TMS" ColumnName="Modified_TMS" />
+                <ScalarProperty Name="URLThumb" ColumnName="URLThumb" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateCountyCities">
+            <EntityTypeMapping TypeName="MLSModel.StateCountyCity">
+              <MappingFragment StoreEntitySet="StateCountyCity">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateCountyTownships">
+            <EntityTypeMapping TypeName="MLSModel.StateCountyTownship">
+              <MappingFragment StoreEntitySet="StateCountyTownship">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Township" ColumnName="Township" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateSchoolDistricts">
+            <EntityTypeMapping TypeName="MLSModel.StateSchoolDistrict">
+              <MappingFragment StoreEntitySet="StateSchoolDistrict">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SchoolDistrict" ColumnName="SchoolDistrict" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

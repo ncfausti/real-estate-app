@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MLSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MLSModelStoreContainer">
+    <EntitySet Name="AllProperty" EntityType="MLSModel.Store.AllProperty" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Media" EntityType="MLSModel.Store.Media" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StateCountyCity" EntityType="MLSModel.Store.StateCountyCity" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StateCountyTownship" EntityType="MLSModel.Store.StateCountyTownship" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StateSchoolDistrict" EntityType="MLSModel.Store.StateSchoolDistrict" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="AllProperty">
+    <Key>
+      <PropertyRef Name="ListingID" />
+    </Key>
+    <Property Name="AnnualLeasePrice" Type="varchar" />
+    <Property Name="BasementType" Type="varchar" />
+    <Property Name="CloseDate" Type="varchar" />
+    <Property Name="ClosePrice" Type="varchar" />
+    <Property Name="InteriorSquareFeetSource" Type="varchar" />
+    <Property Name="RoomList" Type="varchar" />
+    <Property Name="LandOnly" Type="varchar" />
+    <Property Name="ListDate" Type="varchar" />
+    <Property Name="ListPrice" Type="varchar" />
+    <Property Name="ListingID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ListingKey" Type="varchar" />
+    <Property Name="LocaleListingStatus" Type="varchar" />
+    <Property Name="ModificationTimestamp" Type="varchar" />
+    <Property Name="SourceModificationTimestamp" Type="varchar" />
+    <Property Name="OffMarketDate" Type="varchar" />
+    <Property Name="Ownership" Type="varchar" />
+    <Property Name="PoolType" Type="varchar" />
+    <Property Name="PropertyType" Type="varchar" />
+    <Property Name="SourceCreationTimestamp" Type="varchar" />
+    <Property Name="StatusChangeDate" Type="varchar" />
+    <Property Name="WaterFront" Type="varchar" />
+    <Property Name="WaterFrontage" Type="varchar" />
+    <Property Name="YearInBusiness" Type="varchar" />
+    <Property Name="YearRenovated" Type="varchar" />
+    <Property Name="GreenRemarks" Type="varchar" />
+    <Property Name="EnvironmentallyFriendly" Type="varchar" />
+    <Property Name="TypeOfContingency" Type="varchar" />
+    <Property Name="Basement" Type="varchar" />
+    <Property Name="CentralAir" Type="varchar" />
+    <Property Name="Design" Type="varchar" />
+    <Property Name="DiningKitchen" Type="varchar" />
+    <Property Name="Exterior" Type="varchar" />
+    <Property Name="ExteriorAmenities" Type="varchar" />
+    <Property Name="ExteriorFeatures" Type="varchar" />
+    <Property Name="Fencing" Type="varchar" />
+    <Property Name="Fireplace" Type="varchar" />
+    <Property Name="FireplaceCount" Type="varchar" />
+    <Property Name="FireplaceFeatures" Type="varchar" />
+    <Property Name="Furnished" Type="varchar" />
+    <Property Name="Handicap" Type="varchar" />
+    <Property Name="InteriorFeatures" Type="varchar" />
+    <Property Name="NewConstruction" Type="varchar" />
+    <Property Name="PropertyCondition" Type="varchar" />
+    <Property Name="Roof" Type="varchar" />
+    <Property Name="Storage" Type="varchar" />
+    <Property Name="Styles" Type="varchar" />
+    <Property Name="Type" Type="varchar" />
+    <Property Name="FloorPlan" Type="varchar" />
+    <Property Name="Bathrooms" Type="varchar" />
+    <Property Name="BathsFull" Type="varchar" />
+    <Property Name="BathsHalf" Type="varchar" />
+    <Property Name="Beds" Type="varchar" />
+    <Property Name="Entrance" Type="varchar" />
+    <Property Name="Floor" Type="varchar" />
+    <Property Name="MainEntrance" Type="varchar" />
+    <Property Name="LandSqFt" Type="varchar" />
+    <Property Name="NetSQFT" Type="varchar" />
+    <Property Name="BedroomFourth1Length" Type="varchar" />
+    <Property Name="BedroomFourth1Width" Type="varchar" />
+    <Property Name="BedroomMaster1Length" Type="varchar" />
+    <Property Name="BedroomMaster1Width" Type="varchar" />
+    <Property Name="BedroomSecond1Length" Type="varchar" />
+    <Property Name="BedroomSecond1Width" Type="varchar" />
+    <Property Name="BedroomThird1Length" Type="varchar" />
+    <Property Name="BedroomThird1Width" Type="varchar" />
+    <Property Name="DiningRoomLength" Type="varchar" />
+    <Property Name="DiningRoomWidth" Type="varchar" />
+    <Property Name="FamilyRoomLength" Type="varchar" />
+    <Property Name="FamilyRoomWidth" Type="varchar" />
+    <Property Name="Kitchen1Length" Type="varchar" />
+    <Property Name="Kitchen1Width" Type="varchar" />
+    <Property Name="LivingRoomLength" Type="varchar" />
+    <Property Name="LivingRoomWidth" Type="varchar" />
+    <Property Name="MainBedroom" Type="varchar" />
+    <Property Name="OtherRm1Length" Type="varchar" />
+    <Property Name="OtherRm1Width" Type="varchar" />
+    <Property Name="OtherRm2Length" Type="varchar" />
+    <Property Name="OtherRm2Width" Type="varchar" />
+    <Property Name="OtherRm3Length" Type="varchar" />
+    <Property Name="OtherRm3Width" Type="varchar" />
+    <Property Name="OtherRm4Length" Type="varchar" />
+    <Property Name="OtherRm4Width" Type="varchar" />
+    <Property Name="TotalRooms" Type="varchar" />
+    <Property Name="LaundryRoomLength" Type="varchar" />
+    <Property Name="LaundryRoomWidth" Type="varchar" />
+    <Property Name="Utilities" Type="varchar" />
+    <Property Name="Cooling" Type="varchar" />
+    <Property Name="Heating" Type="varchar" />
+    <Property Name="HotWater" Type="varchar" />
+    <Property Name="LaundryType" Type="varchar" />
+    <Property Name="SewerSeptic" Type="varchar" />
+    <Property Name="Water" Type="varchar" />
+    <Property Name="HOAFee" Type="varchar" />
+    <Property Name="MoveInFee" Type="varchar" />
+    <Property Name="HOAFee2" Type="varchar" />
+    <Property Name="CurrentFinancing" Type="varchar" />
+    <Property Name="FinancingTypeCashFinancingType" Type="varchar" />
+    <Property Name="ContractInfo" Type="varchar" />
+    <Property Name="PropertyOption" Type="varchar" />
+    <Property Name="VOWAVM" Type="varchar" />
+    <Property Name="VOWComment" Type="varchar" />
+    <Property Name="OpenHouse" Type="varchar" />
+    <Property Name="MaxPhotoTms" Type="varchar" />
+    <Property Name="TotalPhotos" Type="varchar" />
+    <Property Name="PhotoManager" Type="varchar" />
+    <Property Name="Tours" Type="varchar" />
+    <Property Name="InclusionRemarks" Type="varchar" />
+    <Property Name="Remarks" Type="varchar" />
+    <Property Name="Lot" Type="varchar" />
+    <Property Name="Description" Type="varchar" />
+    <Property Name="LandUse" Type="varchar" />
+    <Property Name="LandUseCode" Type="varchar" />
+    <Property Name="LeaseInEffect" Type="varchar" />
+    <Property Name="LeaseTerm" Type="varchar" />
+    <Property Name="LeasedUnits" Type="varchar" />
+    <Property Name="LotAreaAcre" Type="varchar" />
+    <Property Name="LotDimDepth" Type="varchar" />
+    <Property Name="LotDimWidth" Type="varchar" />
+    <Property Name="LotDimensions" Type="varchar" />
+    <Property Name="PorchDeck" Type="varchar" />
+    <Property Name="PropertyAge" Type="varchar" />
+    <Property Name="HasGarageFlag" Type="varchar" />
+    <Property Name="GarageSpaces" Type="varchar" />
+    <Property Name="GarageType" Type="varchar" />
+    <Property Name="AltAgentFirstName" Type="varchar" />
+    <Property Name="AltAgentGeneration" Type="varchar" />
+    <Property Name="AltAgentID" Type="varchar" />
+    <Property Name="AltAgentLastName" Type="varchar" />
+    <Property Name="AltAgentMiddleInitial" Type="varchar" />
+    <Property Name="AltAgentNickname" Type="varchar" />
+    <Property Name="AltAgentPreferredFirstName" Type="varchar" />
+    <Property Name="AltAgentPreferredLastName" Type="varchar" />
+    <Property Name="ListAgentFirstName" Type="varchar" />
+    <Property Name="ListAgentGeneration" Type="varchar" />
+    <Property Name="ListAgentAgentID" Type="varchar" />
+    <Property Name="ListAgentLastName" Type="varchar" />
+    <Property Name="ListAgentMiddleInitial" Type="varchar" />
+    <Property Name="ListAgentNickname" Type="varchar" />
+    <Property Name="ListAgentPreferredFirstName" Type="varchar" />
+    <Property Name="ListAgentPreferredLastName" Type="varchar" />
+    <Property Name="ListOfficeOfficeID" Type="varchar" />
+    <Property Name="ListOfficeOfficePhone" Type="varchar" />
+    <Property Name="ListOfficeName" Type="varchar" />
+    <Property Name="ListOfficePostalCode" Type="varchar" />
+    <Property Name="SaleAgentFirstName" Type="varchar" />
+    <Property Name="SaleAgentGeneration" Type="varchar" />
+    <Property Name="SaleAgentAgentID" Type="varchar" />
+    <Property Name="SaleAgentLastName" Type="varchar" />
+    <Property Name="SaleAgentMiddleInitial" Type="varchar" />
+    <Property Name="SaleAgentNickname" Type="varchar" />
+    <Property Name="SaleAgentPreferredFirstName" Type="varchar" />
+    <Property Name="SaleAgentPreferredLastName" Type="varchar" />
+    <Property Name="SaleOfficeOfficeID" Type="varchar" />
+    <Property Name="SaleOfficeName" Type="varchar" />
+    <Property Name="Agent" Type="varchar" />
+    <Property Name="Owner" Type="varchar" />
+    <Property Name="PropertyManagement" Type="varchar" />
+    <Property Name="ShowingContacts" Type="varchar" />
+    <Property Name="LeaseType" Type="varchar" />
+    <Property Name="Participants" Type="varchar" />
+    <Property Name="Property" Type="varchar" />
+    <Property Name="Latitude" Type="varchar" />
+    <Property Name="Longitude" Type="varchar" />
+    <Property Name="Address" Type="varchar" />
+    <Property Name="StreetSuffix" Type="varchar" />
+    <Property Name="AddressExportAllowed" Type="varchar" />
+    <Property Name="CityName" Type="varchar" />
+    <Property Name="County" Type="varchar" />
+    <Property Name="CrossStreet" Type="varchar" />
+    <Property Name="DisplayStreetNumber" Type="varchar" />
+    <Property Name="FullStreetAddress" Type="varchar" />
+    <Property Name="PostalCode" Type="varchar" />
+    <Property Name="State" Type="varchar" />
+    <Property Name="StreetDirPrefix" Type="varchar" />
+    <Property Name="StreetName" Type="varchar" />
+    <Property Name="StreetNumber" Type="varchar" />
+    <Property Name="UnitNumber" Type="varchar" />
+    <Property Name="Zip4" Type="varchar" />
+    <Property Name="AssociationFeePaymentFreq" Type="varchar" />
+    <Property Name="CommunityFeeIncludes" Type="varchar" />
+    <Property Name="CondoAssociation" Type="varchar" />
+    <Property Name="CondoCoopProjName" Type="varchar" />
+    <Property Name="ElementarySchool" Type="varchar" />
+    <Property Name="ElementarySchool2" Type="varchar" />
+    <Property Name="HOA" Type="varchar" />
+    <Property Name="HighSchool" Type="varchar" />
+    <Property Name="HousingForOlderPersons" Type="varchar" />
+    <Property Name="MiddleSchool" Type="varchar" />
+    <Property Name="MiddleSchool2" Type="varchar" />
+    <Property Name="Pool" Type="varchar" />
+    <Property Name="PropertySubdivision" Type="varchar" />
+    <Property Name="Roads" Type="varchar" />
+    <Property Name="Subdivision" Type="varchar" />
+    <Property Name="Location" Type="varchar" />
+    <Property Name="ListingArea" Type="varchar" />
+    <Property Name="LocationTypes" Type="varchar" />
+    <Property Name="LotDescription" Type="varchar" />
+    <Property Name="LotImprovement" Type="varchar" />
+    <Property Name="LotNumber" Type="varchar" />
+    <Property Name="SchoolDistrict" Type="varchar" />
+    <Property Name="TrafficCount" Type="varchar" />
+    <Property Name="AreaException" Type="varchar" />
+    <Property Name="MapPushpin" Type="varchar" />
+    <Property Name="LandAssessmentAmount" Type="varchar" />
+    <Property Name="TaxYear" Type="varchar" />
+    <Property Name="TotalAssessment" Type="varchar" />
+    <Property Name="TotalTaxes" Type="varchar" />
+    <Property Name="SepticExpiryDate" Type="varchar" />
+    <Property Name="WellDepth" Type="varchar" />
+  </EntityType>
+  <EntityType Name="Media">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ListingID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="nchar" MaxLength="10" />
+    <Property Name="Number" Type="nchar" MaxLength="10" />
+    <Property Name="DisplayOrder" Type="nchar" MaxLength="10" />
+    <Property Name="Caption" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="URL" Type="nvarchar(max)" />
+    <Property Name="Created_TMS" Type="datetime" />
+    <Property Name="Modified_TMS" Type="datetime" />
+    <Property Name="URLThumb" Type="nvarchar(max)" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateCountyCity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="County" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateCountyTownship">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="County" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Township" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateSchoolDistrict">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="SchoolDistrict" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MLSModelStoreContainer" CdmEntityContainer="MLSEntities1">
+    <EntitySetMapping Name="AllProperties">
+      <EntityTypeMapping TypeName="MLSModel.AllProperty">
+        <MappingFragment StoreEntitySet="AllProperty">
+          <ScalarProperty Name="AnnualLeasePrice" ColumnName="AnnualLeasePrice" />
+          <ScalarProperty Name="BasementType" ColumnName="BasementType" />
+          <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+          <ScalarProperty Name="ClosePrice" ColumnName="ClosePrice" />
+          <ScalarProperty Name="InteriorSquareFeetSource" ColumnName="InteriorSquareFeetSource" />
+          <ScalarProperty Name="RoomList" ColumnName="RoomList" />
+          <ScalarProperty Name="LandOnly" ColumnName="LandOnly" />
+          <ScalarProperty Name="ListDate" ColumnName="ListDate" />
+          <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+          <ScalarProperty Name="ListingID" ColumnName="ListingID" />
+          <ScalarProperty Name="ListingKey" ColumnName="ListingKey" />
+          <ScalarProperty Name="LocaleListingStatus" ColumnName="LocaleListingStatus" />
+          <ScalarProperty Name="ModificationTimestamp" ColumnName="ModificationTimestamp" />
+          <ScalarProperty Name="SourceModificationTimestamp" ColumnName="SourceModificationTimestamp" />
+          <ScalarProperty Name="OffMarketDate" ColumnName="OffMarketDate" />
+          <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+          <ScalarProperty Name="PoolType" ColumnName="PoolType" />
+          <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+          <ScalarProperty Name="SourceCreationTimestamp" ColumnName="SourceCreationTimestamp" />
+          <ScalarProperty Name="StatusChangeDate" ColumnName="StatusChangeDate" />
+          <ScalarProperty Name="WaterFront" ColumnName="WaterFront" />
+          <ScalarProperty Name="WaterFrontage" ColumnName="WaterFrontage" />
+          <ScalarProperty Name="YearInBusiness" ColumnName="YearInBusiness" />
+          <ScalarProperty Name="YearRenovated" ColumnName="YearRenovated" />
+          <ScalarProperty Name="GreenRemarks" ColumnName="GreenRemarks" />
+          <ScalarProperty Name="EnvironmentallyFriendly" ColumnName="EnvironmentallyFriendly" />
+          <ScalarProperty Name="TypeOfContingency" ColumnName="TypeOfContingency" />
+          <ScalarProperty Name="Basement" ColumnName="Basement" />
+          <ScalarProperty Name="CentralAir" ColumnName="CentralAir" />
+          <ScalarProperty Name="Design" ColumnName="Design" />
+          <ScalarProperty Name="DiningKitchen" ColumnName="DiningKitchen" />
+          <ScalarProperty Name="Exterior" ColumnName="Exterior" />
+          <ScalarProperty Name="ExteriorAmenities" ColumnName="ExteriorAmenities" />
+          <ScalarProperty Name="ExteriorFeatures" ColumnName="ExteriorFeatures" />
+          <ScalarProperty Name="Fencing" ColumnName="Fencing" />
+          <ScalarProperty Name="Fireplace" ColumnName="Fireplace" />
+          <ScalarProperty Name="FireplaceCount" ColumnName="FireplaceCount" />
+          <ScalarProperty Name="FireplaceFeatures" ColumnName="FireplaceFeatures" />
+          <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+          <ScalarProperty Name="Handicap" ColumnName="Handicap" />
+          <ScalarProperty Name="InteriorFeatures" ColumnName="InteriorFeatures" />
+          <ScalarProperty Name="NewConstruction" ColumnName="NewConstruction" />
+          <ScalarProperty Name="PropertyCondition" ColumnName="PropertyCondition" />
+          <ScalarProperty Name="Roof" ColumnName="Roof" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="Styles" ColumnName="Styles" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="FloorPlan" ColumnName="FloorPlan" />
+          <ScalarProperty Name="Bathrooms" ColumnName="Bathrooms" />
+          <ScalarProperty Name="BathsFull" ColumnName="BathsFull" />
+          <ScalarProperty Name="BathsHalf" ColumnName="BathsHalf" />
+          <ScalarProperty Name="Beds" ColumnName="Beds" />
+          <ScalarProperty Name="Entrance" ColumnName="Entrance" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="MainEntrance" ColumnName="MainEntrance" />
+          <ScalarProperty Name="LandSqFt" ColumnName="LandSqFt" />
+          <ScalarProperty Name="NetSQFT" ColumnName="NetSQFT" />
+          <ScalarProperty Name="BedroomFourth1Length" ColumnName="BedroomFourth1Length" />
+          <ScalarProperty Name="BedroomFourth1Width" ColumnName="BedroomFourth1Width" />
+          <ScalarProperty Name="BedroomMaster1Length" ColumnName="BedroomMaster1Length" />
+          <ScalarProperty Name="BedroomMaster1Width" ColumnName="BedroomMaster1Width" />
+          <ScalarProperty Name="BedroomSecond1Length" ColumnName="BedroomSecond1Length" />
+          <ScalarProperty Name="BedroomSecond1Width" ColumnName="BedroomSecond1Width" />
+          <ScalarProperty Name="BedroomThird1Length" ColumnName="BedroomThird1Length" />
+          <ScalarProperty Name="BedroomThird1Width" ColumnName="BedroomThird1Width" />
+          <ScalarProperty Name="DiningRoomLength" ColumnName="DiningRoomLength" />
+          <ScalarProperty Name="DiningRoomWidth" ColumnName="DiningRoomWidth" />
+          <ScalarProperty Name="FamilyRoomLength" ColumnName="FamilyRoomLength" />
+          <ScalarProperty Name="FamilyRoomWidth" ColumnName="FamilyRoomWidth" />
+          <ScalarProperty Name="Kitchen1Length" ColumnName="Kitchen1Length" />
+          <ScalarProperty Name="Kitchen1Width" ColumnName="Kitchen1Width" />
+          <ScalarProperty Name="LivingRoomLength" ColumnName="LivingRoomLength" />
+          <ScalarProperty Name="LivingRoomWidth" ColumnName="LivingRoomWidth" />
+          <ScalarProperty Name="MainBedroom" ColumnName="MainBedroom" />
+          <ScalarProperty Name="OtherRm1Length" ColumnName="OtherRm1Length" />
+          <ScalarProperty Name="OtherRm1Width" ColumnName="OtherRm1Width" />
+          <ScalarProperty Name="OtherRm2Length" ColumnName="OtherRm2Length" />
+          <ScalarProperty Name="OtherRm2Width" ColumnName="OtherRm2Width" />
+          <ScalarProperty Name="OtherRm3Length" ColumnName="OtherRm3Length" />
+          <ScalarProperty Name="OtherRm3Width" ColumnName="OtherRm3Width" />
+          <ScalarProperty Name="OtherRm4Length" ColumnName="OtherRm4Length" />
+          <ScalarProperty Name="OtherRm4Width" ColumnName="OtherRm4Width" />
+          <ScalarProperty Name="TotalRooms" ColumnName="TotalRooms" />
+          <ScalarProperty Name="LaundryRoomLength" ColumnName="LaundryRoomLength" />
+          <ScalarProperty Name="LaundryRoomWidth" ColumnName="LaundryRoomWidth" />
+          <ScalarProperty Name="Utilities" ColumnName="Utilities" />
+          <ScalarProperty Name="Cooling" ColumnName="Cooling" />
+          <ScalarProperty Name="Heating" ColumnName="Heating" />
+          <ScalarProperty Name="HotWater" ColumnName="HotWater" />
+          <ScalarProperty Name="LaundryType" ColumnName="LaundryType" />
+          <ScalarProperty Name="SewerSeptic" ColumnName="SewerSeptic" />
+          <ScalarProperty Name="Water" ColumnName="Water" />
+          <ScalarProperty Name="HOAFee" ColumnName="HOAFee" />
+          <ScalarProperty Name="MoveInFee" ColumnName="MoveInFee" />
+          <ScalarProperty Name="HOAFee2" ColumnName="HOAFee2" />
+          <ScalarProperty Name="CurrentFinancing" ColumnName="CurrentFinancing" />
+          <ScalarProperty Name="FinancingTypeCashFinancingType" ColumnName="FinancingTypeCashFinancingType" />
+          <ScalarProperty Name="ContractInfo" ColumnName="ContractInfo" />
+          <ScalarProperty Name="PropertyOption" ColumnName="PropertyOption" />
+          <ScalarProperty Name="VOWAVM" ColumnName="VOWAVM" />
+          <ScalarProperty Name="VOWComment" ColumnName="VOWComment" />
+          <ScalarProperty Name="OpenHouse" ColumnName="OpenHouse" />
+          <ScalarProperty Name="MaxPhotoTms" ColumnName="MaxPhotoTms" />
+          <ScalarProperty Name="TotalPhotos" ColumnName="TotalPhotos" />
+          <ScalarProperty Name="PhotoManager" ColumnName="PhotoManager" />
+          <ScalarProperty Name="Tours" ColumnName="Tours" />
+          <ScalarProperty Name="InclusionRemarks" ColumnName="InclusionRemarks" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Lot" ColumnName="Lot" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="LandUse" ColumnName="LandUse" />
+          <ScalarProperty Name="LandUseCode" ColumnName="LandUseCode" />
+          <ScalarProperty Name="LeaseInEffect" ColumnName="LeaseInEffect" />
+          <ScalarProperty Name="LeaseTerm" ColumnName="LeaseTerm" />
+          <ScalarProperty Name="LeasedUnits" ColumnName="LeasedUnits" />
+          <ScalarProperty Name="LotAreaAcre" ColumnName="LotAreaAcre" />
+          <ScalarProperty Name="LotDimDepth" ColumnName="LotDimDepth" />
+          <ScalarProperty Name="LotDimWidth" ColumnName="LotDimWidth" />
+          <ScalarProperty Name="LotDimensions" ColumnName="LotDimensions" />
+          <ScalarProperty Name="PorchDeck" ColumnName="PorchDeck" />
+          <ScalarProperty Name="PropertyAge" ColumnName="PropertyAge" />
+          <ScalarProperty Name="HasGarageFlag" ColumnName="HasGarageFlag" />
+          <ScalarProperty Name="GarageSpaces" ColumnName="GarageSpaces" />
+          <ScalarProperty Name="GarageType" ColumnName="GarageType" />
+          <ScalarProperty Name="AltAgentFirstName" ColumnName="AltAgentFirstName" />
+          <ScalarProperty Name="AltAgentGeneration" ColumnName="AltAgentGeneration" />
+          <ScalarProperty Name="AltAgentID" ColumnName="AltAgentID" />
+          <ScalarProperty Name="AltAgentLastName" ColumnName="AltAgentLastName" />
+          <ScalarProperty Name="AltAgentMiddleInitial" ColumnName="AltAgentMiddleInitial" />
+          <ScalarProperty Name="AltAgentNickname" ColumnName="AltAgentNickname" />
+          <ScalarProperty Name="AltAgentPreferredFirstName" ColumnName="AltAgentPreferredFirstName" />
+          <ScalarProperty Name="AltAgentPreferredLastName" ColumnName="AltAgentPreferredLastName" />
+          <ScalarProperty Name="ListAgentFirstName" ColumnName="ListAgentFirstName" />
+          <ScalarProperty Name="ListAgentGeneration" ColumnName="ListAgentGeneration" />
+          <ScalarProperty Name="ListAgentAgentID" ColumnName="ListAgentAgentID" />
+          <ScalarProperty Name="ListAgentLastName" ColumnName="ListAgentLastName" />
+          <ScalarProperty Name="ListAgentMiddleInitial" ColumnName="ListAgentMiddleInitial" />
+          <ScalarProperty Name="ListAgentNickname" ColumnName="ListAgentNickname" />
+          <ScalarProperty Name="ListAgentPreferredFirstName" ColumnName="ListAgentPreferredFirstName" />
+          <ScalarProperty Name="ListAgentPreferredLastName" ColumnName="ListAgentPreferredLastName" />
+          <ScalarProperty Name="ListOfficeOfficeID" ColumnName="ListOfficeOfficeID" />
+          <ScalarProperty Name="ListOfficeOfficePhone" ColumnName="ListOfficeOfficePhone" />
+          <ScalarProperty Name="ListOfficeName" ColumnName="ListOfficeName" />
+          <ScalarProperty Name="ListOfficePostalCode" ColumnName="ListOfficePostalCode" />
+          <ScalarProperty Name="SaleAgentFirstName" ColumnName="SaleAgentFirstName" />
+          <ScalarProperty Name="SaleAgentGeneration" ColumnName="SaleAgentGeneration" />
+          <ScalarProperty Name="SaleAgentAgentID" ColumnName="SaleAgentAgentID" />
+          <ScalarProperty Name="SaleAgentLastName" ColumnName="SaleAgentLastName" />
+          <ScalarProperty Name="SaleAgentMiddleInitial" ColumnName="SaleAgentMiddleInitial" />
+          <ScalarProperty Name="SaleAgentNickname" ColumnName="SaleAgentNickname" />
+          <ScalarProperty Name="SaleAgentPreferredFirstName" ColumnName="SaleAgentPreferredFirstName" />
+          <ScalarProperty Name="SaleAgentPreferredLastName" ColumnName="SaleAgentPreferredLastName" />
+          <ScalarProperty Name="SaleOfficeOfficeID" ColumnName="SaleOfficeOfficeID" />
+          <ScalarProperty Name="SaleOfficeName" ColumnName="SaleOfficeName" />
+          <ScalarProperty Name="Agent" ColumnName="Agent" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="PropertyManagement" ColumnName="PropertyManagement" />
+          <ScalarProperty Name="ShowingContacts" ColumnName="ShowingContacts" />
+          <ScalarProperty Name="LeaseType" ColumnName="LeaseType" />
+          <ScalarProperty Name="Participants" ColumnName="Participants" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="StreetSuffix" ColumnName="StreetSuffix" />
+          <ScalarProperty Name="AddressExportAllowed" ColumnName="AddressExportAllowed" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="CrossStreet" ColumnName="CrossStreet" />
+          <ScalarProperty Name="DisplayStreetNumber" ColumnName="DisplayStreetNumber" />
+          <ScalarProperty Name="FullStreetAddress" ColumnName="FullStreetAddress" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="StreetDirPrefix" ColumnName="StreetDirPrefix" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+          <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+          <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+          <ScalarProperty Name="AssociationFeePaymentFreq" ColumnName="AssociationFeePaymentFreq" />
+          <ScalarProperty Name="CommunityFeeIncludes" ColumnName="CommunityFeeIncludes" />
+          <ScalarProperty Name="CondoAssociation" ColumnName="CondoAssociation" />
+          <ScalarProperty Name="CondoCoopProjName" ColumnName="CondoCoopProjName" />
+          <ScalarProperty Name="ElementarySchool" ColumnName="ElementarySchool" />
+          <ScalarProperty Name="ElementarySchool2" ColumnName="ElementarySchool2" />
+          <ScalarProperty Name="HOA" ColumnName="HOA" />
+          <ScalarProperty Name="HighSchool" ColumnName="HighSchool" />
+          <ScalarProperty Name="HousingForOlderPersons" ColumnName="HousingForOlderPersons" />
+          <ScalarProperty Name="MiddleSchool" ColumnName="MiddleSchool" />
+          <ScalarProperty Name="MiddleSchool2" ColumnName="MiddleSchool2" />
+          <ScalarProperty Name="Pool" ColumnName="Pool" />
+          <ScalarProperty Name="PropertySubdivision" ColumnName="PropertySubdivision" />
+          <ScalarProperty Name="Roads" ColumnName="Roads" />
+          <ScalarProperty Name="Subdivision" ColumnName="Subdivision" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="ListingArea" ColumnName="ListingArea" />
+          <ScalarProperty Name="LocationTypes" ColumnName="LocationTypes" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="LotImprovement" ColumnName="LotImprovement" />
+          <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
+          <ScalarProperty Name="SchoolDistrict" ColumnName="SchoolDistrict" />
+          <ScalarProperty Name="TrafficCount" ColumnName="TrafficCount" />
+          <ScalarProperty Name="AreaException" ColumnName="AreaException" />
+          <ScalarProperty Name="MapPushpin" ColumnName="MapPushpin" />
+          <ScalarProperty Name="LandAssessmentAmount" ColumnName="LandAssessmentAmount" />
+          <ScalarProperty Name="TaxYear" ColumnName="TaxYear" />
+          <ScalarProperty Name="TotalAssessment" ColumnName="TotalAssessment" />
+          <ScalarProperty Name="TotalTaxes" ColumnName="TotalTaxes" />
+          <ScalarProperty Name="SepticExpiryDate" ColumnName="SepticExpiryDate" />
+          <ScalarProperty Name="WellDepth" ColumnName="WellDepth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Media1">
+      <EntityTypeMapping TypeName="MLSModel.Media">
+        <MappingFragment StoreEntitySet="Media">
+          <ScalarProperty Name="ListingID" ColumnName="ListingID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Created_TMS" ColumnName="Created_TMS" />
+          <ScalarProperty Name="Modified_TMS" ColumnName="Modified_TMS" />
+          <ScalarProperty Name="URLThumb" ColumnName="URLThumb" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateCountyCities">
+      <EntityTypeMapping TypeName="MLSModel.StateCountyCity">
+        <MappingFragment StoreEntitySet="StateCountyCity">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateCountyTownships">
+      <EntityTypeMapping TypeName="MLSModel.StateCountyTownship">
+        <MappingFragment StoreEntitySet="StateCountyTownship">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="Township" ColumnName="Township" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateSchoolDistricts">
+      <EntityTypeMapping TypeName="MLSModel.StateSchoolDistrict">
+        <MappingFragment StoreEntitySet="StateSchoolDistrict">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="SchoolDistrict" ColumnName="SchoolDistrict" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

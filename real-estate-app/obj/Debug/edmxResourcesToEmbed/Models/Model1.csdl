@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MLSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MLSEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="AllProperties" EntityType="MLSModel.AllProperty" />
+    <EntitySet Name="Media" EntityType="MLSModel.Medium" />
+    <EntitySet Name="StateCountyCities" EntityType="MLSModel.StateCountyCity" />
+    <EntitySet Name="StateCountyTownships" EntityType="MLSModel.StateCountyTownship" />
+    <EntitySet Name="StateSchoolDistricts" EntityType="MLSModel.StateSchoolDistrict" />
+  </EntityContainer>
+  <EntityType Name="AllProperty">
+    <Key>
+      <PropertyRef Name="ListingID" />
+    </Key>
+    <Property Name="AnnualLeasePrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BasementType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CloseDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ClosePrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="InteriorSquareFeetSource" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="RoomList" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LandOnly" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListPrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListingID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ListingKey" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LocaleListingStatus" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ModificationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SourceModificationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OffMarketDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Ownership" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PoolType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PropertyType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SourceCreationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="StatusChangeDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="WaterFront" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="WaterFrontage" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="YearInBusiness" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="YearRenovated" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="GreenRemarks" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="EnvironmentallyFriendly" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TypeOfContingency" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Basement" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CentralAir" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Design" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="DiningKitchen" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Exterior" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ExteriorAmenities" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ExteriorFeatures" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Fencing" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Fireplace" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FireplaceCount" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FireplaceFeatures" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Furnished" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Handicap" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="InteriorFeatures" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="NewConstruction" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PropertyCondition" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Roof" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Storage" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Styles" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FloorPlan" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Bathrooms" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BathsFull" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BathsHalf" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Beds" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Entrance" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Floor" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MainEntrance" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LandSqFt" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="NetSQFT" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomFourth1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomFourth1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomMaster1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomMaster1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomSecond1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomSecond1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomThird1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="BedroomThird1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="DiningRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="DiningRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FamilyRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FamilyRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Kitchen1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Kitchen1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LivingRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LivingRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MainBedroom" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm1Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm1Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm2Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm2Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm3Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm3Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm4Length" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OtherRm4Width" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TotalRooms" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LaundryRoomLength" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LaundryRoomWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Utilities" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Cooling" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Heating" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HotWater" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LaundryType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SewerSeptic" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Water" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HOAFee" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MoveInFee" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HOAFee2" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CurrentFinancing" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FinancingTypeCashFinancingType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ContractInfo" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PropertyOption" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="VOWAVM" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="VOWComment" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="OpenHouse" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MaxPhotoTms" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TotalPhotos" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PhotoManager" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Tours" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="InclusionRemarks" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Remarks" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Lot" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LandUse" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LandUseCode" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LeaseInEffect" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LeaseTerm" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LeasedUnits" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotAreaAcre" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotDimDepth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotDimWidth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotDimensions" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PorchDeck" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PropertyAge" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HasGarageFlag" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="GarageSpaces" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="GarageType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentGeneration" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentMiddleInitial" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentNickname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentPreferredFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AltAgentPreferredLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentGeneration" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentAgentID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentMiddleInitial" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentNickname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentPreferredFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListAgentPreferredLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListOfficeOfficeID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListOfficeOfficePhone" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListOfficeName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListOfficePostalCode" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentGeneration" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentAgentID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentMiddleInitial" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentNickname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentPreferredFirstName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleAgentPreferredLastName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleOfficeOfficeID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SaleOfficeName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Agent" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Owner" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PropertyManagement" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ShowingContacts" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LeaseType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Participants" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Property" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Latitude" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Longitude" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="StreetSuffix" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AddressExportAllowed" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CityName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="County" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CrossStreet" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="DisplayStreetNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="FullStreetAddress" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="StreetDirPrefix" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="StreetName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="StreetNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="UnitNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Zip4" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AssociationFeePaymentFreq" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CommunityFeeIncludes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CondoAssociation" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="CondoCoopProjName" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ElementarySchool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ElementarySchool2" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HOA" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HighSchool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="HousingForOlderPersons" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleSchool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleSchool2" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Pool" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="PropertySubdivision" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Roads" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Subdivision" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="Location" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ListingArea" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LocationTypes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotDescription" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotImprovement" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LotNumber" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SchoolDistrict" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TrafficCount" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="AreaException" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="MapPushpin" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="LandAssessmentAmount" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TaxYear" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TotalAssessment" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="TotalTaxes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="SepticExpiryDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="WellDepth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Medium">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ListingID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="Number" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="DisplayOrder" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="Caption" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="URL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Created_TMS" Type="DateTime" Precision="3" />
+    <Property Name="Modified_TMS" Type="DateTime" Precision="3" />
+    <Property Name="URLThumb" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateCountyCity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+    <Property Name="County" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateCountyTownship">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+    <Property Name="County" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Township" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateSchoolDistrict">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+    <Property Name="SchoolDistrict" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ID" Type="Guid" Nullable="false" />
+  </EntityType>
+</Schema>
