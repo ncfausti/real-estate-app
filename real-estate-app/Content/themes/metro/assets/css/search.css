@@ -92,7 +92,14 @@
 		.results-address {font-weight:bold;font-size:1.0em; color: #333; }
 		.results-price { font-size:1.2em;font-weight:bold; margin:10px 12px 0px 122px;font-family:sans-serif;padding-top:3px;color:#333;}
 		.results-property { width:298px;padding:12px; background-color:#fff; }
-		.results-property-info { float:right;margin-right:9px;}
+		
+		.results-property-info { 
+			float:right;
+			margin-right:9px;
+		
+			
+		}
+
 		.results-property-info span { text-align: center;display:inline-block;color:#333; }
 		.results-property-info hr { margin:0px;color:#ccc; }
 		.results-detail-btn {	float:right;
@@ -183,7 +190,7 @@
 
 .font12 { font-size: 12px;}
 
-.results-property span img { margin:14px 0px 48px 0px;height:90px;border: 3px solid #fff;}
+.results-property span img { margin:14px 0px 0px 0px;height:90px;border: 3px solid #fff;width:144px;height:106px;}
 
 
 .property-spans { margin:12px 0px 0px 7px;width:108px; }
@@ -446,3 +453,33 @@ margin-top: -36px;
 padding-bottom: 50px;
 border-radius: 0px 6px 6px 0px;
 padding-left: 40px;margin-left: 70px;height:336px; }
+
+.arrow:hover {
+cursor:pointer;
+}
+.arrow {
+margin-left:24px;
+font-size:1.2em;
+}
+#images-up {
+margin-left:0px
+}
+
+#image-count {
+margin-left:4px;
+margin-right:4px;
+font-weight:bold;
+color: #333;
+
+}
+.image-scroll-bg { background-color: #D6EBFF;
+	width: 120px;
+	display: inline-block;
+}
+
+.has-more-pics {
+    width: 144px;
+    overflow: hidden;
+    max-height: 136px;
+    display: inline-block;
+}

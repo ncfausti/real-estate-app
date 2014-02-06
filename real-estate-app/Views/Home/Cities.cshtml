@@ -4,18 +4,35 @@
 }
 @foreach (var item in Model)
 {
-    if (Request.QueryString["state"] ==  "PA")
-    {
-        if(item.State == "PA") 
+    // State -> City
+    if (Request.QueryString["from"] == "state"){    
+        if (Request.QueryString["state"] ==  "PA")
         {
-            <option value="@item.City">@item.City</option>        
+            if(item.State == "PA") 
+            {
+                <option value="@item.City">@item.City</option>        
+            }
         }
+        else if (Request.QueryString["state"] ==  "NJ")
+        {
+            if(item.State == "NJ") 
+            {
+                <option value="@item.City">@item.City</option>       
+            }
+        } 
     }
-    else if (Request.QueryString["state"] ==  "NJ")
-    {
-        if(item.State == "NJ") 
-        {
-            <option value="@item.City">@item.City</option>       
+    // County -> City
+    else if (Request.QueryString["from"] == "county") { 
+        // Load  only cities from selected county
+        // If 0 (first selection/All) is selected load all cities from state
+        if (item.County == Request.QueryString["county"]) { 
+            <option value="@item.City">@item.City</option>
         }
-    } 
+        // Load all cities from state specified in 'state' querystring
+        else if (Request.QueryString["county"] == "All") {
+            if (item.State == Request.QueryString["state"]) {
+            <option value="@item.City">@item.City</option>            
+            }
+        }
+    }   
 }

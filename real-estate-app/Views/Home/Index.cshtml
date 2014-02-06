@@ -1,5 +1,7 @@
-﻿@{
-    Layout = null;   
+﻿@model IEnumerable<real_estate_app.Models.AllProperty>
+@{
+    Layout = null;
+    
  }
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +25,8 @@
 		<link rel="stylesheet" href="../../Content/themes/metro/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="../../Content/themes/metro/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="../../Content/themes/metro/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="../../Content/themes/metro/assets/css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+        <link rel="stylesheet" href="../../Content/themes/metro/assets/css/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
 		
 		<!--[if lte IE 8]>
 
@@ -45,7 +49,7 @@
 		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing&address=philadelphia+pa&sensor=false"></script>
 	     <script type="text/javascript">
      	  var RealEstate = {};
-
+     	  var map;
 	      function initialize() {
 
 	        var mapOptions = {
@@ -53,7 +57,7 @@
 	          zoom: 8
 	        };
 
-	        var map = new google.maps.Map(document.getElementById("map-canvas"),
+	        map = new google.maps.Map(document.getElementById("map-canvas"),
 	            mapOptions);
 
 	        var deleteShapeDiv = document.createElement('div');
@@ -108,7 +112,13 @@
       		position: myLatlng,
       		map: map,
       		title: 'Philadelphia, PA'
-  	 	});
+     	});
+              /*
+     	
+     	
+        */
+
+     	showPropertiesFromCity();
 	   } // End Initialize()
 
 	   RealEstate.deleteShape = function(){
@@ -173,6 +183,69 @@
   	 	
      }; 
      
+
+	    var propertyList = [];
+        
+	    var logLatLongs = function () {
+	        @foreach (var item in Model)
+            {
+                if (item.CityName == Request["cities-select-to"] && item.Latitude != "" && item.Longitude != "")
+                {
+                  //  Response.Write(item.Latitude + "," + item.Longitude);
+                    <text>
+	        propertyList.push({
+	            'lat':'@item.Latitude', 
+	            'lng':'@item.Longitude',
+	            'acres': '@item.LotAreaAcre',
+	            'sqFt': '@item.NetSQFT',
+	            'yearBuilt': '@item.PropertyAge',
+	            'price': '@item.ListPrice',
+	            'beds': '@item.Beds',
+	            'baths': '@item.Bathrooms'
+	        });
+	                </text>
+                }
+       
+            }
+	    }
+
+        
+	    var showPropertiesFromCity = function () {
+	        logLatLongs();
+	        for (var i = 0; i < propertyList.length; i++) {
+	            //console.log(propertyList[i].lat);
+	            var home = propertyList[i];
+	            var myLatlng = new google.maps.LatLng(home.lat, home.lng);
+	            var marker = new google.maps.Marker({
+	                position: myLatlng,
+	                map: map,
+	                title: ''
+	            });
+                   
+	            infoWindowContent ='Price: ' + home.price + '<br>Acres: ' + propertyList[i].acres + '<br>SqFt.: '+ home.sqFt + '<br>Age: '+ home.yearBuilt + '<br>Beds: ' + home.beds + '<br>Baths: '+home.baths;
+
+	            var infowindow = new google.maps.InfoWindow({
+	                content: infoWindowContent,
+	                map: map,
+	                position: myLatlng
+	            });
+
+                infowindow.close();
+
+
+	            google.maps.event.addListener(marker, 'mouseover', function () {
+	                infowindow.open(map, this);
+                    
+	            });
+	            google.maps.event.addListener(marker, 'mouseout', function () {
+	                infowindow.close();
+
+	            });
+	        }
+	    }
+
+	    
+             
 	    </script>
 
 	</head>
@@ -267,10 +340,11 @@
 
 												
 											</ul>
-
+                                        
 											<div class="tab-content">
 												<div id="city" class="tab-pane active">
 													<div class="inner-tab-content">
+                                                        <form action="/" method="post">
 													State:
 													<select id="select-state">
 														<option value="PA">PA</option>
@@ -279,14 +353,187 @@
 													</select>
 													
 													<span style="margin-left:42px;"></span>County:
-													<select>
-														<!--<option value="-1">All</option>-->
+													<select id="select-county">
+														<option value="all">All</option>
+            <option value="MONROE">MONROE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="OTHER">OTHER</option>        
+            <option value="OTHER">OTHER</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="OTHER">OTHER</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="OTHER">OTHER</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LACKAWANNA">LACKAWANNA</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LACKAWANNA">LACKAWANNA</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="LACKAWANNA">LACKAWANNA</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="OTHER">OTHER</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="LUZERNE">LUZERNE</option>        
+            <option value="PIKE">PIKE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="CARBON">CARBON</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="MONROE">MONROE</option>        
+            <option value="NORTHAMPTON">NORTHAMPTON</option>        
+            <option value="WAYNE">WAYNE</option>        
+            <option value="MONROE">MONROE</option>
 														
 													</select><br>
 													<div class="multi-select-cities">
 													Cities:<br>
 													        <select multiple="multiple" class="w120 inl-block select-cities expose" name="cities-select-from" id="cities-select-from" >
-														    
+														    <option value="POCONO LAKE">POCONO LAKE</option>        
+                <option value="DINGSMAN FERRY">DINGSMAN FERRY</option>        
+                <option value="MOUNT BETHEL">MOUNT BETHEL</option>        
+                <option value="BEAR CREEK">BEAR CREEK</option>        
+                <option value="LACAWAXEN">LACAWAXEN</option>        
+                <option value="BETHLEHEM">BETHLEHEM</option>        
+                <option value="BIRDSBORO">BIRDSBORO</option>        
+                <option value="EASTON">EASTON</option>        
+                <option value="CANADENSIS">CANADENSIS</option>        
+                <option value="NANTICOKE">NANTICOKE</option>        
+                <option value="MOUNT POCONO">MOUNT POCONO</option>        
+                <option value="JIM THORPE">JIM THORPE</option>        
+                <option value="BUSHKILL">BUSHKILL</option>        
+                <option value="KUNKLETOWN">KUNKLETOWN</option>        
+                <option value="POCONO SUMMIT">POCONO SUMMIT</option>        
+                <option value="HAWLEY">HAWLEY</option>        
+                <option value="DELAWARE WATER GAP">DELAWARE WATER GAP</option>        
+                <option value="MILFORD">MILFORD</option>        
+                <option value="MILROY">MILROY</option>        
+                <option value="ALBRIGHTSVILLE">ALBRIGHTSVILLE</option>        
+                <option value="WIND GAP">WIND GAP</option>        
+                <option value="LAKE ARIEL">LAKE ARIEL</option>        
+                <option value="BANGOR">BANGOR</option>        
+                <option value="WEATHERLY">WEATHERLY</option>        
+                <option value="MARSHALLS CREEK">MARSHALLS CREEK</option>        
+                <option value="SCIOTA">SCIOTA</option>        
+                <option value="TOBYHANNA">TOBYHANNA</option>        
+                <option value="BRODHEADSVILLE">BRODHEADSVILLE</option>        
+                <option value="CANADENSIS">CANADENSIS</option>        
+                <option value="SAYLORSBURG">SAYLORSBURG</option>        
+                <option value="NESQUEHONING">NESQUEHONING</option>        
+                <option value="POCONO MANOR">POCONO MANOR</option>        
+                <option value="HAZLETON">HAZLETON</option>        
+                <option value="STROUDSBURG">STROUDSBURG</option>        
+                <option value="GOULDSBORO">GOULDSBORO</option>        
+                <option value="BATH">BATH</option>        
+                <option value="ALBRIGHTSVILLE">ALBRIGHTSVILLE</option>        
+                <option value="THORNHURST">THORNHURST</option>        
+                <option value="TOBYHANNA">TOBYHANNA</option>        
+                <option value="GOULDSBORO">GOULDSBORO</option>        
+                <option value="DINGMANS FERRY">DINGMANS FERRY</option>        
+                <option value="WHITE HAVEN">WHITE HAVEN</option>        
+                <option value="ANALOMINK">ANALOMINK</option>        
+                <option value="NORTHAMPTON">NORTHAMPTON</option>        
+                <option value="WHITE HAVEN">WHITE HAVEN</option>        
+                <option value="CLIFTON TOWNSHIP">CLIFTON TOWNSHIP</option>        
+                <option value="LAKE HARMONY">LAKE HARMONY</option>        
+                <option value="POCONO PINES">POCONO PINES</option>        
+                <option value="LEHIGHTON">LEHIGHTON</option>        
+                <option value="BUCK HILL FALLS">BUCK HILL FALLS</option>        
+                <option value="SWEET VALLEY">SWEET VALLEY</option>        
+                <option value="ROSETO">ROSETO</option>        
+                <option value="KUNKLETOWN">KUNKLETOWN</option>        
+                <option value="TANNERSVILLE">TANNERSVILLE</option>        
+                <option value="SCOTRUN">SCOTRUN</option>        
+                <option value="MOUNTAIN TOP">MOUNTAIN TOP</option>        
+                <option value="GILBERT">GILBERT</option>        
+                <option value="BARTONSVILLE">BARTONSVILLE</option>        
+                <option value="SHAWNEE ON DELAWARE">SHAWNEE ON DELAWARE</option>        
+                <option value="FREELAND">FREELAND</option>        
+                <option value="EFFORT">EFFORT</option>        
+                <option value="DRUMS">DRUMS</option>        
+                <option value="GREENTOWN">GREENTOWN</option>        
+                <option value="BLAKESLEE">BLAKESLEE</option>        
+                <option value="JEFFERSON TOWNSHIP">JEFFERSON TOWNSHIP</option>        
+                <option value="PLYMOUTH">PLYMOUTH</option>        
+                <option value="LONG POND">LONG POND</option>        
+                <option value="HAZLETON">HAZLETON</option>        
+                <option value="WILKES BARRE">WILKES BARRE</option>        
+                <option value="HENRYVILLE">HENRYVILLE</option>        
+                <option value="HAWLEY">HAWLEY</option>        
+                <option value="BETHLEHEM">BETHLEHEM</option>        
+                <option value="CRESCO">CRESCO</option>        
+                <option value="REEDERS">REEDERS</option>        
+                <option value="LAKEVILLE">LAKEVILLE</option>        
+                <option value="TAMIMENT">TAMIMENT</option>        
+                <option value="BEAVER BROOK">BEAVER BROOK</option>        
+                <option value="PLAINS">PLAINS</option>        
+                <option value="LORDS VALLEY">LORDS VALLEY</option>        
+                <option value="BUSHKILL">BUSHKILL</option>        
+                <option value="EAST STROUDSBURG">EAST STROUDSBURG</option>        
+                <option value="NESQUEHONING">NESQUEHONING</option>        
+                <option value="MOUNTAINHOME">MOUNTAINHOME</option>        
+                <option value="SWIFTWATER">SWIFTWATER</option>        
+                <option value="UPPER MT. BETHEL">UPPER MT. BETHEL</option>        
+                <option value="NEWFOUNDLAND">NEWFOUNDLAND</option>        
+                <option value="KRESGEVILLE">KRESGEVILLE</option>
 															</select>
 															<span class="inl-block">
 															<a class="btn btn-sm btn-info" href="JavaScript:void(0);" id="btn-add">Add >></a>
@@ -296,9 +543,12 @@
 															<select multiple="multiple" class="w120 inl-block select-cities" name="cities-select-to" id="cities-select-to">
 																
 															</select>
-														</div>
-														<button class="btn btn-primary" id="city-search-btn">Search</button>
+														</div>  
+														    <input type="submit" value="Search!"  id="city-search-btn" />
+                                                     </form>
 													</div>
+
+
 												</div>
 
 												<div id="zip" class="tab-pane">
@@ -391,9 +641,10 @@
 															</select>
 														</span>
 														<button class="btn">Search</button>
-												</div>
+												    </div>
 
 											</div>
+                                
 										</div>
 		</div>		
 		<div id="overlay"></div>
@@ -966,11 +1217,52 @@
 				<div class="results-address">3142 Lighthouse Ridge Ln</div>
 				<span class="results-city">San Diego</span><span class="results-price">$550,000</span>
 			</div>
-			<div>
-				<span>
-					<img src="../../Content/themes/metro/assets/img/View-M4-House.jpg" width=120 height =120 />
-				</span>
-				<span class="results-property-info">
+			<div style="display:inline-block; width:274px;">
+				<div class="has-more-pics">
+                    <div id="scroller-div" style="width:3000px;position:relative;">
+                        <span style="float:left;">
+					    <a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/9CvJ_STSn8rxX5jlOV3TgHlXMDToZV12P6e2vIWioq-vcciQxGBY9sAFnVreU6fblVi_DB_WlPEy0vCr8OvqJg.jpg"><img src="http://images.tst.mris.com/image/V2/1/wQHSYxlgcs1cdU3CYdZgVURYaDEI9YMxbopCBkS5tzV-eLsMPMzsWD84P_kOK3Q8KQpCYcSUixA27f6cWwIt6w.jpg" width=120 height =120 /></a>
+                        </span>
+                        <span style="float:left;">
+					    <img src="http://images.tst.mris.com/image/V2/1/rE1ghrkjH41cCXGHZ3DwOYw5j-9FXMAnwxcx54ftCHhwrC6syfOB_1tE_wsgTIStRV3HHYA1SOCa4YsR4wfRGA.jpg" width=120 height =120 />
+                        </span>
+                        <span style="float:left;">
+					    <img src="http://images.tst.mris.com/image/V2/1/1yxLgTpOSMexLDRApeKgb4yt6TviQ3LmQxt_K2JdfJOndbcBPS99WKgquvk9942B1EmNJ3-OjFJAhu9er8I8dQ.jpg" width=120 height =120 />
+                        </span>
+                        <span style="float:left;">
+					    <img src="http://images.tst.mris.com/image/V2/1/S10UxVTmUBEVqTp_w5RU1w0cm6bMrYOfflOvDu6Mp6T07bI-j4gxE1OdlgjPCuAjN00VwXbwYUZLnQo_LlXOcA.jpg" width=120 height =120 />
+                        </span>
+
+                        <span>
+                        	
+                            <a class="fancybox" rel="gallery1" href="" title="Westfield Waterfalls - Middletown CT Lower (Graham_CS)">
+							<img src="http://images.tst.mris.com/image/V2/1/9CvJ_STSn8rxX5jlOV3TgHlXMDToZV12P6e2vIWioq-vcciQxGBY9sAFnVreU6fblVi_DB_WlPEy0vCr8OvqJg.jpg" alt="" />
+						</a>
+						
+						<a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/rE1ghrkjH41cCXGHZ3DwOYw5j-9FXMAnwxcx54ftCHhwrC6syfOB_1tE_wsgTIStRV3HHYA1SOCa4YsR4wfRGA.jpg" title="Calm Before The Storm (One Shoe Photography Ltd.)">
+							<img src="http://images.tst.mris.com/image/V2/1/1yxLgTpOSMexLDRApeKgb4yt6TviQ3LmQxt_K2JdfJOndbcBPS99WKgquvk9942B1EmNJ3-OjFJAhu9er8I8dQ.jpg" alt="" />
+						</a>
+						
+						<a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/kH_TYBnQ6wDZyghKkaWAZa8WW8tQ7decy3GqqP0Y8PluDFoeCpEUwRa8BLDk-cRWhxPCFKnaZ6BXfkR86E_eTg.jpg">
+							<img src="http://farm3.staticflickr.com/2870/8985207189_01ea27882d_m.jpg" alt="" />
+						</a>
+						
+						<a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/gz8Ka32jI-sYhIflBcrbV_SV3U1FpRe99P4arfH44wBqfOY0MMC5s3Ks6y_1guSGMq5_OKqB3kzBT5er9SOXug.jpg" title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))">
+							<img src="http://images.tst.mris.com/image/V2/1/S10UxVTmUBEVqTp_w5RU1w0cm6bMrYOfflOvDu6Mp6T07bI-j4gxE1OdlgjPCuAjN00VwXbwYUZLnQo_LlXOcA.jpg" alt="" />
+						</a>
+
+                        </span>
+                    </div>
+				</div>
+                <!--
+                <b id="images-down" class="arrow icon-angle-left cursor-icon"></b><span style="width:30px"></span> <b id="images-up"class="arrow icon-angle-right cursor-icon"></b>
+                -->
+                <br>
+                <div class="image-scroll-bg">
+                <img id="images-down" class="arrow" src="../../Content/themes/metro/assets/img/white-left-arrow.gif" /><span id="image-count">1 of 4</span>
+                <img id="images-up" class="arrow" src="../../Content/themes/metro/assets/img/white-right-arrow.gif" />
+            	</div>
+				<span class="results-property-info" style="margin-top:-100px;">
 					<span class="property-spans">
 					<table class="details-table">
 						<tr><td class="tl"><span class="tdspanl">SQ.FT<br>1900</span></td><td class="tr"><span class="tdspanr">BEDS<br>4</span></td></tr>
@@ -1131,5 +1423,9 @@
 		<!-- inline scripts related to this page -->
 		<script src="../../Content/themes/metro/assets/js/search.js"></script>
 
+        <!--fancybox -->
+        <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox.pack.js?v=2.1.5"></script>
+        <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-media.js?v=1.0.6"></script>
 	</body>
 </html>

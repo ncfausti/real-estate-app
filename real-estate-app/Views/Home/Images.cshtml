@@ -1,0 +1,11 @@
+﻿@model IEnumerable<real_estate_app.Models.Medium>
+@{
+    Layout = null;
+    int i = 0;
+}
+@foreach (var item in Model) {
+    if (i < 10) { 
+        @item.URLThumb<br />
+        i++;
+    }
+}

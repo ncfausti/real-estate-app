@@ -116,6 +116,17 @@
 
 			    $('#advanced-search-link').click( function() {showAdvancedSearch();} );
 
+			    //Fancybox init
+			    $(".fancybox").fancybox({
+			        openEffect: 'none',
+			        closeEffect: 'none',
+			        closeBtn: false,
+			        helpers: {
+			            title: { type: 'inside' },
+			            buttons: {}
+			        }
+			    });
+
 			});  // End document.ready handler
 		
 		var getPropertyListHeight = function() {
@@ -927,11 +938,55 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		});
 
 		$("#select-state").change(function (e) {
+
 		    $.ajax({
-		        url: "/Home/Cities?state="+e.target.value, success: function (result) {
+		        url: "/Home/Counties?state="+e.target.value,async:false, success: function (result) {
+		            $("#select-county").html(result);
+		            console.log('running now');
 		            console.log(e.target.value);
+		            $.ajax({
+		                url: "/Home/Cities?from=state&state=" + e.target.value, success: function (result) {
+		                    $("#cities-select-from").html(result);
+		                    $("#cities-select-to").html("");
+		                }
+		            });
+		        },
+		    });
+		});
+
+		$("#select-county").change(function (e) {
+		   		    $.ajax({
+		            url: "/Home/Cities/?from=county&county=" + e.target.value, success: function (result) {
 		            $("#cities-select-from").html(result);
 		        }
 		    });
 		});
+		var distance = 0;
+		$("#images-up").click(function (e) {
+	        if(distance <= 0 && distance > -360)
+		        $("#scroller-div").css('left', parseInt(distance = distance - 120));
+		    
+
+		});
+
+		$("#images-down").click(function (e) {
+		    if (distance >= -360 && distance < 0)
+		        $("#scroller-div").css('left', parseInt(distance = distance + 120));
+		});
         
+
+//Should use .call() to be applicable to all images
+		var image_num = 1;
+		$(".arrow").click(function (e) {
+		    if (e.target.id == "images-up") {
+		        if(image_num<4)
+                    $("#image-count").html(parseInt(image_num +=1) + " of 4")
+
+		    }
+		    else {
+		        if(image_num > 1)
+		            $("#image-count").html(parseInt(image_num -= 1) + " of 4")
+		    }
+		});
+
+         
