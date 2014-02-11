@@ -9,7 +9,7 @@
   </EntityContainer>
   <EntityType Name="AllProperty">
     <Key>
-      <PropertyRef Name="ListingID" />
+      <PropertyRef Name="ID" />
     </Key>
     <Property Name="AnnualLeasePrice" Type="varchar" />
     <Property Name="BasementType" Type="varchar" />
@@ -20,7 +20,7 @@
     <Property Name="LandOnly" Type="varchar" />
     <Property Name="ListDate" Type="varchar" />
     <Property Name="ListPrice" Type="varchar" />
-    <Property Name="ListingID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ListingID" Type="varchar" />
     <Property Name="ListingKey" Type="varchar" />
     <Property Name="LocaleListingStatus" Type="varchar" />
     <Property Name="ModificationTimestamp" Type="varchar" />
@@ -220,6 +220,7 @@
     <Property Name="TotalTaxes" Type="varchar" />
     <Property Name="SepticExpiryDate" Type="varchar" />
     <Property Name="WellDepth" Type="varchar" />
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="Media">
     <Key>
@@ -263,4 +264,56 @@
     <Property Name="SchoolDistrict" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
+  <Function Name="GetAPMLS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MLS" Type="varchar" Mode="In" />
+    <Parameter Name="MinPrice" Type="varchar" Mode="In" />
+    <Parameter Name="MaxPrice" Type="varchar" Mode="In" />
+    <Parameter Name="Beds" Type="varchar" Mode="In" />
+    <Parameter Name="Bathrooms" Type="varchar" Mode="In" />
+    <Parameter Name="MinHomeSizeSqFt" Type="varchar" Mode="In" />
+    <Parameter Name="MaxHomeSizeSqFt" Type="varchar" Mode="In" />
+    <Parameter Name="MinLotSizeAcre" Type="varchar" Mode="In" />
+    <Parameter Name="MaxLotSizeAcre" Type="varchar" Mode="In" />
+    <Parameter Name="DaysListed" Type="varchar" Mode="In" />
+    <Parameter Name="MinAge" Type="varchar" Mode="In" />
+    <Parameter Name="MaxAge" Type="varchar" Mode="In" />
+    <Parameter Name="PropertyTypeLandAndLot" Type="varchar" Mode="In" />
+    <Parameter Name="PropertyTypeCondoTownHouse" Type="varchar" Mode="In" />
+    <Parameter Name="PropertyTypeSingleFamily" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetAPStateCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="State" Type="varchar" Mode="In" />
+    <Parameter Name="City" Type="varchar" Mode="In" />
+    <Parameter Name="MinPrice" Type="varchar" Mode="In" />
+    <Parameter Name="MaxPrice" Type="varchar" Mode="In" />
+    <Parameter Name="Beds" Type="varchar" Mode="In" />
+    <Parameter Name="Bathrooms" Type="varchar" Mode="In" />
+    <Parameter Name="MinHomeSizeSqFt" Type="varchar" Mode="In" />
+    <Parameter Name="MaxHomeSizeSqFt" Type="varchar" Mode="In" />
+    <Parameter Name="MinLotSizeAcre" Type="varchar" Mode="In" />
+    <Parameter Name="MaxLotSizeAcre" Type="varchar" Mode="In" />
+    <Parameter Name="DaysListed" Type="varchar" Mode="In" />
+    <Parameter Name="MinAge" Type="varchar" Mode="In" />
+    <Parameter Name="MaxAge" Type="varchar" Mode="In" />
+    <Parameter Name="PropertyTypeLandAndLot" Type="varchar" Mode="In" />
+    <Parameter Name="PropertyTypeCondoTownHouse" Type="varchar" Mode="In" />
+    <Parameter Name="PropertyTypeSingleFamily" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Orderby" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetImagesByListingID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="listingId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetCitiesForStateCounty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="State" Type="nchar" Mode="In" />
+    <Parameter Name="County" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetSchoolDistrictsForState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="State" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spGetTownshipsForStateCounty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="State" Type="nchar" Mode="In" />
+    <Parameter Name="County" Type="varchar" Mode="In" />
+  </Function>
 </Schema>

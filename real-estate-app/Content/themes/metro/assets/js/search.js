@@ -964,14 +964,14 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		var distance = 0;
 		$("#images-up").click(function (e) {
 	        if(distance <= 0 && distance > -360)
-		        $("#scroller-div").css('left', parseInt(distance = distance - 120));
+		        $("#scroller-div").css('left', parseInt(distance = distance - 144));
 		    
 
 		});
 
 		$("#images-down").click(function (e) {
 		    if (distance >= -360 && distance < 0)
-		        $("#scroller-div").css('left', parseInt(distance = distance + 120));
+		        $("#scroller-div").css('left', parseInt(distance = distance + 144));
 		});
         
 

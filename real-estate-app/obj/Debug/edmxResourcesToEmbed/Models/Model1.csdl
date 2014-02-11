@@ -6,10 +6,62 @@
     <EntitySet Name="StateCountyCities" EntityType="MLSModel.StateCountyCity" />
     <EntitySet Name="StateCountyTownships" EntityType="MLSModel.StateCountyTownship" />
     <EntitySet Name="StateSchoolDistricts" EntityType="MLSModel.StateSchoolDistrict" />
+    <FunctionImport Name="GetAPMLS" ReturnType="Collection(MLSModel.GetAPMLS_Result)">
+      <Parameter Name="MLS" Mode="In" Type="String" />
+      <Parameter Name="MinPrice" Mode="In" Type="String" />
+      <Parameter Name="MaxPrice" Mode="In" Type="String" />
+      <Parameter Name="Beds" Mode="In" Type="String" />
+      <Parameter Name="Bathrooms" Mode="In" Type="String" />
+      <Parameter Name="MinHomeSizeSqFt" Mode="In" Type="String" />
+      <Parameter Name="MaxHomeSizeSqFt" Mode="In" Type="String" />
+      <Parameter Name="MinLotSizeAcre" Mode="In" Type="String" />
+      <Parameter Name="MaxLotSizeAcre" Mode="In" Type="String" />
+      <Parameter Name="DaysListed" Mode="In" Type="String" />
+      <Parameter Name="MinAge" Mode="In" Type="String" />
+      <Parameter Name="MaxAge" Mode="In" Type="String" />
+      <Parameter Name="PropertyTypeLandAndLot" Mode="In" Type="String" />
+      <Parameter Name="PropertyTypeCondoTownHouse" Mode="In" Type="String" />
+      <Parameter Name="PropertyTypeSingleFamily" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAPStateCity" ReturnType="Collection(MLSModel.GetAPStateCity_Result)">
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="MinPrice" Mode="In" Type="String" />
+      <Parameter Name="MaxPrice" Mode="In" Type="String" />
+      <Parameter Name="Beds" Mode="In" Type="String" />
+      <Parameter Name="Bathrooms" Mode="In" Type="String" />
+      <Parameter Name="MinHomeSizeSqFt" Mode="In" Type="String" />
+      <Parameter Name="MaxHomeSizeSqFt" Mode="In" Type="String" />
+      <Parameter Name="MinLotSizeAcre" Mode="In" Type="String" />
+      <Parameter Name="MaxLotSizeAcre" Mode="In" Type="String" />
+      <Parameter Name="DaysListed" Mode="In" Type="String" />
+      <Parameter Name="MinAge" Mode="In" Type="String" />
+      <Parameter Name="MaxAge" Mode="In" Type="String" />
+      <Parameter Name="PropertyTypeLandAndLot" Mode="In" Type="String" />
+      <Parameter Name="PropertyTypeCondoTownHouse" Mode="In" Type="String" />
+      <Parameter Name="PropertyTypeSingleFamily" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Orderby" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetImagesByListingID" ReturnType="Collection(MLSModel.GetImagesByListingID_Result)">
+      <Parameter Name="listingId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetCitiesForStateCounty" ReturnType="Collection(MLSModel.spGetCitiesForStateCounty_Result)">
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="County" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetSchoolDistrictsForState" ReturnType="Collection(MLSModel.spGetSchoolDistrictsForState_Result)">
+      <Parameter Name="State" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetTownshipsForStateCounty" ReturnType="Collection(MLSModel.spGetTownshipsForStateCounty_Result)">
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="County" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="AllProperty">
     <Key>
-      <PropertyRef Name="ListingID" />
+      <PropertyRef Name="ID" />
     </Key>
     <Property Name="AnnualLeasePrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="BasementType" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
@@ -20,7 +72,7 @@
     <Property Name="LandOnly" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="ListDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="ListPrice" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
-    <Property Name="ListingID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ListingID" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="ListingKey" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="LocaleListingStatus" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="ModificationTimestamp" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
@@ -220,6 +272,7 @@
     <Property Name="TotalTaxes" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="SepticExpiryDate" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
     <Property Name="WellDepth" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="ID" Type="Guid" Nullable="false" />
   </EntityType>
   <EntityType Name="Medium">
     <Key>
@@ -263,4 +316,446 @@
     <Property Name="SchoolDistrict" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="ID" Type="Guid" Nullable="false" />
   </EntityType>
+  <ComplexType Name="GetAPMLS_Result">
+    <Property Type="String" Name="AnnualLeasePrice" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BasementType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CloseDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ClosePrice" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="InteriorSquareFeetSource" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="RoomList" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandOnly" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListPrice" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListingID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListingKey" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LocaleListingStatus" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ModificationTimestamp" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SourceModificationTimestamp" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OffMarketDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Ownership" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PoolType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SourceCreationTimestamp" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StatusChangeDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="WaterFront" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="WaterFrontage" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="YearInBusiness" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="YearRenovated" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="GreenRemarks" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="EnvironmentallyFriendly" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TypeOfContingency" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Basement" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CentralAir" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Design" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DiningKitchen" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Exterior" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ExteriorAmenities" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ExteriorFeatures" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Fencing" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Fireplace" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FireplaceCount" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FireplaceFeatures" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Furnished" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Handicap" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="InteriorFeatures" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="NewConstruction" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyCondition" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Roof" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Storage" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Styles" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Type" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FloorPlan" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Bathrooms" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BathsFull" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BathsHalf" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Beds" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Entrance" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Floor" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MainEntrance" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandSqFt" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="NetSQFT" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomFourth1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomFourth1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomMaster1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomMaster1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomSecond1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomSecond1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomThird1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomThird1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DiningRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DiningRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FamilyRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FamilyRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Kitchen1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Kitchen1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LivingRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LivingRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MainBedroom" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm2Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm2Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm3Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm3Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm4Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm4Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalRooms" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LaundryRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LaundryRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Utilities" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Cooling" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Heating" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HotWater" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LaundryType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SewerSeptic" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Water" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HOAFee" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MoveInFee" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HOAFee2" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CurrentFinancing" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FinancingTypeCashFinancingType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ContractInfo" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyOption" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="VOWAVM" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="VOWComment" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OpenHouse" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MaxPhotoTms" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalPhotos" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PhotoManager" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Tours" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="InclusionRemarks" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Lot" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandUse" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandUseCode" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeaseInEffect" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeaseTerm" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeasedUnits" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotAreaAcre" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDimDepth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDimWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDimensions" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PorchDeck" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyAge" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HasGarageFlag" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="GarageSpaces" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="GarageType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentGeneration" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentMiddleInitial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentNickname" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentPreferredFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentPreferredLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentGeneration" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentAgentID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentMiddleInitial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentNickname" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentPreferredFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentPreferredLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficeOfficeID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficeOfficePhone" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficeName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficePostalCode" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentGeneration" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentAgentID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentMiddleInitial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentNickname" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentPreferredFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentPreferredLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleOfficeOfficeID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleOfficeName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Agent" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyManagement" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ShowingContacts" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeaseType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Participants" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Property" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetSuffix" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AddressExportAllowed" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CityName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="County" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CrossStreet" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DisplayStreetNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FullStreetAddress" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="State" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetDirPrefix" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="UnitNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Zip4" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AssociationFeePaymentFreq" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CommunityFeeIncludes" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CondoAssociation" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CondoCoopProjName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ElementarySchool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ElementarySchool2" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HOA" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HighSchool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HousingForOlderPersons" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MiddleSchool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MiddleSchool2" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Pool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertySubdivision" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Roads" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Subdivision" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Location" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListingArea" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LocationTypes" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDescription" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotImprovement" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SchoolDistrict" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TrafficCount" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AreaException" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MapPushpin" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandAssessmentAmount" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TaxYear" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalAssessment" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalTaxes" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SepticExpiryDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="WellDepth" Nullable="true" MaxLength="8000" />
+    <Property Type="Guid" Name="ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetAPStateCity_Result">
+    <Property Type="String" Name="AnnualLeasePrice" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BasementType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CloseDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ClosePrice" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="InteriorSquareFeetSource" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="RoomList" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandOnly" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListPrice" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListingID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListingKey" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LocaleListingStatus" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ModificationTimestamp" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SourceModificationTimestamp" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OffMarketDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Ownership" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PoolType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SourceCreationTimestamp" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StatusChangeDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="WaterFront" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="WaterFrontage" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="YearInBusiness" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="YearRenovated" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="GreenRemarks" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="EnvironmentallyFriendly" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TypeOfContingency" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Basement" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CentralAir" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Design" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DiningKitchen" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Exterior" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ExteriorAmenities" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ExteriorFeatures" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Fencing" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Fireplace" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FireplaceCount" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FireplaceFeatures" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Furnished" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Handicap" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="InteriorFeatures" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="NewConstruction" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyCondition" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Roof" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Storage" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Styles" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Type" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FloorPlan" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Bathrooms" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BathsFull" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BathsHalf" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Beds" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Entrance" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Floor" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MainEntrance" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandSqFt" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="NetSQFT" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomFourth1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomFourth1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomMaster1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomMaster1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomSecond1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomSecond1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomThird1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="BedroomThird1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DiningRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DiningRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FamilyRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FamilyRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Kitchen1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Kitchen1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LivingRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LivingRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MainBedroom" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm1Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm1Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm2Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm2Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm3Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm3Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm4Length" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OtherRm4Width" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalRooms" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LaundryRoomLength" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LaundryRoomWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Utilities" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Cooling" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Heating" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HotWater" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LaundryType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SewerSeptic" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Water" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HOAFee" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MoveInFee" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HOAFee2" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CurrentFinancing" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FinancingTypeCashFinancingType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ContractInfo" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyOption" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="VOWAVM" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="VOWComment" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="OpenHouse" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MaxPhotoTms" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalPhotos" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PhotoManager" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Tours" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="InclusionRemarks" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Lot" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandUse" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandUseCode" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeaseInEffect" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeaseTerm" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeasedUnits" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotAreaAcre" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDimDepth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDimWidth" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDimensions" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PorchDeck" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyAge" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HasGarageFlag" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="GarageSpaces" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="GarageType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentGeneration" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentMiddleInitial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentNickname" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentPreferredFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AltAgentPreferredLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentGeneration" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentAgentID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentMiddleInitial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentNickname" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentPreferredFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListAgentPreferredLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficeOfficeID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficeOfficePhone" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficeName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListOfficePostalCode" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentGeneration" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentAgentID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentMiddleInitial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentNickname" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentPreferredFirstName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleAgentPreferredLastName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleOfficeOfficeID" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SaleOfficeName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Agent" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertyManagement" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ShowingContacts" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LeaseType" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Participants" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Property" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetSuffix" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AddressExportAllowed" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CityName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="County" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CrossStreet" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="DisplayStreetNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="FullStreetAddress" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="State" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetDirPrefix" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="StreetNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="UnitNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Zip4" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AssociationFeePaymentFreq" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CommunityFeeIncludes" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CondoAssociation" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="CondoCoopProjName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ElementarySchool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ElementarySchool2" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HOA" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HighSchool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="HousingForOlderPersons" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MiddleSchool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MiddleSchool2" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Pool" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PropertySubdivision" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Roads" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Subdivision" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Location" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ListingArea" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LocationTypes" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotDescription" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotImprovement" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LotNumber" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SchoolDistrict" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TrafficCount" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="AreaException" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="MapPushpin" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="LandAssessmentAmount" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TaxYear" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalAssessment" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="TotalTaxes" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="SepticExpiryDate" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="WellDepth" Nullable="true" MaxLength="8000" />
+    <Property Type="Guid" Name="ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetImagesByListingID_Result">
+    <Property Type="String" Name="URLThumb" Nullable="true" />
+    <Property Type="String" Name="URL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetCitiesForStateCounty_Result">
+    <Property Type="String" Name="State" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="County" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetSchoolDistrictsForState_Result">
+    <Property Type="String" Name="State" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="SchoolDistrict" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetTownshipsForStateCounty_Result">
+    <Property Type="String" Name="State" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="County" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Township" Nullable="false" MaxLength="50" />
+  </ComplexType>
 </Schema>

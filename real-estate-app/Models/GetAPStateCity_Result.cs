@@ -10,9 +10,8 @@
 namespace real_estate_app.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class AllProperty
+    public partial class GetAPStateCity_Result
     {
         public string AnnualLeasePrice { get; set; }
         public string BasementType { get; set; }

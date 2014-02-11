@@ -90,7 +90,7 @@
 		#search-tab-content { padding:1px 0px 0px 0px;}
 
 		.results-address {font-weight:bold;font-size:1.0em; color: #333; }
-		.results-price { font-size:1.2em;font-weight:bold; margin:10px 12px 0px 122px;font-family:sans-serif;padding-top:3px;color:#333;}
+		.results-price { font-size:1.2em;font-weight:bold; margin:10px 12px 0px 74px;font-family:sans-serif;padding-top:3px;color:#333;}
 		.results-property { width:298px;padding:12px; background-color:#fff; }
 		
 		.results-property-info { 
@@ -482,4 +482,15 @@ color: #333;
     overflow: hidden;
     max-height: 136px;
     display: inline-block;
+}
+
+.results-city {
+    font-weight:bold;
+}
+
+.no-price {
+    font-size:.8em;
+}
+.display-price {
+    margin-left:10px;
 }
