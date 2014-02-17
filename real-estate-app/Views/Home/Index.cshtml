@@ -1187,13 +1187,14 @@
 	<div class="tab-pane" id="results-tab">
 		<!-- all results go in here -->
 		<div class="viewing-count linearbg">
-			<span id="viewing-span">Viewing: </span><span id="min-view-count">1</span>-<span id="max-view-count">3</span> of <span id="total-view-count">4</span>
+			<span id="viewing-span">Viewing: </span><span id="min-view-count">1</span>-<span id="max-view-count">Model.Count</span> of <span id="total-view-count">4</span>
 			<!-- sorting controls -->
 			<span id="sorting-control-span">Sort: <span id="sort-by-setting">Highest Price <i class="icon-chevron-down"></i></span></span>
 		</div>
          @try
          {
              var count = 1;
+             
              foreach (var item in Model)
              {
                  
@@ -1203,8 +1204,8 @@
                  <div class="results-property linearbg">
                  
 			<div>
-				<div class="results-address">@item.FullStreetAddress</div>
-				<span class="results-city">@item.CityName</span><span class="results-price">@if (item.ListPrice.IndexOf(".") > 0) 
+				<div class="results-address">@item.FullStreetAddress.ToLower()</div>
+				<span class="results-city">@item.CityName.ToLower()</span><span class="results-price">@if (item.ListPrice.IndexOf(".") > 0) 
                                                                                                                               { 
                                                                                                                                    
                                                                                                                                   @String.Format("{0:C0}", int.Parse(item.ListPrice.Substring(0, item.ListPrice.IndexOf(".")))); 

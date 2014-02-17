@@ -89,7 +89,7 @@
 		#navbar {margin-bottom: 12px;}
 		#search-tab-content { padding:1px 0px 0px 0px;}
 
-		.results-address {font-weight:bold;font-size:1.0em; color: #333; }
+		.results-address {font-weight:bold;font-size:1.0em; color: #333;text-transform:capitalize; }
 		.results-price { font-size:1.2em;font-weight:bold; margin:10px 12px 0px 74px;font-family:sans-serif;padding-top:3px;color:#333;}
 		.results-property { width:298px;padding:12px; background-color:#fff; }
 		
@@ -485,7 +485,8 @@ color: #333;
 }
 
 .results-city {
-    font-weight:bold;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .no-price {

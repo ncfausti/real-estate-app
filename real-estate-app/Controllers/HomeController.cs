@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using real_estate_app.Models;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace real_estate_app.Controllers
 {
@@ -24,6 +25,7 @@ namespace real_estate_app.Controllers
         public ActionResult Index(string Command, FormCollection formCollection)
         {
        //     var properties = db.Database.SqlQuery<PropertiesFromCity>("SELECT * FROM AllProperty Where CityName like 'POCONO LAKE'");
+          //  System.Globalization.TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
 
 
             var properties = db.GetAPStateCity("",
@@ -72,11 +74,13 @@ namespace real_estate_app.Controllers
                         
                         imageUrls.Add(image.URLThumb);
                         imageThumbUrls.Add(image.URL);
+                        
                     }
                 }
                 ViewData[property.ListingID + "_thumb"] = imageUrls;
                 ViewData[property.ListingID + "_url"] = imageThumbUrls;
             }
+            
             return View(homesList);
         }
 
