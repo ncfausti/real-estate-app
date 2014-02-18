@@ -50,11 +50,15 @@
 	     <script type="text/javascript">
      	  var RealEstate = {};
      	  var map;
+     	  var propertyList =[ @Html.Raw(ViewData["propertyList"]) ];
+          
+
 	      function initialize() {
 
 	        var mapOptions = {
-	          center: new google.maps.LatLng(39.778, -75.591),
-	          zoom: 8
+	            // center: new google.maps.LatLng(39.778, -75.591),
+                center: new google.maps.LatLng(propertyList[2].lat, propertyList[2].lng),
+	          zoom: 12
 	        };
 
 	        map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -106,19 +110,17 @@
 			});
 
 			     // Add map markers
-
+              /*
         var myLatlng = new google.maps.LatLng(39.9500,-75.1700);
      	var marker = new google.maps.Marker({
       		position: myLatlng,
       		map: map,
       		title: 'Philadelphia, PA'
      	});
-              /*
+            */
      	
-     	
-        */
-
      	showPropertiesFromCity();
+
 	   } // End Initialize()
 
 	   RealEstate.deleteShape = function(){
@@ -184,15 +186,11 @@
      }; 
      
 
-	    var propertyList = [];
-        
-
-        
 	    var showPropertiesFromCity = function () {
-	        logLatLongs();
-            
+	       // logLatLongs();
+	       
 	        for (var i = 0; i < propertyList.length; i++) {
-	            //console.log(propertyList[i].lat);
+	            console.log(propertyList[i].lat);
 	            var home = propertyList[i];
 	            var myLatlng = new google.maps.LatLng(home.lat, home.lng);
 	            var marker = new google.maps.Marker({
@@ -201,7 +199,7 @@
 	                title: ''
 	            });
                    
-	            var infoWindowContent ='Price: ' + home.price + '<br>Acres: ' + propertyList[i].acres + '<br>SqFt.: '+ home.sqFt + '<br>Age: '+ home.yearBuilt + '<br>Beds: ' + home.beds + '<br>Baths: '+home.baths;
+	            var infoWindowContent ='Price: ' + home.price + '<br>Acres: ' + home.acres + '<br>SqFt.: '+ home.sqFt + '<br>Age: '+ home.yearBuilt + '<br>Beds: ' + home.beds + '<br>Baths: '+home.baths;
 
 	            var infowindow = new google.maps.InfoWindow({
 	                content: infoWindowContent,
@@ -1187,10 +1185,16 @@
 	<div class="tab-pane" id="results-tab">
 		<!-- all results go in here -->
 		<div class="viewing-count linearbg">
-			<span id="viewing-span">Viewing: </span><span id="min-view-count">1</span>-<span id="max-view-count">Model.Count</span> of <span id="total-view-count">4</span>
+			<span id="viewing-span">Viewing: </span><span id="min-view-count">1</span> - <span id="total-view-count">
+    <span id="max-view-count">3</span>
+     of @if (Model != null)
+         { @Model.Count();
+         }
+        </span>
 			<!-- sorting controls -->
 			<span id="sorting-control-span">Sort: <span id="sort-by-setting">Highest Price <i class="icon-chevron-down"></i></span></span>
 		</div>
+        <div id="inner-results-container">
          @try
          {
              var count = 1;
@@ -1201,24 +1205,24 @@
                  var imageUrls = (List<string>)ViewData[item.ListingID+"_url"];
                  var imageUrlThumbs = (List<string>)ViewData[item.ListingID+"_thumb"];
                  count += 1;
-                 <div class="results-property linearbg">
                  
-			<div>
+                <div class="results-property linearbg">
+              
+			    <div>
 				<div class="results-address">@item.FullStreetAddress.ToLower()</div>
-				<span class="results-city">@item.CityName.ToLower()</span><span class="results-price">@if (item.ListPrice.IndexOf(".") > 0) 
-                                                                                                                              { 
-                                                                                                                                   
-                                                                                                                                  @String.Format("{0:C0}", int.Parse(item.ListPrice.Substring(0, item.ListPrice.IndexOf(".")))); 
-                                                                                                                                       
-                                                                                                                              } 
-                                                                                                                              else { 
-                                                                                                                                  <span class="no-price">Price Unknown</span> 
-                                                                                                                              
-                                                                                                                              }</span>
+				<span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">
+
+                @if (item.ListPrice.IndexOf(".") > 0) 
+                {                                                                                                               
+                    @String.Format("{0:C0}", int.Parse(item.ListPrice.Substring(0, item.ListPrice.IndexOf("."))));                                                                                                             
+                } 
+                else { 
+                    <span class="no-price">Price Unknown</span> 
+                }</span>
 			</div>
 			<div style="display:inline-block; width:274px;">
 				<div class="has-more-pics">
-                    <div id="scroller-div" style="width:3000px;position:relative;">
+                    <div id="scroller-div" style="width:4000px;position:relative;">
                         @if (imageUrls.Count < 1)
                         {
                             <span style="float:left;">
@@ -1229,7 +1233,9 @@
                         @for (var i = 0; i < imageUrls.Count; i++)
                         {
                         <span style="float:left;">
-					    <a class="fancybox" rel="gallery1" href='@imageUrls[i]'><img src='@imageUrlThumbs[i]' width=120 height =120 /></a>
+					    <a class="fancybox" rel="gallery1" href='@imageUrls[i]'>
+                            @if (true) { <img class="img-overlay" src='../../Content/themes/metro/assets/img/sold.png' width='120' height='120'> }
+                            <img src='@imageUrlThumbs[i]' width=120 height =120 /></a>
                         </span>
                         }
                         <!--
@@ -1317,7 +1323,7 @@
 		    -->
          
         
-        
+        </div>  <!--/inner-results-container-->
 	</div>
 </div>
 </div>
@@ -1340,7 +1346,7 @@
 											<i class="active icon-globe home-icon"></i> Map
 										</div>
 										<div id="listings-displayed-row" class="linearbg">
-											<span class="listings-showing-on-map">35 listings displayed</span>
+											<span class="listings-showing-on-map">@Model.Count() listings displayed</span>
 										</div>
 									   <div id="map-canvas" />
 									</div><!-- /span -->

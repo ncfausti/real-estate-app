@@ -90,7 +90,7 @@
 		#search-tab-content { padding:1px 0px 0px 0px;}
 
 		.results-address {font-weight:bold;font-size:1.0em; color: #333;text-transform:capitalize; }
-		.results-price { font-size:1.2em;font-weight:bold; margin:10px 12px 0px 74px;font-family:sans-serif;padding-top:3px;color:#333;}
+		.results-price { font-size:1.4em;font-weight:bold; margin:10px 12px 0px 94px;font-family:sans-serif;padding-top:3px;color:#333;}
 		.results-property { width:298px;padding:12px; background-color:#fff; }
 		
 		.results-property-info { 
@@ -231,6 +231,7 @@ body{font-family:sans-serif;margin-left: 80px;background: url( "../img/stitch_bg
 #ui-datepicker-div { display:none;}
 .viewing-count {
 	color: #333;
+    z-index:5;
 	position: fixed;
 	width: 302px;
 	background-color: white;
@@ -317,7 +318,7 @@ background-repeat: repeat-x;
 	padding: 8px; 
 	position: fixed;
 	top:67px;
-	left:198px;
+	left:197px;
 }
 #sort-by-setting { font-weight:normal; font-size:9px; }
 input[type="checkbox"].ace + .lbl, input[type="radio"].ace + .lbl { }
@@ -474,7 +475,7 @@ color: #333;
 }
 .image-scroll-bg { background-color: #D6EBFF;
 	width: 120px;
-	display: inline-block;
+	display: inline-block;margin-left: 12px;
 }
 
 .has-more-pics {
@@ -485,13 +486,25 @@ color: #333;
 }
 
 .results-city {
-    font-weight: bold;
+    vertical-align: top;
     text-transform: capitalize;
+    
 }
 
 .no-price {
-    font-size:.8em;
+    font-size:.55em;
 }
 .display-price {
     margin-left:10px;
+    font-size:1.4em;
+}
+#inner-results-container {
+    margin-top: 26px;
+}
+.img-overlay {
+    z-index:10;
+    position:absolute;
+}
+#results-tab::-webkit-scrollbar{
+   z-index: 15;
 }

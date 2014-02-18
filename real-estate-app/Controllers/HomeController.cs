@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using real_estate_app.Models;
+using System.Text;
 using System.Data.SqlClient;
 using System.Globalization;
 
@@ -59,28 +60,49 @@ namespace real_estate_app.Controllers
             List<GetAPStateCity_Result> homesList = new List<GetAPStateCity_Result>();
          //   List<GetImagesByListingID_Result> images = new List<GetImagesByListingID_Result>();
             var count = 0;
+            int homeCount = 0;
+            StringBuilder sb = new StringBuilder();
+
+            int i = 1;
             foreach (var property in properties) {
-                homesList.Add(property);
                 List<string> imageUrls = new List<string>();
                 List<string> imageThumbUrls = new List<string>();
                 
-                count += 1;
-                if (count < 5)  // Only load images for first five properties
+                if (homeCount < 50) // Only allow max 50 records
                 {
-                    ObjectResult<GetImagesByListingID_Result> images = db.GetImagesByListingID(property.ListingID);
-                    
-                    foreach (var image in images)
+                    homesList.Add(property);
+                    // Build property list for map markers
+                    sb.Append("{'acres':'" + property.LotAreaAcre + "',");
+                    sb.Append("'price':'" + property.ListPrice + "',");
+                    sb.Append("'sqFt':'" + property.NetSQFT  + "',");
+                    sb.Append("'yearBuilt':'" + property.PropertyAge + "',");
+                    sb.Append("'beds':'" + property.Beds + "',");
+                    sb.Append("'lat':'" + property.Latitude + "',");
+                    sb.Append("'lng':'" + property.Longitude + "',");
+                    sb.Append("'baths':'" + property.BathsFull + "'},");
+                 
+                    count += 1;
+                    if (count < 5)  // Only load images for first five properties
                     {
-                        
-                        imageUrls.Add(image.URLThumb);
-                        imageThumbUrls.Add(image.URL);
-                        
+                        ObjectResult<GetImagesByListingID_Result> images = db.GetImagesByListingID(property.ListingID);
+
+                        foreach (var image in images)
+                        {
+
+                            imageUrls.Add(image.URLThumb);
+                            imageThumbUrls.Add(image.URL);
+
+                        }
                     }
+                    homeCount++;  // On
                 }
                 ViewData[property.ListingID + "_thumb"] = imageUrls;
                 ViewData[property.ListingID + "_url"] = imageThumbUrls;
             }
-            
+            var propertyList = sb.ToString();
+            propertyList = propertyList.Substring(0, propertyList.Length - 1);
+            ViewData["propertyList"] = propertyList;
+         //   Response.Write(sb.ToString());
             return View(homesList);
         }
 
