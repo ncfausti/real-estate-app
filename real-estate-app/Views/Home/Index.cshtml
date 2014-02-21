@@ -133,7 +133,8 @@
      	});
             */
      	
-     	showPropertiesFromCity();
+			showPropertiesFromCity();
+			
 
 	   } // End Initialize()
 
@@ -198,42 +199,45 @@
         }
   	 	
      }; 
-     
+	    
+	    var infoWindowsContents = [];
 
 	    var showPropertiesFromCity = function () {
-	       // logLatLongs();
-	       
+	      
 	        for (var i = 0; i < propertyList.length; i++) {
-	            console.log(propertyList[i].lat);
+	          //  console.log(propertyList[i].lat);
 	            var home = propertyList[i];
+	            
 	            var myLatlng = new google.maps.LatLng(home.lat, home.lng);
 	            var marker = new google.maps.Marker({
 	                position: myLatlng,
 	                map: map,
 	                title: ''
 	            });
-                   
+            
 	            var infoWindowContent ='Price: ' + home.price + '<br>Acres: ' + home.acres + '<br>SqFt.: '+ home.sqFt + '<br>Age: '+ home.yearBuilt + '<br>Beds: ' + home.beds + '<br>Baths: '+home.baths;
-
-	            var infowindow = new google.maps.InfoWindow({
-	                content: infoWindowContent,
-	                map: map,
-	                position: myLatlng
-	            });
-
-                infowindow.close();
-
-
-	            google.maps.event.addListener(marker, 'mouseover', function () {
-	                infowindow.open(map, this);
-                    
-	            });
-	            google.maps.event.addListener(marker, 'mouseout', function () {
-	                infowindow.close();
-
-	            });
+	            infoWindowsContents.push(infoWindowContent);
+	            
+	            attachInfoWindow(marker, i);
 	        }
 	    }
+
+	    function attachInfoWindow(marker, number) {
+	        var infoWindow = new google.maps.InfoWindow({
+	            content: infoWindowsContents[number]
+	        });
+	        google.maps.event.addListener(marker, "mouseover", function () {
+	            infoWindow.open(map, marker);
+	        });
+
+	        google.maps.event.addListener(marker, "mouseout", function () {
+	            infoWindow.close();
+	        });
+
+	    }
+	   
+           
+
 
 	    
              
