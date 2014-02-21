@@ -1,4 +1,10 @@
 
+fixed map not loading on homepage without results
+
+added functionality to immediately go to results view when properties are returned
+
+1.5 hrs
+
 checked to see if advanced search was pulling cities from database or static
 .5 hours
 
