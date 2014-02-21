@@ -1,4 +1,6 @@
-
+worked on hover info windows for the map...now each map marker shows correct info for each property when hovered, and closes when mouse out
+3.5 hours
+ 
 fixed map not loading on homepage without results
 
 added functionality to immediately go to results view when properties are returned
