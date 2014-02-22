@@ -112,7 +112,12 @@
 							}
 		.results-property-info a { color:#333 !important;margin-top:12px; }
 		/* Results scroller */
-		#results-tab { max-height: 545px; overflow-y: scroll;overflow-x: hidden; }
+		#results-tab { 
+            max-height: 545px; 
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-top:29px;
+		}
 		::-webkit-scrollbar {
 		    -webkit-appearance: none;
 		    width: 12px;
@@ -239,6 +244,8 @@ body{font-family:sans-serif;margin-left: 80px;background: url( "../img/stitch_bg
 	padding-right:0px;
 	border-bottom:1px solid #eee;
 	font-weight:bold;
+    margin-top:-31px;
+
 }
 .active .primary-search-li { padding:18px 0px 18px 0px;height:78px; }
 #mls-search-icon {  }
@@ -319,6 +326,8 @@ background-repeat: repeat-x;
 	position: fixed;
 	top:67px;
 	left:197px;
+    margin-top: 3px;
+    height: 30px;
 }
 #sort-by-setting { font-weight:normal; font-size:9px; }
 input[type="checkbox"].ace + .lbl, input[type="radio"].ace + .lbl { }
@@ -398,8 +407,11 @@ input[type="text"]:disabled { background: #feb;color:#333; }
 	margin-bottom: -35px;
 }
 
-#search-tab-content {border-bottom: 2px solid #9ACAFF;
-border-right: 2px solid #9ACAFF;}
+#search-tab-content {
+    border-bottom: 2px solid #9ACAFF;
+border-right: 2px solid #9ACAFF;
+
+}
 
 .multi-select-cities .btn {
 	width: 94px;
@@ -498,13 +510,15 @@ color: #333;
     margin-left:10px;
     font-size:1.4em;
 }
-#inner-results-container {
-    margin-top: 26px;
-}
+
 .img-overlay {
     z-index:10;
     position:absolute;
 }
-#results-tab::-webkit-scrollbar{
-   z-index: 15;
+
+.info-image {
+    float:left;
+}
+.info-price {
+    color: red;
 }

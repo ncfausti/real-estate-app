@@ -215,22 +215,39 @@
 	                title: ''
 	            });
             
-	            var infoWindowContent ='Price: ' + home.price + '<br>Acres: ' + home.acres + '<br>SqFt.: '+ home.sqFt + '<br>Age: '+ home.yearBuilt + '<br>Beds: ' + home.beds + '<br>Baths: '+home.baths;
+	            var infoWindowContent = '<div class="infoWindow"><span class="info-price">Price: ' +
+                    home.price + '</span><span class="info-image"><img src="' +
+                    home.image + '" height="80" width="80" /></span><span class="info-acres">Acres: ' +
+                    home.acres + '</span><span class="info-sqft">SqFt.: ' +
+                    home.sqFt + '</span><span class="info-age">Age: ' +
+                    home.yearBuilt + '</span><span class="info-beds">Beds: ' +
+                    home.beds + '</span><span class="info-baths">Baths: ' +
+                    home.baths + "</span></div>";
+
 	            infoWindowsContents.push(infoWindowContent);
 	            
-	            attachInfoWindow(marker, i);
+	            attachInfoWindow(marker,home, i);
 	        }
 	    }
 
-	    function attachInfoWindow(marker, number) {
+	    function attachInfoWindow(marker,home, number) {
 	        var infoWindow = new google.maps.InfoWindow({
-	            content: infoWindowsContents[number]
+	            content: infoWindowsContents[number],
+	            disableAutoPan: true
 	        });
 	        google.maps.event.addListener(marker, "mouseover", function () {
 	            infoWindow.open(map, marker);
 	        });
+	        
+	        $("#"+home.listingID).mouseover(function () {
+	               infoWindow.open(map, marker);
+	        });
 
 	        google.maps.event.addListener(marker, "mouseout", function () {
+	            infoWindow.close();
+	        });
+            
+	        $("#" + home.listingID).mouseout(function () {
 	            infoWindow.close();
 	        });
 
@@ -1218,7 +1235,7 @@
                     var imageUrlThumbs = (List<string>)ViewData[item.ListingID + "_thumb"];
                     count += 1;
 
-                    <div class="results-property linearbg">
+                    <div class="results-property linearbg" id="@item.ListingID">
 
                         <div>
                             <div class="results-address">@item.FullStreetAddress.ToLower()</div>
@@ -1240,7 +1257,7 @@
                                     @if (imageUrls.Count < 1)
                                     {
                                         <span style="float:left;">
-                                            <a class="fancybox" rel="gallery1" href=''><img src='http://www.trivellesinternational.com/asset/admin/images/no_image.jpg' width=120 height=120 /></a>
+                                            <a class="fancybox" rel="gallery1" href=''><img src='../../Content/themes/metro/assets/img/no_image.jpg' width=120 height=120 /></a>
                                         </span>
 
                                     }
@@ -1248,8 +1265,11 @@
                                     {
                                         <span style="float:left;">
                                             <a class="fancybox" rel="gallery1" href='@imageUrls[i]'>
-                                                @if (true)
+                                                @if (item.LocaleListingStatus == "SOLD")
                                                 { <img class="img-overlay" src='../../Content/themes/metro/assets/img/sold.png' width='120' height='120'> }
+                                                else if (item.LocaleListingStatus == "PENDING") { 
+                                                    <img class="img-overlay" src='../../Content/themes/metro/assets/img/pending.png' width='120' height='120'>  
+                                                }                                                                                                          
                                                 <img src='@imageUrlThumbs[i]' width=120 height=120 />
                                             </a>
                                         </span>

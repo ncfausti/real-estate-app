@@ -74,26 +74,37 @@ namespace real_estate_app.Controllers
                     // Build property list for map markers
                     sb.Append("{'acres':'" + property.LotAreaAcre + "',");
                     sb.Append("'price':'" + property.ListPrice + "',");
+                    sb.Append("'listingID':'" + property.ListingID + "',");
                     sb.Append("'sqFt':'" + property.NetSQFT  + "',");
                     sb.Append("'yearBuilt':'" + property.PropertyAge + "',");
                     sb.Append("'beds':'" + property.Beds + "',");
                     sb.Append("'lat':'" + property.Latitude + "',");
                     sb.Append("'lng':'" + property.Longitude + "',");
-                    sb.Append("'baths':'" + property.BathsFull + "'},");
-                 
+
+                    int imageNumber = 0;
                     count += 1;
-                    if (count < 5)  // Only load images for first five properties
+                    if (count < 10)  // Only load images for first five properties
                     {
                         ObjectResult<GetImagesByListingID_Result> images = db.GetImagesByListingID(property.ListingID);
-
+                        
                         foreach (var image in images)
                         {
-
                             imageUrls.Add(image.URLThumb);
                             imageThumbUrls.Add(image.URL);
 
+                            if (imageNumber == 0)
+                            {
+                                sb.Append("'image':'" + image.URLThumb + "',");
+                            }
+                            imageNumber++;
                         }
                     }
+                    if(imageNumber == 0)
+                        sb.Append("'image':'../../Content/themes/metro/assets/img/no_image.jpg',");
+
+                    // Close out propertList after image thumb is added or not
+                    sb.Append("'baths':'" + property.BathsFull + "'},");
+
                     homeCount++;  // On
                 }
                 ViewData[property.ListingID + "_thumb"] = imageUrls;
