@@ -520,5 +520,27 @@ color: #333;
     float:left;
 }
 .info-price {
+    font-size: 16px;
+}
+.info-acres {
     color: red;
 }
+.info-beds {
+    
+}
+.info-baths {
+    
+}
+.info-window-image {
+    float:left;
+    border: 2px solid #fff;
+    margin:6px 6px 6px 6px;
+}
+.info-window-content {
+    background-color: #9ACAFF;
+}
+    .info-window-content td {
+        text-align:center;
+        font-size: 11px;
+        font-weight: 600;
+    }
