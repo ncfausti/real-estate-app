@@ -47,11 +47,12 @@
 		<script src="../../Content/themes/metro/assets/js/respond.min.js"></script>
 		<![endif]-->
 		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing&address=philadelphia+pa&sensor=false"></script>
-	     <script type="text/javascript">
+        <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js">
+        </script><script type="text/javascript">
      	  var RealEstate = {};
      	  var map;
      	  var propertyList =[ @Html.Raw(ViewData["propertyList"]) ];
-          
+
 
 	      function initialize() {
 	          var startLat;
@@ -132,9 +133,9 @@
       		title: 'Philadelphia, PA'
      	});
             */
-     	
+
 			showPropertiesFromCity();
-			
+
 
 	   } // End Initialize()
 
@@ -197,24 +198,24 @@
             return (blue >= red);
 
         }
-  	 	
-     }; 
-	    
+
+     };
+
 	    var infoWindowsContents = [];
 
 	    var showPropertiesFromCity = function () {
-	      
+
 	        for (var i = 0; i < propertyList.length; i++) {
 	          //  console.log(propertyList[i].lat);
 	            var home = propertyList[i];
-	            
+
 	            var myLatlng = new google.maps.LatLng(home.lat, home.lng);
 	            var marker = new google.maps.Marker({
 	                position: myLatlng,
 	                map: map,
 	                title: ''
 	            });
-            
+
 	     /*       var infoWindowContent = '<div class="infoWindow"><span class="info-price">Price: ' +
                     home.price + '</span><span class="info-image"><img src="' +
                     home.image + '" height="80" width="80" /></span><span class="info-acres">Acres: ' +
@@ -225,8 +226,9 @@
                     home.baths + "</span></div>";
         */
 
-	            
-	            var infoWindowContent = '<div class="info-window-content"><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
+	            var infoWindowContent = document.createElement("div");
+	         //   infoWindowContent.style.cssText = "border: 1px solid black; margin-top: 8px; padding: 5px;";
+	            infoWindowContent.innerHTML = '<div class="info-window-content"><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
                    <table class="details-table info-window"> \
                    <tbody><tr><td class="tl"><span class="tdspanl">SQ FT.<br>\
                    '+home.sqFt+'</span></td><td class="tr"><span class="tdspanr">BEDS<br> \
@@ -235,20 +237,43 @@
                    ' + home.yearBuilt + ' <br></span></td></tr></tbody></table></div>';
 
 	            infoWindowsContents.push(infoWindowContent);
-	            
+
 	            attachInfoWindow(marker,home, i);
 	        }
 	    }
 
-	    function attachInfoWindow(marker,home, number) {
-	        var infoWindow = new google.maps.InfoWindow({
+	    function attachInfoWindow(marker, home, number) {
+
+            /*
+	        var myOptions = {
+	            content: boxText
+			, disableAutoPan: false
+			, maxWidth: 0
+			, pixelOffset: new google.maps.Size(-140, 0)
+			, zIndex: null
+			, boxStyle: {
+			    background: "url('tipbox.gif') no-repeat"
+			  , opacity: 0.75
+			  , width: "280px"
+			}
+			, closeBoxMargin: "10px 2px 2px 2px"
+			, closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+			, infoBoxClearance: new google.maps.Size(1, 1)
+			, isHidden: false
+			, pane: "floatPane"
+			, enableEventPropagation: false
+	        };
+            */
+
+	        var infoWindow = new InfoBox({
 	            content: infoWindowsContents[number],
+	            boxClass:"info-box",
 	            disableAutoPan: true
 	        });
 	        google.maps.event.addListener(marker, "mouseover", function () {
 	            infoWindow.open(map, marker);
 	        });
-	        
+
 	        $("#"+home.listingID).mouseover(function () {
 	               infoWindow.open(map, marker);
 	        });
@@ -256,18 +281,18 @@
 	        google.maps.event.addListener(marker, "mouseout", function () {
 	            infoWindow.close();
 	        });
-            
+
 	        $("#" + home.listingID).mouseout(function () {
 	            infoWindow.close();
 	        });
-	        infoWindow.open(map, marker);
+	       // infoWindow.open(map, marker);
 	    }
-	   
-           
 
 
-	    
-             
+
+
+
+
 	    </script>
 
 	</head>
@@ -358,8 +383,6 @@
                             County/Township
                         </a>
                     </li>
-
-
 
                 </ul>
 
@@ -1254,6 +1277,10 @@
                                 @if (item.ListPrice.IndexOf(".") > 0)
                                 {
                                     @String.Format("{0:C0}", int.Parse(item.ListPrice.Substring(0, item.ListPrice.IndexOf("."))));
+                                }
+                                else if (item.ClosePrice != "") {
+                                    @String.Format("{0:C0}", int.Parse(item.ClosePrice.Substring(0, item.ClosePrice.IndexOf("."))));
+                                    
                                 }
                                 else
                                 {

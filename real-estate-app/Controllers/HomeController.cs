@@ -25,9 +25,6 @@ namespace real_estate_app.Controllers
         [HttpPost]
         public ActionResult Index(string Command, FormCollection formCollection)
         {
-       //     var properties = db.Database.SqlQuery<PropertiesFromCity>("SELECT * FROM AllProperty Where CityName like 'POCONO LAKE'");
-          //  System.Globalization.TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
-
 
             var properties = db.GetAPStateCity("",
                 Request["cities-select-to"],
@@ -48,17 +45,9 @@ namespace real_estate_app.Controllers
                 "",
                 ""
                 );
-            
-          
-            /*
-            foreach (string _formData in formCollection)
-            {
-                ViewData[_formData] = formCollection[_formData];
-            }
-            */
-          
+
             List<GetAPStateCity_Result> homesList = new List<GetAPStateCity_Result>();
-         //   List<GetImagesByListingID_Result> images = new List<GetImagesByListingID_Result>();
+
             var count = 0;
             int homeCount = 0;
             StringBuilder sb = new StringBuilder();
@@ -74,6 +63,7 @@ namespace real_estate_app.Controllers
                     // Build property list for map markers
                     sb.Append("{'acres':'" + property.LotAreaAcre + "',");
                     sb.Append("'price':'" + property.ListPrice + "',");
+                    sb.Append("'address':'" + property.Address + "',");
                     sb.Append("'listingID':'" + property.ListingID + "',");
                     sb.Append("'sqFt':'" + property.NetSQFT  + "',");
                     sb.Append("'yearBuilt':'" + property.PropertyAge + "',");

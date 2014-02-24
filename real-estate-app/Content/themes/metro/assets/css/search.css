@@ -544,3 +544,12 @@ color: #333;
         font-size: 11px;
         font-weight: 600;
     }
+
+.info-box {
+    background-color: #9ACAFF;
+    font-weight:bolder;
+    padding:12px;
+}
+.info-box img {
+    margin-top:14px;    
+}
