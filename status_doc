@@ -1,4 +1,5 @@
 made the infowindows looks similar to the list view
+using close price for sold/pending properties now
 2.5hrs  
 
 finished all items from list in email except for sorting, fixing popup window orientation when near map boundary, and copying style from list view to popup window.
