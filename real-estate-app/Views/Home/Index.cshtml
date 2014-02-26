@@ -1104,18 +1104,7 @@
                                     <span class="lbl"> Only lender/bank owned (REO)</span>
                                 </label>
                             </div>
-
-
-
-
                         </div>
-
-
-
-
-
-
-
                     </li>
                 </ul>
             </li>
@@ -1201,33 +1190,12 @@
 
                 <ul class="submenu">
                     <li>
-
                         <div class="push-left">
-                            <!--
-                                <div>
-                                Start Date:<br>
-                                <input type="text" id="datepickerOH1" class="form-control sm-text-input" />
-                                <span class="input-group-addon cal-icon">
-                                    <i class="icon-calendar"></i>
-                                </span>
-                                </div>
-                                <br>
-                                <div>
-                                End Date:<br>
-                                <input type="text" id="datepickerOH2" class="form-control sm-text-input" />
-                                <span class="input-group-addon cal-icon">
-                                    <i class="icon-calendar"></i>
-                                </span>
-                                </div>
-
-                            -->
                             Has Open House: <input type="checkbox" />
                         </div>
-
                     </li>
                 </ul>
             </li>
-
             <li style="height:46px;text-align:center;" class="linearbg expose">
                 <a href="#" style="line-height:40px;min-height:44px;">
                     <span class="menu-text">
@@ -1254,7 +1222,17 @@
                 }
             </span>
             <!-- sorting controls -->
-            <span id="sorting-control-span">Sort: <span id="sort-by-setting">Highest Price <i class="icon-chevron-down"></i></span></span>
+            <span id="sorting-control-span">
+                Sort:
+                <select id="sorting-select">
+                    <option class="sort-by-setting">Highest Price</option>
+                    <option class="sort-by-setting">Lowest Price</option>
+                    <option class="sort-by-setting">Most Beds</option>
+                    <option class="sort-by-setting">Fewest beds</option>
+                </select>
+                <!--<i class="icon-chevron-down"></i>-->
+            </span>
+
         </div>
         <div id="inner-results-container">
             @try
@@ -1268,8 +1246,7 @@
                     var imageUrlThumbs = (List<string>)ViewData[item.ListingID + "_thumb"];
                     count += 1;
 
-                    <div class="results-property linearbg" id="@item.ListingID">
-
+                    <div class="results-property linearbg" id="@item.ListPrice-@item.ClosePrice-@item.Beds-@item.Bathrooms-@item.ListingID">
                         <div>
                             <div class="results-address">@item.FullStreetAddress.ToLower()</div>
                             <span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">
@@ -1311,17 +1288,6 @@
                                             </a>
                                         </span>
                                     }
-                                    <!--
-                                    <span style="float:left;">
-                                    <img src="http://images.tst.mris.com/image/V2/1/rE1ghrkjH41cCXGHZ3DwOYw5j-9FXMAnwxcx54ftCHhwrC6syfOB_1tE_wsgTIStRV3HHYA1SOCa4YsR4wfRGA.jpg" width=120 height =120 />
-                                    </span>
-                                    <span style="float:left;">
-                                    <img src="http://images.tst.mris.com/image/V2/1/1yxLgTpOSMexLDRApeKgb4yt6TviQ3LmQxt_K2JdfJOndbcBPS99WKgquvk9942B1EmNJ3-OjFJAhu9er8I8dQ.jpg" width=120 height =120 />
-                                    </span>
-                                    <span style="float:left;">
-                                    <img src="http://images.tst.mris.com/image/V2/1/S10UxVTmUBEVqTp_w5RU1w0cm6bMrYOfflOvDu6Mp6T07bI-j4gxE1OdlgjPCuAjN00VwXbwYUZLnQo_LlXOcA.jpg" width=120 height =120 />
-                                    </span>
-                                        -->
                                     <span>
                                         @for (var i = 0; i < imageUrls.Count; i++)
                                         {
@@ -1329,25 +1295,9 @@
                                                 <img src="http://images.tst.mris.com/image/V2/1/9CvJ_STSn8rxX5jlOV3TgHlXMDToZV12P6e2vIWioq-vcciQxGBY9sAFnVreU6fblVi_DB_WlPEy0vCr8OvqJg.jpg" alt="" />
                                             </a>
                                         }
-                                        <!--
-                                        <a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/rE1ghrkjH41cCXGHZ3DwOYw5j-9FXMAnwxcx54ftCHhwrC6syfOB_1tE_wsgTIStRV3HHYA1SOCa4YsR4wfRGA.jpg" title="Calm Before The Storm (One Shoe Photography Ltd.)">
-                                        <img src="http://images.tst.mris.com/image/V2/1/1yxLgTpOSMexLDRApeKgb4yt6TviQ3LmQxt_K2JdfJOndbcBPS99WKgquvk9942B1EmNJ3-OjFJAhu9er8I8dQ.jpg" alt="" />
-                                        </a>
-
-                                        <a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/kH_TYBnQ6wDZyghKkaWAZa8WW8tQ7decy3GqqP0Y8PluDFoeCpEUwRa8BLDk-cRWhxPCFKnaZ6BXfkR86E_eTg.jpg">
-                                        <img src="http://farm3.staticflickr.com/2870/8985207189_01ea27882d_m.jpg" alt="" />
-                                        </a>
-
-                                        <a class="fancybox" rel="gallery1" href="http://images.tst.mris.com/image/V2/1/gz8Ka32jI-sYhIflBcrbV_SV3U1FpRe99P4arfH44wBqfOY0MMC5s3Ks6y_1guSGMq5_OKqB3kzBT5er9SOXug.jpg" title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))">
-                                        <img src="http://images.tst.mris.com/image/V2/1/S10UxVTmUBEVqTp_w5RU1w0cm6bMrYOfflOvDu6Mp6T07bI-j4gxE1OdlgjPCuAjN00VwXbwYUZLnQo_LlXOcA.jpg" alt="" />
-                                        </a>
-                                         -->
                                     </span>
                                 </div>
                             </div>
-                            <!--
-                            <b id="images-down" class="arrow icon-angle-left cursor-icon"></b><span style="width:30px"></span> <b id="images-up"class="arrow icon-angle-right cursor-icon"></b>
-                            -->
                             <br>
                             <div class="image-scroll-bg">
                                 <img id="images-down" class="arrow" src="../../Content/themes/metro/assets/img/white-left-arrow.gif" /><span id="image-count">1 of @imageUrlThumbs.Count</span>
@@ -1359,11 +1309,8 @@
                                         <tr><td class="tl"><span class="tdspanl">SQ FT.<br />@item.NetSQFT</span></td><td class="tr"><span class="tdspanr">BEDS<br />@item.Beds</span></td></tr>
                                         <tr><td class="bl"><span class="tdspanl">BATHS<br />@item.BathsFull </span></td><td class="br"><span class="tdspanr">YEARS<br />@item.PropertyAge<br /></span></td></tr>
                                     </table>
-
                                     <a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>
-
                                 </span>
-
                             </span>
                         </div>
                     </div>
@@ -1371,40 +1318,11 @@
 
             }
             catch (NullReferenceException) { }
-            <!--
-                <div class="results-property linearbg">
-                    <div>
-                        <div class="results-address"></div>
-                        <span class="results-city"></span><span class="results-price">$</span>
-                    </div>
-                    <div>
-                        <span>
-                            <img src="../../Content/themes/metro/assets/img/View-M4-House.jpg" width=120 height =120 />
-                        </span>
-                        <span class="results-property-info">
-                            <span class="property-spans">
-                            <table class="details-table">
-                                <tr><td class="tl"><span class="tdspanl">SQ.FT<br></span></td><td class="tr"><span class="tdspanr">BEDS<br /></span></td></tr>
-                                <tr><td class="bl"><span class="tdspanl">BATH<br></span></td><td class="br"><span class="tdspanr">BUILT<br></span></td></tr>
-                            </table>
-
-                            <a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>
-
-                        </span>
-                    </div>
-                </div>
-            -->
-
-
         </div>  <!--/inner-results-container-->
     </div>
 </div>
 </div>
 
-					<!--<div class="sidebar-collapse" id="sidebar-collapse">
-						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
-					</div>
-					-->
 				</div>
 
 				<div class="main-content">

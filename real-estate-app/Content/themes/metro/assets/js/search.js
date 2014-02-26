@@ -43,7 +43,7 @@
 			// Cities Selector
 				$('#btn-add').click(function(){
 			        $('#cities-select-from option:selected').each( function() {
-			               $('#cities-select-to').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+			            $('#cities-select-to').append("<option selected='selected' value='"+$(this).val()+"'>"+$(this).text()+"</option>");
 			            $(this).remove();
 			        });
 			    });
@@ -523,20 +523,6 @@ var debugG;
 				var date1 = $('#datepickerOH1');
 				var date2 = $('#datepickerOH2');
 
-/*
-				if(date1.val() == '' ) {
-					date1 = date1.val();
-				}
-				else
-					date1 = ' '
-
-				if(date2.prop('checked')) {
-					date2 = date2.val();
-				}
-				else
-					date2 = ' '
-			*/
-
 				dates.text(date1.val() + ' to' + date2.val());
 				dates.css('display','inline');
 			}
@@ -972,6 +958,12 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		$("#images-down").click(function (e) {
 		    if (distance >= -360 && distance < 0)
 		        $("#scroller-div").css('left', parseInt(distance = distance + 144));
+		});
+
+		$("#sorting-select").change(function (e) {
+		    console.log(e);
+
+            // make ajax call to stored procedure to get results
 		});
         
 

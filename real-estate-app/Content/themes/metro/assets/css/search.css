@@ -150,7 +150,7 @@
 				  /* Opera 11.10+ */
 				  background: -o-linear-gradient(top, #fff, #9ACAFF);
 				}
-		#sorting-control-span, .linearbg-dark {
+		#sorting-control-span,#sorting-select, .linearbg-dark {
 				 /* fallback */
 				 /* background-color: #aaa;
 				  background: url(images/linear_bg_2.png);
@@ -319,17 +319,18 @@ background-repeat: repeat-x;
 #viewing-span { color:#047;font-weight:bold; }
 #sorting-control-span { 
 	font-weight:bold;
-	margin-left: 68px;top: 66px;
+	margin-left: 63px;
+    top: 66px;
 	left: 198px;
 	border-left: 1px solid #aaa;
-	padding: 8px; 
+	padding: 0px 0px 0px 6px; 
 	position: fixed;
 	top:67px;
-	left:197px;
+	left:192px;
     margin-top: 3px;
     height: 30px;
 }
-#sort-by-setting { font-weight:normal; font-size:9px; }
+.sort-by-setting { font-weight:normal; font-size:9px; }
 input[type="checkbox"].ace + .lbl, input[type="radio"].ace + .lbl { }
 .nav-list>li.open>a>.arrow,.nav-list>li>a>.arrow {font-size:.9em;}
 .nav-list>li a>.arrow { 
@@ -552,4 +553,18 @@ color: #333;
 }
 .info-box img {
     margin-top:14px;    
+}
+
+#sort-dropdown {
+    display:none;
+    position:fixed;
+
+}
+
+#sorting-control-span select {
+    font-size:11px;
+padding: 0px;
+margin: 0px;
+border:0px;
+
 }
