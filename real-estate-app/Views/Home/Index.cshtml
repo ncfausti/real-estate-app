@@ -1245,24 +1245,30 @@
                     var imageUrls = (List<string>)ViewData[item.ListingID + "_url"];
                     var imageUrlThumbs = (List<string>)ViewData[item.ListingID + "_thumb"];
                     count += 1;
-
-                    <div class="results-property linearbg" id="@item.ListPrice-@item.ClosePrice-@item.Beds-@item.Bathrooms-@item.ListingID">
-                        <div>
-                            <div class="results-address">@item.FullStreetAddress.ToLower()</div>
-                            <span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">
-
-                                @if (item.ListPrice.IndexOf(".") > 0)
+                    var displayPrice = "";
+                    var sortPrice = 0;
+                    
+                    if (item.ListPrice.IndexOf(".") > 0)
                                 {
-                                    @String.Format("{0:C0}", int.Parse(item.ListPrice.Substring(0, item.ListPrice.IndexOf("."))));
+                                    sortPrice = int.Parse(item.ListPrice.Substring(0, item.ListPrice.IndexOf(".")));
+                                    displayPrice = String.Format("{0:C0}", sortPrice);
                                 }
                                 else if (item.ClosePrice != "") {
-                                    @String.Format("{0:C0}", int.Parse(item.ClosePrice.Substring(0, item.ClosePrice.IndexOf("."))));
+                                    sortPrice = int.Parse(item.ClosePrice.Substring(0, item.ClosePrice.IndexOf(".")));
+                                    displayPrice = String.Format("{0:C0}", sortPrice );
                                     
                                 }
                                 else
                                 {
-                                    <span class="no-price">Price Unknown</span>
+                                    sortPrice = 0;
+                                    displayPrice = "<span class='no-price'>Price Unknown</span>";
                                 }
+                   
+                    <div class="results-property linearbg" title="@sortPrice"  id="@item.ListPrice-@item.ClosePrice-@item.Beds-@item.Bathrooms-@item.ListingID">
+                        <div>
+                            <div class="results-address">@item.FullStreetAddress.ToLower()</div>
+                            <span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">
+                                @displayPrice
                             </span>
                         </div>
                         <div style="display:inline-block; width:274px;">

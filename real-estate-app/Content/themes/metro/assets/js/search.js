@@ -983,12 +983,30 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
     
 		function reorderResults(orderBy) {
 		    // reorder all elements of #inner-results-container
-		    // get ids for all .results-property
-		    // split the id and get price 
-		    var propertyDivs = $(".results-property");
-		    for (var i = 0; i < 50; i++) {
-		        console.log(propertyDivs[i].id);
-		    }
+		    // get price from all titles for all .results-property
+		    // sort the jquery divs by price and set #inner-results-container 
+		    // innerHtml to the new sorted list of divs
 
+		    var propertyDivs = $(".results-property");
+		    var count = 0;
+            
+		    propertyDivs.sort(function (a, b) {
+
+		        // convert to ints from strings
+		        a = parseInt($(a).attr("title"), 10);
+		        b = parseInt($(b).attr("title"), 10);
+		        count += 2;
+
+		        // Compare
+		        if (a > b) { return 1; }
+		        else if (a < b) {
+		            return -1;
+		        }
+		        else {
+		            return 0;
+		        }
+		    });
+
+		    $("#inner-results-container").html(propertyDivs);
 		}
          

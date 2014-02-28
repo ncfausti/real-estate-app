@@ -1,3 +1,8 @@
+finished sort algorithm in search.js, can now sort by price quickly
+by calling reorderResults() from console. will implement ui and other sort methods now
+1.5 hrs
+
+
 read through jquery documentation to try to figure out how to implement sorting of html elements, started to write sorting algorithm for results list
 2hrs
 
