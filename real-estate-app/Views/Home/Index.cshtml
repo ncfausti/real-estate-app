@@ -1228,7 +1228,15 @@
                     <option class="sort-by-setting">Highest Price</option>
                     <option class="sort-by-setting">Lowest Price</option>
                     <option class="sort-by-setting">Most Beds</option>
-                    <option class="sort-by-setting">Fewest beds</option>
+                    <option class="sort-by-setting">Least Beds</option>
+                    <option class="sort-by-setting">Most Baths</option>
+                    <option class="sort-by-setting">Least Baths</option>
+                    <option class="sort-by-setting">Smallest Size</option>
+                    <option class="sort-by-setting">Largest Size</option>
+                    <option class="sort-by-setting">Smallest Lot</option>
+                    <option class="sort-by-setting">Largest Lot</option>
+                    <option class="sort-by-setting">Newest</option>
+                    <option class="sort-by-setting">Oldest</option>
                 </select>
                 <!--<i class="icon-chevron-down"></i>-->
             </span>
@@ -1264,7 +1272,7 @@
                                     displayPrice = "<span class='no-price'>Price Unknown</span>";
                                 }
                    
-                    <div class="results-property linearbg" title="@sortPrice"  id="@item.ListPrice-@item.ClosePrice-@item.Beds-@item.Bathrooms-@item.ListingID">
+                    <div class="results-property linearbg" title="@sortPrice-@item.Beds-@item.BathsFull-@item.LotAreaAcre-@item.NetSQFT-@item.PropertyAge"  id="@item.ListPrice-@item.ClosePrice-@item.Beds-@item.Bathrooms-@item.ListingID">
                         <div>
                             <div class="results-address">@item.FullStreetAddress.ToLower()</div>
                             <span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">

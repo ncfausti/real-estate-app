@@ -572,7 +572,7 @@ var debugG;
 			  item.children().first().css('height','24px');
 			  item.find('.prop-text').first().css('display','none')
 			  menuID = item.find('.prop-text')[0].id;
-			  console.log(menuID);
+			 // console.log(menuID);
 			  // Clear out form values and put back to defaults
 			  if (menuID == 'price-menu-prop'){
 			  	$('#min-price').val('-1');
@@ -960,13 +960,7 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		        $("#scroller-div").css('left', parseInt(distance = distance + 144));
 		});
 
-		$("#sorting-select").change(function (e) {
-		    console.log(e);
-
-            // make ajax call to stored procedure to get results
-		});
-        
-
+       
 //Should use .call() to be applicable to all images
 		var image_num = 1;
 		$(".arrow").click(function (e) {
@@ -980,33 +974,111 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		            $("#image-count").html(parseInt(image_num -= 1) + " of 4")
 		    }
 		});
-    
-		function reorderResults(orderBy) {
-		    // reorder all elements of #inner-results-container
-		    // get price from all titles for all .results-property
-		    // sort the jquery divs by price and set #inner-results-container 
-		    // innerHtml to the new sorted list of divs
-
+		
+		$("#sorting-select").change(function (e) {
 		    var propertyDivs = $(".results-property");
 		    var count = 0;
+
+		    // get text from selected option
+		    var sortInfo;
+		    var direction;
+		    var sortBy;
+		    var selected = e.target.value;
             
-		    propertyDivs.sort(function (a, b) {
+		    if (selected != "Newest" && selected != "Oldest") {
+		        sortInfo = e.target.value.split(" ");
+		        direction = sortInfo[0];
+		        sortBy = sortInfo[1];
 
-		        // convert to ints from strings
-		        a = parseInt($(a).attr("title"), 10);
-		        b = parseInt($(b).attr("title"), 10);
-		        count += 2;
-
-		        // Compare
-		        if (a > b) { return 1; }
-		        else if (a < b) {
-		            return -1;
+		        if (direction == "Highest" || direction == "Most" || direction == "Newest" || direction == "Largest")
+		        {
+		            direction = "desc";
 		        }
 		        else {
-		            return 0;
+		            direction = "asc";
 		        }
+
+		    }
+		    else {
+		        if (selected == "Newest") {
+		            direction = "asc";
+		            sortBy = "Age"
+		        }
+		            // oldest
+		        else {
+		            direction = "desc";
+		            sortBy = "Age";
+		        }
+		    }
+
+		    propertyDivs.sort(function (a, b) {
+		       var index;
+		       if (sortBy == "Price")
+		           index = 0;
+		       if (sortBy == "Beds")
+		           index = 1;
+		       if (sortBy == "Baths")
+		           index = 2;
+		       if (sortBy == "Lot")
+		           index = 3;
+		       if (sortBy == "Size")
+		           index = 4;
+		       if (sortBy == "Age")
+		           index = 5;
+
+                console.log(index);
+		        // convert to ints from strings
+
+		       aList = $(a).attr("title").split("-");
+		       bList = $(b).attr("title").split("-");
+		       console.log("Alist:" + aList);
+		       console.log("blist:" + aList);
+
+		       if (index == 4) {
+		           a = parseFloat(aList[index], 10);
+		           b = parseFloat(bList[index], 10);
+		       }
+		       else {
+		           a = parseInt(aList[index], 10);
+		           b = parseInt(bList[index], 10);
+		       }
+
+		        count += 2;
+		        if (a == NaN)
+		            a = 0;
+		        if (b == NaN)
+		            b = 0;
+
+
+		        // Compare
+		        //
+		        // Desc
+                if(direction == "desc"){
+		            if (a < b) {
+		                return 1;
+		            }
+		            else if (a > b) {
+		                return -1;
+		            }
+		            else {
+		                return 0;
+		            }
+                }
+                // Asc
+                else {  
+		            if (a > b) {
+		                return 1;
+		            }
+		            else if (a < b) {
+		                return -1;
+		            }
+		            else {
+		                return 0;
+		            }
+                }
+
 		    });
 
 		    $("#inner-results-container").html(propertyDivs);
-		}
+		});
          

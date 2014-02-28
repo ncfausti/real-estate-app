@@ -1,3 +1,7 @@
+added sort functionality to dropdown list and results view, some issues known
+2.5hrs
+
+
 finished sort algorithm in search.js, can now sort by price quickly
 by calling reorderResults() from console. will implement ui and other sort methods now
 1.5 hrs
