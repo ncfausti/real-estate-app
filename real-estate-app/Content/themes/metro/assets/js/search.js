@@ -980,5 +980,15 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		            $("#image-count").html(parseInt(image_num -= 1) + " of 4")
 		    }
 		});
+    
+		function reorderResults(orderBy) {
+		    // reorder all elements of #inner-results-container
+		    // get ids for all .results-property
+		    // split the id and get price 
+		    var propertyDivs = $(".results-property");
+		    for (var i = 0; i < 50; i++) {
+		        console.log(propertyDivs[i].id);
+		    }
 
+		}
          
