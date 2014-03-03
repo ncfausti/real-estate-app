@@ -425,14 +425,14 @@ border-right: 2px solid #9ACAFF;
 
 }
 #city { 
-	background-color: #C2E1FF;
+	/*background-color: #C2E1FF;*/
 	border-radius: 13px;
 	padding: 36px 0px 0px 36px;
-	margin: 18px 18px 0px 6px;
+	margin: 18px 18px 0px 0px;
 	font-weight:bold;
 	width:560px;
-	box-shadow: 3px 3px 10px #999;
-	border: 8px solid #9acaff;
+/*	box-shadow: 3px 3px 10px #999;
+	border: 8px solid #9acaff;*/
 
 }
 
@@ -460,13 +460,20 @@ select[multiple], select.form-control[multiple] { height: 144px; }
 }
 
 .inner-tab-content { 
-	background-color: #568DC4;
+/*	background-color: #568DC4;*/
 	padding-top: 30px;
 height: 284px;
 margin-top: -36px;
 padding-bottom: 50px;
 border-radius: 0px 6px 6px 0px;
-padding-left: 40px;margin-left: 70px;height:336px; }
+padding-left: 20px;
+margin-left: 0px;
+height:336px;
+border-radius:18px;
+background-color: #eee;
+border: white 2px solid;
+box-shadow: 3px 3px 12px;
+}
 
 .arrow:hover {
 cursor:pointer;
