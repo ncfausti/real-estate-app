@@ -1031,6 +1031,17 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 
 		       aList = $(a).attr("title").split("-");
 		       bList = $(b).attr("title").split("-");
+
+		        //replace all non-existant values with 0s
+		       for (var i = 0; i < aList.length; i++) {
+		           if (aList[i] == '') {
+		               aList[i] = '0';
+		           }
+		           if (bList[i] == '') {
+		               bList[i] = '0';
+		           }
+		       }
+
 		       console.log("Alist:" + aList);
 		       console.log("blist:" + aList);
 
@@ -1042,13 +1053,17 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		           a = parseInt(aList[index], 10);
 		           b = parseInt(bList[index], 10);
 		       }
-
+		     //  console.log("Logging A:" + a);
+		     //  console.log("Logging B:" + b);
 		        count += 2;
-		        if (a == NaN)
-		            a = 0;
-		        if (b == NaN)
-		            b = 0;
-
+		        if (a === NaN){
+		            a = -1;
+                    
+		        }
+		        if (b === NaN)
+		            b = -1;
+		    //    console.log("Logging A:" + a);
+		   //     console.log("Logging B:" + b);
 
 		        // Compare
 		        //
