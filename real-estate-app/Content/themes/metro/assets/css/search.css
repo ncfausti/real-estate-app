@@ -92,7 +92,10 @@
 		.results-address {font-weight:bold;font-size:1.0em; color: #333;text-transform:capitalize; }
 		.results-price { font-size:1.4em;font-weight:bold; margin:10px 12px 0px 94px;font-family:sans-serif;padding-top:3px;color:#333;}
 		.results-property { width:298px;padding:12px; background-color:#fff; }
-		
+.results-property-beds {
+    border-bottom:2px solid #FFF;
+    padding:0px 6px 0px 6px;
+}
 		.results-property-info { 
 			float:right;
 			margin-right:9px;
@@ -100,13 +103,13 @@
 			
 		}
 
-		.results-property-info span { text-align: center;display:inline-block;color:#333; }
+		.results-property-info span { text-align: center;display:inline-block;color:#333;font-weight:bold; }
 		.results-property-info hr { margin:0px;color:#ccc; }
 		.results-detail-btn {	float:right;
 								height: 36px;
 								width: 100px;
 								font-size: 12px;
-								margin:12px 12px 0px 0px;
+								margin:0px 12px 0px 0px;
 								border-radius: 12px;
 
 							}
@@ -198,7 +201,7 @@
 .results-property span img { margin:14px 0px 0px 0px;height:90px;border: 3px solid #fff;width:144px;height:106px;}
 
 
-.property-spans { margin:12px 0px 0px 7px;width:108px; }
+.property-spans { margin:0px 0px 0px 7px;width:108px; }
 /*sidebar override*/
 .sidebar { background-color:#fff;border:0px;margin-top: 5px; }
 .tab-content { border: 0px;box-shadow: 3px 3px 3px}
