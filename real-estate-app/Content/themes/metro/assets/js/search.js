@@ -1045,7 +1045,7 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		       console.log("Alist:" + aList);
 		       console.log("blist:" + aList);
 
-		       if (index == 4) {
+		       if (index == 3 || index == 4) {
 		           a = parseFloat(aList[index], 10);
 		           b = parseFloat(bList[index], 10);
 		       }

@@ -263,6 +263,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetAPCity" FunctionName="MLSModel.Store.GetAPCity" />
     <FunctionImportMapping FunctionImportName="GetAPMLS" FunctionName="MLSModel.Store.GetAPMLS">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MLSModel.GetAPMLS_Result">

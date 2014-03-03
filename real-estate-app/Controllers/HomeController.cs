@@ -25,7 +25,7 @@ namespace real_estate_app.Controllers
         [HttpPost]
         public ActionResult Index(string Command, FormCollection formCollection)
         {
-
+            // Recreate model1 from new db with new stored procedures
             var properties = db.GetAPStateCity("",
                 Request["cities-select-to"],
                 "",
@@ -44,6 +44,7 @@ namespace real_estate_app.Controllers
                 "",
                 "",
                 ""
+                
                 );
 
             List<GetAPStateCity_Result> homesList = new List<GetAPStateCity_Result>();

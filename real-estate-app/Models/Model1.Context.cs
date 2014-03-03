@@ -34,11 +34,11 @@ namespace real_estate_app.Models
         public DbSet<StateCountyTownship> StateCountyTownships { get; set; }
         public DbSet<StateSchoolDistrict> StateSchoolDistricts { get; set; }
     
-        public virtual ObjectResult<GetAPMLS_Result> GetAPMLS(string mLS, string minPrice, string maxPrice, string beds, string bathrooms, string minHomeSizeSqFt, string maxHomeSizeSqFt, string minLotSizeAcre, string maxLotSizeAcre, string daysListed, string minAge, string maxAge, string propertyTypeLandAndLot, string propertyTypeCondoTownHouse, string propertyTypeSingleFamily, string status)
+        public virtual int GetAPCity(string city, string minPrice, string maxPrice, string beds, string bathrooms, string minHomeSizeSqFt, string maxHomeSizeSqFt, string minLotSizeAcre, string maxLotSizeAcre, string daysListed, string minAge, string maxAge, string propertyTypeLandAndLot, string propertyTypeCondoTownHouse, string propertyTypeSingleFamily, string status, string orderby)
         {
-            var mLSParameter = mLS != null ?
-                new ObjectParameter("MLS", mLS) :
-                new ObjectParameter("MLS", typeof(string));
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
     
             var minPriceParameter = minPrice != null ?
                 new ObjectParameter("MinPrice", minPrice) :
@@ -100,7 +100,20 @@ namespace real_estate_app.Models
                 new ObjectParameter("Status", status) :
                 new ObjectParameter("Status", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAPMLS_Result>("GetAPMLS", mLSParameter, minPriceParameter, maxPriceParameter, bedsParameter, bathroomsParameter, minHomeSizeSqFtParameter, maxHomeSizeSqFtParameter, minLotSizeAcreParameter, maxLotSizeAcreParameter, daysListedParameter, minAgeParameter, maxAgeParameter, propertyTypeLandAndLotParameter, propertyTypeCondoTownHouseParameter, propertyTypeSingleFamilyParameter, statusParameter);
+            var orderbyParameter = orderby != null ?
+                new ObjectParameter("Orderby", orderby) :
+                new ObjectParameter("Orderby", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAPCity", cityParameter, minPriceParameter, maxPriceParameter, bedsParameter, bathroomsParameter, minHomeSizeSqFtParameter, maxHomeSizeSqFtParameter, minLotSizeAcreParameter, maxLotSizeAcreParameter, daysListedParameter, minAgeParameter, maxAgeParameter, propertyTypeLandAndLotParameter, propertyTypeCondoTownHouseParameter, propertyTypeSingleFamilyParameter, statusParameter, orderbyParameter);
+        }
+    
+        public virtual ObjectResult<GetAPMLS_Result> GetAPMLS(string mLS)
+        {
+            var mLSParameter = mLS != null ?
+                new ObjectParameter("MLS", mLS) :
+                new ObjectParameter("MLS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAPMLS_Result>("GetAPMLS", mLSParameter);
         }
     
         public virtual ObjectResult<GetAPStateCity_Result> GetAPStateCity(string state, string city, string minPrice, string maxPrice, string beds, string bathrooms, string minHomeSizeSqFt, string maxHomeSizeSqFt, string minLotSizeAcre, string maxLotSizeAcre, string daysListed, string minAge, string maxAge, string propertyTypeLandAndLot, string propertyTypeCondoTownHouse, string propertyTypeSingleFamily, string status, string orderby)
