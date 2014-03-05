@@ -26,6 +26,7 @@ namespace real_estate_app.Controllers
         public ActionResult Index(string Command, FormCollection formCollection)
         {
             // Recreate model1 from new db with new stored procedures
+            ViewBag.Sort = Request.Form["hidden-sort"];
             var properties = db.GetAPStateCity("",
                 Request["cities-select-to"],
                 "",
