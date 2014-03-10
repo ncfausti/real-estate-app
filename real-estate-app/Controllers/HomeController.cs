@@ -22,11 +22,59 @@ namespace real_estate_app.Controllers
             return View();
         }
 
+        public void log(string s)
+        {
+            System.Diagnostics.Debug.WriteLine("-!-Logging: " + s);
+        }
+
         [HttpPost]
         public ActionResult Index(string Command, FormCollection formCollection)
         {
-            // Recreate model1 from new db with new stored procedures
-            ViewBag.Sort = Request.Form["hidden-sort"];
+            //
+            //TODO: Recreate model with new stored procedures
+            //
+           
+            string[] optionList = {"","Highest Price", "Lowest Price", "Most Beds", "Least Beds", "Most Baths", "Least Baths","Smallest Size","Largest Size","Smallest Lot","Largest Lot","Newest","Oldest"};
+            string hiddenSort = Request.Form["hidden-sort"];
+
+            StringBuilder sbSortOptions = new StringBuilder();
+            for (var index = 0; index < optionList.Length; index++)
+            {
+                if (optionList[index] == hiddenSort)
+                {
+                    sbSortOptions.Append("<option class='sort-by-setting' selected='selected'>" + optionList[index] + "</option>");
+                }
+                else
+                {
+                    //if no prev value, use Highest First
+                    if(index == 1)
+                        sbSortOptions.Append("<option class='sort-by-setting' selected='selected'>Highest Price</option>");
+                    else
+                        sbSortOptions.Append("<option class='sort-by-setting'>" + optionList[index] + "</option>");
+
+                }
+            }
+
+            ViewBag.SortOptionList = sbSortOptions.ToString();
+            log(sbSortOptions.ToString());
+            /*
+             <option class="sort-by-setting"></option>
+                    <option class="sort-by-setting">Highest Price</option>
+                    <option class="sort-by-setting">Lowest Price</option>
+                    <option class="sort-by-setting">Most Beds</option>
+                    <option class="sort-by-setting">Least Beds</option>
+                    <option class="sort-by-setting">Most Baths</option>
+                    <option class="sort-by-setting">Least Baths</option>
+                    <option class="sort-by-setting">Smallest Size</option>
+                    <option class="sort-by-setting">Largest Size</option>
+                    <option class="sort-by-setting">Smallest Lot</option>
+                    <option class="sort-by-setting">Largest Lot</option>
+                    <option class="sort-by-setting">Newest</option>
+                    <option class="sort-by-setting">Oldest</option>
+
+            */
+            var selectedOptionText = Request.Form["hidden-sort"];
+
             var properties = db.GetAPStateCity("",
                 Request["cities-select-to"],
                 "",
@@ -105,7 +153,7 @@ namespace real_estate_app.Controllers
             var propertyList = sb.ToString();
             propertyList = propertyList.Substring(0, propertyList.Length - 1);
             ViewData["propertyList"] = propertyList;
-         //   Response.Write(sb.ToString());
+         
             return View(homesList);
         }
 
@@ -124,19 +172,6 @@ namespace real_estate_app.Controllers
             return View(media.ToList());
         }
 
-        [HttpPost]
-        public ActionResult IndexPost() {
-            // This handler will process all search queries from the application
-
-            Response.Redirect("http://google.com");
-            // some code to query the database and then retun home values from AllProperty
-
-            return View();
-        }
-
-        //
-        // NOT USED YET
-        //
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

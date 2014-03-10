@@ -587,7 +587,7 @@
                                     </span>
                                     <select multiple="multiple" class="w120 inl-block select-cities" name="cities-select-to" id="cities-select-to"></select>
                                 </div>
-                                <input type="hidden" id="hidden-sort" value="" />
+                                <input type="hidden" id="hidden-sort" name="hidden-sort" />
                                 <input type="submit" value="Search" id="city-search-btn" class="btn-success" />
                             </form>
                         </div>
@@ -1211,7 +1211,7 @@
 
         </ul><!-- /.nav-list -->
     </div>
-
+    
 
     <div class="tab-pane @if (Model != null) { <text>active </text> }" id="results-tab">
         <!-- all results go in here -->
@@ -1226,6 +1226,8 @@
             <span id="sorting-control-span">
                 Sort:
                 <select id="sorting-select">
+                    @Html.Raw(ViewBag.SortOptionList)
+                    <!--
                     <option class="sort-by-setting"></option>
                     <option class="sort-by-setting">Highest Price</option>
                     <option class="sort-by-setting">Lowest Price</option>
@@ -1239,6 +1241,7 @@
                     <option class="sort-by-setting">Largest Lot</option>
                     <option class="sort-by-setting">Newest</option>
                     <option class="sort-by-setting">Oldest</option>
+                    -->
                 </select>
                 <!--<i class="icon-chevron-down"></i>-->
             </span>
@@ -1425,23 +1428,11 @@
 <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-media.js?v=1.0.6"></script>
         <script>
            
-            $("#sorting-select").change(sortList(e));
-
-            function sortList (e) {
+            $("#sorting-select").change();
+/*
+            function sortList(caller) {
+                alert(this);
                 var selected;
-
-                // if page is refreshed and 
-                if ("@ViewBag.Sort" != "") {
-                    selected = "@ViewBag.Sort";
-                    var dropdown = document.getElementById("sorting-select");
-                    for (var i = 0; i < dropdown.length; i++) {
-                        alert(dropdown.options[i]);
-                    }
-                }
-                else
-                    selected = e.target.value;
-
-
                 var propertyDivs = $(".results-property");
                 var count = 0;
 
@@ -1451,6 +1442,7 @@
                 var sortBy;
                 
                 var selected = e.target.value;
+                console.log("logging selected" +this);
 
                 if (selected != "Newest" && selected != "Oldest") {
                     sortInfo = e.target.value.split(" ");
@@ -1559,10 +1551,11 @@
                     }
 
                 });
-                $("#hidden-sort").val(e.target.value);
+                
+                //$("#hidden-sort").val();
                 $("#inner-results-container").html(propertyDivs);
             }
-
+      */      
         </script>
 	</body>
 </html>

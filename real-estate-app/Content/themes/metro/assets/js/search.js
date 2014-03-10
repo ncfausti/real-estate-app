@@ -127,6 +127,8 @@
 			        }
 			    });
 
+                // Call this to resort on page load by either Highest Price (default) or whichever got passed in by #hidden-sort from previous page POST
+			    $("#sorting-select").change
 			});  // End document.ready handler
 		
 		var getPropertyListHeight = function() {
@@ -983,6 +985,9 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		    var sortInfo;
 		    var direction;
 		    var sortBy;
+
+		    $("#hidden-sort").val(this.value);
+
 		    var selected = e.target.value;
             
 		    if (selected != "Newest" && selected != "Oldest") {
@@ -1042,9 +1047,6 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		           }
 		       }
 
-		       console.log("Alist:" + aList);
-		       console.log("blist:" + aList);
-
 		       if (index == 3 || index == 4) {
 		           a = parseFloat(aList[index], 10);
 		           b = parseFloat(bList[index], 10);
@@ -1053,8 +1055,7 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		           a = parseInt(aList[index], 10);
 		           b = parseInt(bList[index], 10);
 		       }
-		     //  console.log("Logging A:" + a);
-		     //  console.log("Logging B:" + b);
+		   
 		        count += 2;
 		        if (a === NaN){
 		            a = -1;
@@ -1062,9 +1063,7 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		        }
 		        if (b === NaN)
 		            b = -1;
-		    //    console.log("Logging A:" + a);
-		   //     console.log("Logging B:" + b);
-
+		  
 		        // Compare
 		        //
 		        // Desc
@@ -1096,4 +1095,3 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 
 		    $("#inner-results-container").html(propertyDivs);
 		});
-         
