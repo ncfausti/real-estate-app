@@ -216,25 +216,17 @@
 	                title: ''
 	            });
 
-	     /*       var infoWindowContent = '<div class="infoWindow"><span class="info-price">Price: ' +
-                    home.price + '</span><span class="info-image"><img src="' +
-                    home.image + '" height="80" width="80" /></span><span class="info-acres">Acres: ' +
-                    home.acres + '</span><span class="info-sqft">SqFt.: ' +
-                    home.sqFt + '</span><span class="info-age">Age: ' +
-                    home.yearBuilt + '</span><span class="info-beds">Beds: ' +
-                    home.beds + '</span><span class="info-baths">Baths: ' +
-                    home.baths + "</span></div>";
-        */
-
 	            var infoWindowContent = document.createElement("div");
 	         //   infoWindowContent.style.cssText = "border: 1px solid black; margin-top: 8px; padding: 5px;";
 	            infoWindowContent.innerHTML = '<div class="info-window-content"><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
-                   <table class="details-table info-window"> \
+                    <span class="results-property-info"><span class="property-spans"><span class="results-property-beds" style="padding-right:8px;margin-right:8px;">'
+                   + home.beds + ' BEDS</span>\
+                    <table class="details-table info-window"> \
                    <tbody><tr><td class="tl"><span class="tdspanl">SQ FT.<br>\
-                   '+home.sqFt+'</span></td><td class="tr"><span class="tdspanr">BEDS<br> \
-                   ' + home.beds + ' </span></td></tr><tr><td class="bl"><span class="tdspanl">BATHS<br> \
+                   '+home.sqFt+'</span></td><td class="tr"><span class="tdspanr">ACRES<br> \
+                   ' + home.acres + ' </span></td></tr><tr><td class="bl"><span class="tdspanl">BATHS<br> \
                    ' + home.baths + '</span></td><td class="br"><span class="tdspanr">YEARS<br>\
-                   ' + home.yearBuilt + ' <br></span></td></tr></tbody></table></div>';
+                   ' + home.yearBuilt + ' <br></span></td></tr></tbody></table></span></span></div>';
 
 	            infoWindowsContents.push(infoWindowContent);
 
@@ -267,7 +259,8 @@
 
 	        var infoWindow = new InfoBox({
 	            content: infoWindowsContents[number],
-	            boxClass:"info-box",
+	            boxClass: "info-box",
+                closeBoxURL: "",
 	            disableAutoPan: true
 	        });
 	        google.maps.event.addListener(marker, "mouseover", function () {
@@ -1318,10 +1311,12 @@
                                 </div>
                             </div>
                             <br>
+                            @if (imageUrls.Count >= 1) { 
                             <div class="image-scroll-bg">
                                 <img id="images-down" class="arrow" src="../../Content/themes/metro/assets/img/white-left-arrow.gif" /><span id="image-count">1 of @imageUrlThumbs.Count</span>
                                 <img id="images-up" class="arrow" src="../../Content/themes/metro/assets/img/white-right-arrow.gif" />
                             </div>
+                            }
                             <span class="results-property-info" style="margin-top:-112px;">
                                 <span class="property-spans">
                                     <span class="results-property-beds">@item.Beds BEDS</span>
@@ -1429,133 +1424,7 @@
         <script>
            
             $("#sorting-select").change();
-/*
-            function sortList(caller) {
-                alert(this);
-                var selected;
-                var propertyDivs = $(".results-property");
-                var count = 0;
-
-                // get text from selected option
-                var sortInfo;
-                var direction;
-                var sortBy;
-                
-                var selected = e.target.value;
-                console.log("logging selected" +this);
-
-                if (selected != "Newest" && selected != "Oldest") {
-                    sortInfo = e.target.value.split(" ");
-                    direction = sortInfo[0];
-                    sortBy = sortInfo[1];
-
-                    if (direction == "Highest" || direction == "Most" || direction == "Newest" || direction == "Largest") {
-                        direction = "desc";
-                    }
-                    else {
-                        direction = "asc";
-                    }
-
-                }
-                else {
-                    if (selected == "Newest") {
-                        direction = "asc";
-                        sortBy = "Age"
-                    }
-                        // oldest
-                    else {
-                        direction = "desc";
-                        sortBy = "Age";
-                    }
-                }
-
-                propertyDivs.sort(function (a, b) {
-                    var index;
-                    if (sortBy == "Price")
-                        index = 0;
-                    if (sortBy == "Beds")
-                        index = 1;
-                    if (sortBy == "Baths")
-                        index = 2;
-                    if (sortBy == "Lot")
-                        index = 3;
-                    if (sortBy == "Size")
-                        index = 4;
-                    if (sortBy == "Age")
-                        index = 5;
-
-                    console.log(index);
-                    // convert to ints from strings
-
-                    aList = $(a).attr("title").split("-");
-                    bList = $(b).attr("title").split("-");
-
-                    //replace all non-existant values with 0s
-                    for (var i = 0; i < aList.length; i++) {
-                        if (aList[i] == '') {
-                            aList[i] = '0';
-                        }
-                        if (bList[i] == '') {
-                            bList[i] = '0';
-                        }
-                    }
-
-                    console.log("Alist:" + aList);
-                    console.log("blist:" + aList);
-
-                    if (index == 3 || index == 4) {
-                        a = parseFloat(aList[index], 10);
-                        b = parseFloat(bList[index], 10);
-                    }
-                    else {
-                        a = parseInt(aList[index], 10);
-                        b = parseInt(bList[index], 10);
-                    }
-                    //  console.log("Logging A:" + a);
-                    //  console.log("Logging B:" + b);
-                    count += 2;
-                    if (a === NaN) {
-                        a = -1;
-
-                    }
-                    if (b === NaN)
-                        b = -1;
-                    //    console.log("Logging A:" + a);
-                    //     console.log("Logging B:" + b);
-
-                    // Compare
-                    //
-                    // Desc
-                    if (direction == "desc") {
-                        if (a < b) {
-                            return 1;
-                        }
-                        else if (a > b) {
-                            return -1;
-                        }
-                        else {
-                            return 0;
-                        }
-                    }
-                        // Asc
-                    else {
-                        if (a > b) {
-                            return 1;
-                        }
-                        else if (a < b) {
-                            return -1;
-                        }
-                        else {
-                            return 0;
-                        }
-                    }
-
-                });
-                
-                //$("#hidden-sort").val();
-                $("#inner-results-container").html(propertyDivs);
-            }
-      */      
+                  
         </script>
 	</body>
 </html>
