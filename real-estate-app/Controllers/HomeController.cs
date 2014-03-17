@@ -110,9 +110,10 @@ namespace real_estate_app.Controllers
                 if (homeCount < 50) // Only allow max 50 records
                 {
                     homesList.Add(property);
+                    var price = Convert.ToDouble(property.ListPrice) > 0 ? property.ListPrice: property.ClosePrice;
                     // Build property list for map markers
                     sb.Append("{'acres':'" + property.LotAreaAcre + "',");
-                    sb.Append("'price':'" + property.ListPrice + "',");
+                    sb.Append("'price':'" + price + "',");
                     sb.Append("'address':'" + property.Address + "',");
                     sb.Append("'listingID':'" + property.ListingID + "',");
                     sb.Append("'sqFt':'" + property.NetSQFT  + "',");

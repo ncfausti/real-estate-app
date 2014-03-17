@@ -578,8 +578,12 @@ color: #333;
 
 #sorting-control-span select {
     font-size:11px;
-padding: 0px;
-margin: 0px;
-border:0px;
-cursor:pointer;
+    padding: 0px;
+    margin: 0px;
+    border:0px;
+    cursor:pointer;
+}
+.hover-price {
+    display:block;
+    width: 120px;
 }

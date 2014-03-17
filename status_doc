@@ -1,3 +1,12 @@
+changed listprice vs soldprice logic from client-side to server-side to speed up results loading
+1hr
+added list/close price to hover
+1hr
+
+looked over code for image scrolling in list view bugs but still can not figure out the reason for this
+3hrs
+
+
 added shadow to hover box on map
 added rounded edges on hover box
 added acres to hover box
