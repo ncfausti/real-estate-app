@@ -586,4 +586,10 @@ color: #333;
 .hover-price {
     display:block;
     width: 120px;
+    margin-left: 6px;
+}
+
+.hover-address {
+    margin-left: 6px;
+    text-transform: capitalize;
 }

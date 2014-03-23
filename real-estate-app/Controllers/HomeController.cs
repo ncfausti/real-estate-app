@@ -57,22 +57,7 @@ namespace real_estate_app.Controllers
 
             ViewBag.SortOptionList = sbSortOptions.ToString();
             log(sbSortOptions.ToString());
-            /*
-             <option class="sort-by-setting"></option>
-                    <option class="sort-by-setting">Highest Price</option>
-                    <option class="sort-by-setting">Lowest Price</option>
-                    <option class="sort-by-setting">Most Beds</option>
-                    <option class="sort-by-setting">Least Beds</option>
-                    <option class="sort-by-setting">Most Baths</option>
-                    <option class="sort-by-setting">Least Baths</option>
-                    <option class="sort-by-setting">Smallest Size</option>
-                    <option class="sort-by-setting">Largest Size</option>
-                    <option class="sort-by-setting">Smallest Lot</option>
-                    <option class="sort-by-setting">Largest Lot</option>
-                    <option class="sort-by-setting">Newest</option>
-                    <option class="sort-by-setting">Oldest</option>
 
-            */
             var selectedOptionText = Request.Form["hidden-sort"];
 
             var properties = db.GetAPStateCity("",
@@ -106,7 +91,10 @@ namespace real_estate_app.Controllers
             foreach (var property in properties) {
                 List<string> imageUrls = new List<string>();
                 List<string> imageThumbUrls = new List<string>();
-                
+                var address = property.FullStreetAddress.Replace("\n", "");
+                address = address.Replace("'", "");
+                address = address.Replace("\"", "");
+
                 if (homeCount < 50) // Only allow max 50 records
                 {
                     homesList.Add(property);
@@ -114,7 +102,7 @@ namespace real_estate_app.Controllers
                     // Build property list for map markers
                     sb.Append("{'acres':'" + property.LotAreaAcre + "',");
                     sb.Append("'price':'" + price + "',");
-                    sb.Append("'address':'" + property.Address + "',");
+                    sb.Append("'address':'" + address.ToLower() + "',");
                     sb.Append("'listingID':'" + property.ListingID + "',");
                     sb.Append("'sqFt':'" + property.NetSQFT  + "',");
                     sb.Append("'yearBuilt':'" + property.PropertyAge + "',");

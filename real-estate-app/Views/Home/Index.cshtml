@@ -37,6 +37,9 @@
 		<!-- ace settings handler -->
 		<script src="../../Content/themes/metro/assets/js/ace-extra.min.js"></script>
 
+        <!--money formatting-->
+        <script src="../../Content/themes/metro/assets/js/accounting.min.js"></script>
+
 		<!-- custom css to override theme for this page -->
 		<link rel="stylesheet" href="../../Content/themes/metro/assets/css/search.css" />
 		
@@ -218,7 +221,7 @@
 
 	            var infoWindowContent = document.createElement("div");
 	         //   infoWindowContent.style.cssText = "border: 1px solid black; margin-top: 8px; padding: 5px;";
-	            infoWindowContent.innerHTML = '<div class="info-window-content"><span class="hover-price">$'+home.price+'</span><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
+	            infoWindowContent.innerHTML = '<div class="info-window-content"><div class="hover-address">'+ home.address +'</div><span class="hover-price">'+accounting.formatMoney(home.price, "$" , "0")+'</span><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
                     <span class="results-property-info"><span class="property-spans"><span class="results-property-beds" style="padding-right:8px;margin-right:8px;">'
                    + home.beds + ' BEDS</span>\
                     <table class="details-table info-window"> \
@@ -261,12 +264,20 @@
 	            content: infoWindowsContents[number],
 	            boxClass: "info-box",
                 closeBoxURL: "",
-	            disableAutoPan: true
+                disableAutoPan: true,
+                alignBottom: true,
+                pixelOffset: new google.maps.Size(20, -40)
+
 	        });
+
+            //var 
 	        google.maps.event.addListener(marker, "mouseover", function () {
 	            infoWindow.open(map, marker);
 	        });
 
+	        //set hover listener for each .results-property
+	        $('.results-property').hover();
+                
 	        $("#"+home.listingID).mouseover(function () {
 	               infoWindow.open(map, marker);
 	        });
@@ -278,7 +289,9 @@
 	        $("#" + home.listingID).mouseout(function () {
 	            infoWindow.close();
 	        });
-	       // infoWindow.open(map, marker);
+	        // infoWindow.open(map, marker);
+
+
 	    }
 
 
@@ -1220,23 +1233,7 @@
                 Sort:
                 <select id="sorting-select">
                     @Html.Raw(ViewBag.SortOptionList)
-                    <!--
-                    <option class="sort-by-setting"></option>
-                    <option class="sort-by-setting">Highest Price</option>
-                    <option class="sort-by-setting">Lowest Price</option>
-                    <option class="sort-by-setting">Most Beds</option>
-                    <option class="sort-by-setting">Least Beds</option>
-                    <option class="sort-by-setting">Most Baths</option>
-                    <option class="sort-by-setting">Least Baths</option>
-                    <option class="sort-by-setting">Smallest Size</option>
-                    <option class="sort-by-setting">Largest Size</option>
-                    <option class="sort-by-setting">Smallest Lot</option>
-                    <option class="sort-by-setting">Largest Lot</option>
-                    <option class="sort-by-setting">Newest</option>
-                    <option class="sort-by-setting">Oldest</option>
-                    -->
                 </select>
-                <!--<i class="icon-chevron-down"></i>-->
             </span>
 
         </div>
@@ -1270,7 +1267,7 @@
                                     displayPrice = "<span class='no-price'>Price Unknown</span>";
                                 }
                    
-                    <div class="results-property linearbg" title="@sortPrice-@item.Beds-@item.BathsFull-@item.LotAreaAcre-@item.NetSQFT-@item.PropertyAge"  id="@item.ListPrice-@item.ClosePrice-@item.Beds-@item.Bathrooms-@item.ListingID">
+                    <div class="results-property linearbg" title="@sortPrice-@item.Beds-@item.BathsFull-@item.LotAreaAcre-@item.NetSQFT-@item.PropertyAge"  id="@item.ListingID">
                         <div>
                             <div class="results-address">@item.FullStreetAddress.ToLower()</div>
                             <span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">
@@ -1422,9 +1419,20 @@
         <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-buttons.js?v=1.0.5"></script>
 <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-media.js?v=1.0.6"></script>
         <script>
-           
+            function addSelectedMarker(lat, lng) {
+                var myLatLng = new google.maps.LatLng(lat, lng);
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    optimized: false,
+                    icon: "/Content/themes/metro/assets/img/map-circle.gif",
+                    map: map
+                });
+            }
+
+            addSelectedMarker(propertyList[10].lat, propertyList[10].lng)
             $("#sorting-select").change();
-                  
+            
+            
         </script>
 	</body>
 </html>

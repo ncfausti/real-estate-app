@@ -1,3 +1,8 @@
+finished lines 9,12,17 of issue log
+5hrs
+
+
+
 changed listprice vs soldprice logic from client-side to server-side to speed up results loading
 1hr
 added list/close price to hover
