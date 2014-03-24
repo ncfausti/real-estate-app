@@ -81,7 +81,7 @@
 
 	        map = new google.maps.Map(document.getElementById("map-canvas"),
 	            mapOptions);
-
+	        
 	        var deleteShapeDiv = document.createElement('div');
 	        deleteShapeDiv.className = 'delete-shape-div';
 	        $(deleteShapeDiv).click(function() { RealEstate.deleteShape(); })
@@ -137,7 +137,10 @@
      	});
             */
 
-			showPropertiesFromCity();
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+			    // do something only the first time the map is loaded
+			    showPropertiesFromCity();
+			}); 
 
 
 	   } // End Initialize()
@@ -216,6 +219,7 @@
 	            var marker = new google.maps.Marker({
 	                position: myLatlng,
 	                map: map,
+                   
 	                title: ''
 	            });
 
@@ -260,19 +264,37 @@
 	        };
             */
 
+	        // detect where the marker is on the map
+	        // if closer than some number of pixels to each edge of map canvas, set 
+	        // pixeloffset: 
+	        // midpoints: height: 256 px
+            //            width: 332 px
+            // 
+
+	        var pos = getPixelPosition(marker, map);
+	        var offsetX = pos.x < 332 ? 30 : -294;
+	        var offsetY = pos.y < 256 ? 130 : -20;
+
+	        var offsetq1 = 0
+	        var offsetq2 = 0
+	        var offsetq3 = 0
+	        var offsetq4 = 0
+
+
 	        var infoWindow = new InfoBox({
 	            content: infoWindowsContents[number],
 	            boxClass: "info-box",
                 closeBoxURL: "",
                 disableAutoPan: true,
                 alignBottom: true,
-                pixelOffset: new google.maps.Size(20, -40)
+                pixelOffset: new google.maps.Size(offsetX, offsetY)
 
 	        });
 
-            //var 
+            
 	        google.maps.event.addListener(marker, "mouseover", function () {
 	            infoWindow.open(map, marker);
+	            debugMarker = marker;
 	        });
 
 	        //set hover listener for each .results-property
@@ -297,6 +319,7 @@
 
 
 
+	    var debugMarker;
 
 
 	    </script>
@@ -1267,7 +1290,7 @@
                                     displayPrice = "<span class='no-price'>Price Unknown</span>";
                                 }
                    
-                    <div class="results-property linearbg" title="@sortPrice-@item.Beds-@item.BathsFull-@item.LotAreaAcre-@item.NetSQFT-@item.PropertyAge"  id="@item.ListingID">
+                    <div class="results-property linearbg" title="@sortPrice-@item.Beds-@item.BathsFull-@item.LotAreaAcre-@item.NetSQFT-@item.PropertyAge"  id="@item.ListingID" data-lat="@item.Latitude" data-lng="@item.Longitude">
                         <div>
                             <div class="results-address">@item.FullStreetAddress.ToLower()</div>
                             <span class="results-city">@item.CityName.ToLower()</span><span class="results-price badge badge-primary">
@@ -1417,21 +1440,23 @@
         <!--fancybox -->
         <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox.pack.js?v=2.1.5"></script>
         <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-buttons.js?v=1.0.5"></script>
-<script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-media.js?v=1.0.6"></script>
+        <script type="text/javascript" src="../../Content/themes/metro/assets/js/jquery.fancybox-media.js?v=1.0.6"></script>
         <script>
+
+            RealEstate.selectedMarker;
+
             function addSelectedMarker(lat, lng) {
                 var myLatLng = new google.maps.LatLng(lat, lng);
-                var marker = new google.maps.Marker({
+                RealEstate.selectedMarker = new google.maps.Marker({
                     position: myLatLng,
                     optimized: false,
                     icon: "/Content/themes/metro/assets/img/map-circle.gif",
+                    
                     map: map
                 });
             }
 
-            addSelectedMarker(propertyList[10].lat, propertyList[10].lng)
             $("#sorting-select").change();
-            
             
         </script>
 	</body>

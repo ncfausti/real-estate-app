@@ -1094,14 +1094,30 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		    });
 		    
 		    $("#inner-results-container").html(propertyDivs);
+            propertyDivs
+            setTimeout(function () {
+                if (RealEstate.selectedMarker)
+                    RealEstate.selectedMarker.setMap(null);
+
+                var firstElement = $("#inner-results-container").children().first();
+                addSelectedMarker(firstElement.data("lat"), firstElement.data("lng"));
+            }, 3000);
+
 		});
 
+		function getPixelPosition(marker, map) {
+		    var scale = Math.pow(2, map.getZoom());
+		    var nw = new google.maps.LatLng(
+                map.getBounds().getNorthEast().lat(),
+                map.getBounds().getSouthWest().lng()
+            );
+		    var worldCoordinateNW = map.getProjection().fromLatLngToPoint(nw);
+		    var worldCoordinate = map.getProjection().fromLatLngToPoint(marker.getPosition());
+		    var pixelOffset = new google.maps.Point(
+                Math.floor((worldCoordinate.x - worldCoordinateNW.x) * scale),
+                Math.floor((worldCoordinate.y - worldCoordinateNW.y) * scale)
+            );
 
-		function addSelectedMarker(lat, lng) {
-		    var myLatlng = new google.maps.LatLng(lat, lng);
-		    var marker = new google.maps.Marker({
-		        position: myLatLng,
-		        icon: "/Content/themes/metro/assets/img/map-circle.gif",
-		        map: map
-		    });
+		    return pixelOffset;
 		}
+
