@@ -1446,12 +1446,13 @@
             RealEstate.selectedMarker;
 
             function addSelectedMarker(lat, lng) {
-                var myLatLng = new google.maps.LatLng(lat, lng);
+                var myLatLng = new google.maps.LatLng(lat - .003, lng);
                 RealEstate.selectedMarker = new google.maps.Marker({
                     position: myLatLng,
                     optimized: false,
                     icon: "/Content/themes/metro/assets/img/map-circle.gif",
-                    
+                    zIndex: -2,
+                   // pixelOffset: new google.maps.Size(0, 100),
                     map: map
                 });
             }
