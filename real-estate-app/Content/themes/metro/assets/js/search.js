@@ -120,6 +120,10 @@
 			    $(".fancybox").fancybox({
 			        openEffect: 'none',
 			        closeEffect: 'none',
+			        loop: false,
+			        afterLoad: function () {
+			            this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+			        },
 			        closeBtn: false,
 			        helpers: {
 			            title: { type: 'inside' },
@@ -127,8 +131,58 @@
 			        }
 			    });
 
+			    /*
+                *   Image Scrollers
+                */
+
+			    
+			    $(".arrow").click(function (e) {
+
+			        if (e.target.id == "images-up") {
+                        // Going up
+			            var prevEl = $(this).prev();
+			            var currentImage = prevEl.data("currentimg");
+			            var imageCount = prevEl.data("imgcount");
+			            var distance = prevEl.data("distance");
+			            
+			            if (currentImage < imageCount) {
+			                prevEl.html(parseInt(currentImage + 1) + " of " + imageCount)
+
+                            // Add 144px to right offset
+			                $(this).parent().parent().children().first().children().first().css('right', parseInt(distance));
+
+                            // Set the data attributes
+			                prevEl.data("distance", distance + 144);
+			                prevEl.data("currentimg", currentImage += 1);
+			                console.log(prevEl.data("distance"));
+			            }
+			        }
+			        else {
+                        // Going down
+			            var nextEl = $(this).next();
+			            var currentImage = nextEl.data("currentimg");
+			            var imageCount = nextEl.data("imgcount");
+			            var distance = nextEl.data("distance") - 144;
+
+			            if (currentImage > 1) {
+			                nextEl.html(parseInt(currentImage - 1) + " of " + imageCount);
+			                // Subtract 144px from right offset
+			                console.log(nextEl.data("distance"));
+
+			                $(this).parent().parent().children().first().children().first().css('right', parseInt(distance) - 144);
+
+			                // Set the data attributes
+			                nextEl.data("distance", distance);
+			                nextEl.data("currentimg", currentImage -= 1);
+			            }
+			        }
+			    });
+
                 // Call this to resort on page load by either Highest Price (default) or whichever got passed in by #hidden-sort from previous page POST
 			    $("#sorting-select").change
+
+
+
 			});  // End document.ready handler
 		
 		var getPropertyListHeight = function() {
@@ -949,33 +1003,7 @@ $( "#slider-range-lot-size-acres" ).css('width','200px').css('height','10px').sl
 		        }
 		    });
 		});
-		var distance = 0;
-		$("#images-up").click(function (e) {
-	        if(distance <= 0 && distance > -360)
-		        $("#scroller-div").css('left', parseInt(distance = distance - 144));
-		    
 
-		});
-
-		$("#images-down").click(function (e) {
-		    if (distance >= -360 && distance < 0)
-		        $("#scroller-div").css('left', parseInt(distance = distance + 144));
-		});
-
-       
-//Should use .call() to be applicable to all images
-		var image_num = 1;
-		$(".arrow").click(function (e) {
-		    if (e.target.id == "images-up") {
-		        if(image_num<4)
-                    $("#image-count").html(parseInt(image_num +=1) + " of 4")
-
-		    }
-		    else {
-		        if(image_num > 1)
-		            $("#image-count").html(parseInt(image_num -= 1) + " of 4")
-		    }
-		});
 		
 		$("#sorting-select").change(function (e) {
 		    var propertyDivs = $(".results-property");

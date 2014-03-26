@@ -1303,14 +1303,14 @@
                                     @if (imageUrls.Count < 1)
                                     {
                                         <span style="float:left;">
-                                            <a class="fancybox" rel="gallery1" href=''><img src='../../Content/themes/metro/assets/img/no_image.jpg' width=120 height=120 /></a>
+                                            <img src='../../Content/themes/metro/assets/img/no_image.jpg' width=120 height=120 />
                                         </span>
 
                                     }
-                                    @for (var i = 0; i < imageUrls.Count; i++)
+                                    @for (var i = 0; i < imageUrlThumbs.Count; i++)
                                     {
                                         <span style="float:left;">
-                                            <a class="fancybox" rel="gallery1" href='@imageUrls[i]'>
+                                            <a class="fancybox" rel="@item.ListingID" href='@imageUrls[i]'>
                                                 @if (item.LocaleListingStatus == "SOLD")
                                                 { <img class="img-overlay" src='../../Content/themes/metro/assets/img/sold.png' width='120' height='120'> }
                                                 else if (item.LocaleListingStatus == "PENDING") { 
@@ -1320,20 +1320,14 @@
                                             </a>
                                         </span>
                                     }
-                                    <span>
-                                        @for (var i = 0; i < imageUrls.Count; i++)
-                                        {
-                                            <a class="fancybox" rel="gallery1" href="">
-                                                <img src="http://images.tst.mris.com/image/V2/1/9CvJ_STSn8rxX5jlOV3TgHlXMDToZV12P6e2vIWioq-vcciQxGBY9sAFnVreU6fblVi_DB_WlPEy0vCr8OvqJg.jpg" alt="" />
-                                            </a>
-                                        }
-                                    </span>
+                                    
+
                                 </div>
                             </div>
                             <br>
-                            @if (imageUrls.Count >= 1) { 
+                            @if (imageUrlThumbs.Count >= 1) { 
                             <div class="image-scroll-bg">
-                                <img id="images-down" class="arrow" src="../../Content/themes/metro/assets/img/white-left-arrow.gif" /><span id="image-count">1 of @imageUrlThumbs.Count</span>
+                                <img id="images-down" class="arrow" src="../../Content/themes/metro/assets/img/white-left-arrow.gif" /><span id="image-count" data-imgcount="@imageUrlThumbs.Count" data-distance="144" data-currentimg="1">1 of @imageUrlThumbs.Count</span>
                                 <img id="images-up" class="arrow" src="../../Content/themes/metro/assets/img/white-right-arrow.gif" />
                             </div>
                             }
@@ -1452,7 +1446,7 @@
                     optimized: false,
                     icon: "/Content/themes/metro/assets/img/map-circle.gif",
                     zIndex: -2,
-                   // pixelOffset: new google.maps.Size(0, 100),
+                //    pixelOffset: new google.maps.Size(100, 100),
                     map: map
                 });
             }

@@ -118,8 +118,8 @@ namespace real_estate_app.Controllers
                         
                         foreach (var image in images)
                         {
-                            imageUrls.Add(image.URLThumb);
-                            imageThumbUrls.Add(image.URL);
+                            imageUrls.Add(image.URL);
+                            imageThumbUrls.Add(image.URLThumb);
 
                             if (imageNumber == 0)
                             {
@@ -136,8 +136,8 @@ namespace real_estate_app.Controllers
 
                     homeCount++;  // On
                 }
-                ViewData[property.ListingID + "_thumb"] = imageUrls;
-                ViewData[property.ListingID + "_url"] = imageThumbUrls;
+                ViewData[property.ListingID + "_url"] = imageUrls;
+                ViewData[property.ListingID + "_thumb"] = imageThumbUrls;
             }
             var propertyList = sb.ToString();
             propertyList = propertyList.Substring(0, propertyList.Length - 1);

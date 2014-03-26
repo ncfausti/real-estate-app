@@ -504,7 +504,7 @@ color: #333;
 .has-more-pics {
     width: 144px;
     overflow: hidden;
-    max-height: 136px;
+    max-height: 130px;
     display: inline-block;
 }
 
