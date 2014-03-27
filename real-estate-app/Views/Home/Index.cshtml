@@ -224,16 +224,16 @@
 	            });
 
 	            var infoWindowContent = document.createElement("div");
-	         //   infoWindowContent.style.cssText = "border: 1px solid black; margin-top: 8px; padding: 5px;";
-	            infoWindowContent.innerHTML = '<div class="info-window-content"><div class="hover-address">'+ home.address +'</div><span class="hover-price">'+accounting.formatMoney(home.price, "$" , "0")+'</span><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
-                    <span class="results-property-info"><span class="property-spans"><span class="results-property-beds" style="padding-right:8px;margin-right:8px;">'
+	            infoWindowContent.className = "bubble";
+	            infoWindowContent.innerHTML = '<div class="hover-address">'+ home.address +'</div><span class="hover-price">'+accounting.formatMoney(home.price, "$" , "0")+'</span><img src="' + home.image + '" height="80" width="80" class="info-window-image" />\
+                    <span class="results-property-info hover-window-info"><span class="property-spans"><span class="results-property-beds" style="padding-right:8px;margin-right:8px;">'
                    + home.beds + ' BEDS</span>\
                     <table class="details-table info-window"> \
                    <tbody><tr><td class="tl"><span class="tdspanl">SQ FT.<br>\
                    '+home.sqFt+'</span></td><td class="tr"><span class="tdspanr">ACRES<br> \
                    ' + home.acres + ' </span></td></tr><tr><td class="bl"><span class="tdspanl">BATHS<br> \
                    ' + home.baths + '</span></td><td class="br"><span class="tdspanr">YEARS<br>\
-                   ' + home.yearBuilt + ' <br></span></td></tr></tbody></table></span></span></div>';
+                   ' + home.yearBuilt + ' <br></span></td></tr></tbody></table></span></span>';
 
 	            infoWindowsContents.push(infoWindowContent);
 
@@ -273,17 +273,23 @@
 
 	        var pos = getPixelPosition(marker, map);
 	        var offsetX = pos.x < 332 ? 30 : -294;
-	        var offsetY = pos.y < 256 ? 130 : -20;
+	        var offsetY = pos.y < 256 ? 100 : 20;
 
-	        var offsetq1 = 0
-	        var offsetq2 = 0
-	        var offsetq3 = 0
-	        var offsetq4 = 0
+	        var bubbleClass;
+
+	        if (offsetX == 30 && offsetY == 100)
+	            bubbleClass = "bubbleq1";
+	        else if (offsetX == 30 && offsetY == 20)
+	            bubbleClass = "bubbleq3";
+	        else if (offsetX == -294 && offsetY == 20)
+	            bubbleClass = "bubbleq4";
+	        else 
+	            bubbleClass = "bubbleq2";
 
 
 	        var infoWindow = new InfoBox({
 	            content: infoWindowsContents[number],
-	            boxClass: "info-box",
+	            boxClass: bubbleClass,
                 closeBoxURL: "",
                 disableAutoPan: true,
                 alignBottom: true,
@@ -792,21 +798,6 @@
                                 <div id="slider-range-rooms" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
                             </div>
                         </div>
-
-                        <!--
-
-                                                        <label for="bedroom-number">Number of Rooms:</label>
-
-                                                        <select class="form-control price-ddl-sm" id="bedroom-number">
-                                                            <option value="-1">Any</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                        </select>-->
                     </li>
                 </ul>
             </li>
@@ -832,20 +823,6 @@
                                 <div id="slider-range-baths" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all slider-margin" aria-disabled="false" style="height: 200px;"><div class="ui-slider-range ui-widget-header ui-corner-all" style="bottom: 17%; height: 65%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 17%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 82%;"><div class="tooltip right in" style="left: 16px; top: -6px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner">82</div></div></a></div>
                             </div>
                         </div>
-                        <!--
-                            <label for="bath-number">Number of Bathrooms:</label><select class="form-control price-ddl" id="bath-number">
-                                <option value="-1">Any</option>
-                                <option value="1">1 or more</option>
-                                <option value="1.5">1.5 or more</option>
-                                <option value="2">2 or more</option>
-                                <option value="2.5">2.5 or more</option>
-                                <option value="3">3 or more</option>
-                                <option value="3.5">3.5 or more</option>
-                                <option value="4">4 or more</option>
-                                <option value="4.5">4.5 or more</option>
-                                <option value="5">5 or more</option>
-                            </select>
-                        -->
                     </li>
                 </ul>
             </li>
