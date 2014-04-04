@@ -27,7 +27,7 @@
 		<link rel="stylesheet" href="../../Content/themes/metro/assets/css/ace-skins.min.css" />
         <link rel="stylesheet" href="../../Content/themes/metro/assets/css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
         <link rel="stylesheet" href="../../Content/themes/metro/assets/css/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-		
+        <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 		<!--[if lte IE 8]>
 
 		  <link rel="stylesheet" href="../../Content/themes/metro/assets/css/ace-ie.min.css" />
@@ -113,11 +113,37 @@
 					    editable: false
 				  	}
 			});
-
+	      	RealEstate.debugPolygon;
+	      	RealEstate.debugRes;
 			google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
 				//clear current shape if one is present
 				RealEstate.deleteShape();
 				RealEstate.polygon1 = polygon;
+				for (var i = 0; i < 20; i++) {
+                    propertyList.pop()
+				}
+			    // make an ajax call to get all properties
+			    // pass it the lat/lngs of all points in polygon
+
+				$.ajax({
+				    url: "/Home/AllProperties",
+				    context: document.body
+				}).done(function (result) {
+				    
+				    RealEstate.debugRes = result;
+				    
+				   
+				});
+			    // loop through each latLng and call contains()
+			    //      if true: add it to propertyList
+			    //      call initialize()
+			    //      update listview
+
+			//	initialize();
+			    // updateListView()
+                
+
+				RealEstate.debugPolygon = polygon;
 				console.log(polygon);
 			});
 
@@ -125,6 +151,7 @@
 				RealEstate.deleteShape();
 				RealEstate.circle1 = circle;
 				console.log(circle.getRadius());
+				initialize();
 			});
 
 			     // Add map markers
@@ -142,6 +169,15 @@
 			    showPropertiesFromCity();
 			}); 
 
+	        // Drag event handler
+			google.maps.event.addListener(map, 'dragend', function () {
+			    
+			    // update listview with only those properties that are shown on the map now
+			        // update propertyList
+			        // make call to /home/index?async=1
+                    // get property
+
+			});
 
 	   } // End Initialize()
 

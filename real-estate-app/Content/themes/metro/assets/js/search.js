@@ -182,15 +182,20 @@
 			    $("#sorting-select").change
 
 
+			});
 
-			});  // End document.ready handler
+            //
+            //          End document.ready handler
+            //
+
+
 		
-		var getPropertyListHeight = function() {
-		/*	for(var i = 0;i<1000;i++) {
-				;
-			}
-		*/
-		 return $('#properties-ul').height() }
+var getPropertyListHeight = function() {
+/*	for(var i = 0;i<1000;i++) {
+		;
+	}
+*/
+	return $('#properties-ul').height() }
 
 // Add property values to title bar 
 // for each property in "Selected Properties area", i.e. 
