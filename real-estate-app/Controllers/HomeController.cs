@@ -19,8 +19,7 @@ namespace real_estate_app.Controllers
         public ActionResult Index(string Command)
         {   
             var homeList = new List<string>();
-         //   var properties = db.AllProperties;
-
+          
             return View();
         }
 
@@ -160,11 +159,10 @@ namespace real_estate_app.Controllers
             return View(media.ToList());
         }
 
+        [HttpPost]
         public ActionResult AllProperties() {
             JsonResult results = new JsonResult();
-            DbGeography geo = DbGeography.PolygonFromText("POINT(-72.388916015625 18.547324589827422)", DbGeography.DefaultCoordinateSystemId);
             
-
             results.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             results.MaxJsonLength = 10000000;
             var properties = db.AllProperties;
@@ -174,67 +172,105 @@ namespace real_estate_app.Controllers
             int homeCount = 0;
             StringBuilder sb = new StringBuilder();
 
-            
-            
             // need to create a polygon based off of lat/lngs and call .contains() on the 
             // server side so we don't pass 4+ MB of data to client each time a shape is drawn or 
             // map is moved/resized
-      //      results.Data = "{'something': 123, 'somethingElse':321}";
-            
 
-            
+
+      //      results.Data = "{'something': 123, 'somethingElse':321}";
+            StringBuilder polyText = new StringBuilder("POLYGON((");
+            string firstCoordinates = "";
+
+            for (int argIndex = 0; argIndex < Request.Form.Count; argIndex++) {
+                if (argIndex == 0)
+                {
+                    firstCoordinates = Request.Form[argIndex];
+                    polyText.Append(firstCoordinates + ",");
+                }
+                else {
+                    polyText.Append(Request.Form[argIndex] + ",");
+                }
+            }
+
+            // Append the original coordinate to close the polygon
+            polyText.Append(firstCoordinates + "))");
+
+            DbGeography geo = DbGeography.PolygonFromText(polyText.ToString(), DbGeography.DefaultCoordinateSystemId);
+           // DbGeography geo = DbGeography.PolygonFromText("POLYGON((-75.498 40.216 ,-75.767 39.487,-74.047 39.918 ,-75.498 40.216))", DbGeography.DefaultCoordinateSystemId);
+
+
             foreach (var property in properties)
             {
-                List<string> imageUrls = new List<string>();
-                List<string> imageThumbUrls = new List<string>();
-                var address = property.FullStreetAddress.Replace("\n", "");
-                address = address.Replace("'", "");
-                address = address.Replace("\"", "");
 
-            //    if (homeCount < 50) // Only allow max 50 records
-                
-            //        homesList.Add(property);
-                    var price = Convert.ToDouble(property.ListPrice) > 0 ? property.ListPrice : property.ClosePrice;
-                    // Build property list for map markers
-                    sb.Append("{'acres':'" + property.LotAreaAcre + "',");
-                    sb.Append("'price':'" + price + "',");
-                    sb.Append("'address':'" + address.ToLower() + "',");
-                    sb.Append("'listingID':'" + property.ListingID + "',");
-                    sb.Append("'sqFt':'" + property.NetSQFT + "',");
-                    sb.Append("'yearBuilt':'" + property.PropertyAge + "',");
-                    sb.Append("'beds':'" + property.Beds + "',");
-                    sb.Append("'lat':'" + property.Latitude + "',");
-                    sb.Append("'lng':'" + property.Longitude + "',");
+                // Get points of polygon + first point to close it and create new geo object
+                // for each lat lng in database check whether that coordinate intersects geo object
+                //    if so, add to sb to pass to propertyList
+                string pointText;
+                DbGeography point;
 
-                    int imageNumber = 0;
-                    count += 1;
-                    if (count < 10)  // Only load images for first five properties
+                if (property.Longitude.Length > 0 && property.Latitude.Length > 0)
+                {
+                    pointText = string.Format("POINT({0} {1})", property.Longitude, property.Latitude);
+                    point = DbGeography.PointFromText(pointText, DbGeography.DefaultCoordinateSystemId);
+
+                    if (geo.Intersects(point))
                     {
-                        ObjectResult<GetImagesByListingID_Result> images = db.GetImagesByListingID(property.ListingID);
 
-                        foreach (var image in images)
+                        List<string> imageUrls = new List<string>();
+                        List<string> imageThumbUrls = new List<string>();
+                        var address = property.FullStreetAddress.Replace("\n", "");
+                        address = address.Replace("'", "");
+                        address = address.Replace("\"", "");
+
+                        if (homeCount < 50)
                         {
-                            imageUrls.Add(image.URL);
-                            imageThumbUrls.Add(image.URLThumb);
 
-                            if (imageNumber == 0)
+                            //        homesList.Add(property);
+                            var price = Convert.ToDouble(property.ListPrice) > 0 ? property.ListPrice : property.ClosePrice;
+                            // Build property list for map markers
+                            sb.Append("{\"acres\":\"" + property.LotAreaAcre + "\",");
+                            sb.Append("\"price\":\"" + price + "\",");
+                            sb.Append("\"address\":\"" + address.ToLower() + "\",");
+                            sb.Append("\"listingID\":\"" + property.ListingID + "\",");
+                            sb.Append("\"sqFt\":\"" + property.NetSQFT + "\",");
+                            sb.Append("\"yearBuilt\":\"" + property.PropertyAge + "\",");
+                            sb.Append("\"beds\":\"" + property.Beds + "\",");
+                            sb.Append("\"lat\":\"" + property.Latitude + "\",");
+                            sb.Append("\"lng\":\"" + property.Longitude + "\",");
+
+                            int imageNumber = 0;
+                            count += 1;
+                            if (count < 10)  // Only load images for first five properties
                             {
-                                sb.Append("'image':'" + image.URLThumb + "',");
+                                ObjectResult<GetImagesByListingID_Result> images = db.GetImagesByListingID(property.ListingID);
+
+                                foreach (var image in images)
+                                {
+                                    imageUrls.Add(image.URL);
+                                    imageThumbUrls.Add(image.URLThumb);
+
+                                    if (imageNumber == 0)
+                                    {
+                                        sb.Append("\"image\":\"" + image.URLThumb + "\",");
+                                    }
+                                    imageNumber++;
+                                }
                             }
-                            imageNumber++;
+                            if (imageNumber == 0)
+                                sb.Append("\"image\":\"../../Content/themes/metro/assets/img/no_image.jpg\",");
+
+                            // Close out propertList after image thumb is added or not
+                            sb.Append("\"baths\":\"" + property.BathsFull + "\"},");
+
+                            homeCount++;
+
+                            //    ViewData[property.ListingID + "_url"] = imageUrls;
+                            //    ViewData[property.ListingID + "_thumb"] = imageThumbUrls;
                         }
                     }
-                    if (imageNumber == 0)
-                        sb.Append("'image':'../../Content/themes/metro/assets/img/no_image.jpg',");
-
-                    // Close out propertList after image thumb is added or not
-                    sb.Append("'baths':'" + property.BathsFull + "'},");
-
-                    homeCount++;  // On
-                
-            //    ViewData[property.ListingID + "_url"] = imageUrls;
-            //    ViewData[property.ListingID + "_thumb"] = imageThumbUrls;
+                }
             }
+            
             results.Data = sb.ToString();
             return results;
         }

@@ -119,32 +119,41 @@
 				//clear current shape if one is present
 				RealEstate.deleteShape();
 				RealEstate.polygon1 = polygon;
+
 				for (var i = 0; i < 20; i++) {
                     propertyList.pop()
 				}
-			    // make an ajax call to get all properties
-			    // pass it the lat/lngs of all points in polygon
-
-				$.ajax({
-				    url: "/Home/AllProperties",
-				    context: document.body
-				}).done(function (result) {
-				    
-				    RealEstate.debugRes = result;
-				    
-				   
-				});
-			    // loop through each latLng and call contains()
-			    //      if true: add it to propertyList
-			    //      call initialize()
-			    //      update listview
-
-			//	initialize();
-			    // updateListView()
+				var latLngs = [];
+				var data = {}
                 
+				var coords = polygon.latLngs["j"][0]["j"];
+				for (var i = 0; i < coords.length; i++) {
+				    latLngs.push(coords[i]["A"] + " " + coords[i]["k"]);
+				    data["item" + i] = latLngs[i];
+				}
 
-				RealEstate.debugPolygon = polygon;
-				console.log(polygon);
+			    $.ajax({
+                    type: "POST",
+                    url: "/Home/AllProperties",
+			        data: data,
+                    dataType: "json",
+				    context: document.body
+			    }).done(function (result) {
+
+			        RealEstate.debugRes = result.slice(0, -1);
+			        propertyList = RealEstate.debugRes;
+			        var splitList = propertyList.split("},");
+			        RealEstate.debugList = [];
+			        for (var i = 0; i < splitList.length; i++) {
+			            if (i != splitList.length - 1)
+			                RealEstate.debugList.push(JSON.parse(splitList[i] + "}"));
+			            else
+			                RealEstate.debugList.push(JSON.parse(splitList[i]));
+			        }
+			        propertyList = RealEstate.debugList;
+			        initialize()
+                    //TODO: updateListView();
+			    });
 			});
 
 			google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
@@ -154,18 +163,7 @@
 				initialize();
 			});
 
-			     // Add map markers
-              /*
-        var myLatlng = new google.maps.LatLng(39.9500,-75.1700);
-     	var marker = new google.maps.Marker({
-      		position: myLatlng,
-      		map: map,
-      		title: 'Philadelphia, PA'
-     	});
-            */
-
 			google.maps.event.addListenerOnce(map, 'idle', function () {
-			    // do something only the first time the map is loaded
 			    showPropertiesFromCity();
 			}); 
 
@@ -278,35 +276,6 @@
 	    }
 
 	    function attachInfoWindow(marker, home, number) {
-
-            /*
-	        var myOptions = {
-	            content: boxText
-			, disableAutoPan: false
-			, maxWidth: 0
-			, pixelOffset: new google.maps.Size(-140, 0)
-			, zIndex: null
-			, boxStyle: {
-			    background: "url('tipbox.gif') no-repeat"
-			  , opacity: 0.75
-			  , width: "280px"
-			}
-			, closeBoxMargin: "10px 2px 2px 2px"
-			, closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-			, infoBoxClearance: new google.maps.Size(1, 1)
-			, isHidden: false
-			, pane: "floatPane"
-			, enableEventPropagation: false
-	        };
-            */
-
-	        // detect where the marker is on the map
-	        // if closer than some number of pixels to each edge of map canvas, set 
-	        // pixeloffset: 
-	        // midpoints: height: 256 px
-            //            width: 332 px
-            // 
-
 	        var pos = getPixelPosition(marker, map);
 	        var offsetX = pos.x < 332 ? 30 : -294;
 	        var offsetY = pos.y < 256 ? 100 : 20;
@@ -333,7 +302,6 @@
 
 	        });
 
-            
 	        google.maps.event.addListener(marker, "mouseover", function () {
 	            infoWindow.open(map, marker);
 	            debugMarker = marker;
@@ -354,15 +322,9 @@
 	            infoWindow.close();
 	        });
 	        // infoWindow.open(map, marker);
-
-
 	    }
 
-
-
-
 	    var debugMarker;
-
 
 	    </script>
 
@@ -400,13 +362,6 @@
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
-
-
-
-
-
-
-
 
 <div class="tabbable blue-bg">
 <ul class="nav nav-tabs" id="search-results-tabs">
