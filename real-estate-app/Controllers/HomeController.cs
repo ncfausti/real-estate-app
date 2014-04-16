@@ -161,24 +161,20 @@ namespace real_estate_app.Controllers
 
         [HttpPost]
         public ActionResult AllProperties() {
+            
             JsonResult results = new JsonResult();
             
-            results.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            results.MaxJsonLength = 10000000;
+          //  results.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            results.MaxJsonLength = 1000000;
             var properties = db.AllProperties;
             List<AllProperty> homesList = new List<AllProperty>();
 
             var count = 0;
             int homeCount = 0;
+
             StringBuilder sb = new StringBuilder();
-
-            // need to create a polygon based off of lat/lngs and call .contains() on the 
-            // server side so we don't pass 4+ MB of data to client each time a shape is drawn or 
-            // map is moved/resized
-
-
-      //      results.Data = "{'something': 123, 'somethingElse':321}";
             StringBuilder polyText = new StringBuilder("POLYGON((");
+            
             string firstCoordinates = "";
 
             for (int argIndex = 0; argIndex < Request.Form.Count; argIndex++) {
@@ -194,10 +190,7 @@ namespace real_estate_app.Controllers
 
             // Append the original coordinate to close the polygon
             polyText.Append(firstCoordinates + "))");
-
             DbGeography geo = DbGeography.PolygonFromText(polyText.ToString(), DbGeography.DefaultCoordinateSystemId);
-           // DbGeography geo = DbGeography.PolygonFromText("POLYGON((-75.498 40.216 ,-75.767 39.487,-74.047 39.918 ,-75.498 40.216))", DbGeography.DefaultCoordinateSystemId);
-
 
             foreach (var property in properties)
             {
@@ -213,7 +206,7 @@ namespace real_estate_app.Controllers
                     pointText = string.Format("POINT({0} {1})", property.Longitude, property.Latitude);
                     point = DbGeography.PointFromText(pointText, DbGeography.DefaultCoordinateSystemId);
 
-                    if (geo.Intersects(point))
+                    if (point.Intersects(geo))
                     {
 
                         List<string> imageUrls = new List<string>();
@@ -267,6 +260,9 @@ namespace real_estate_app.Controllers
                             //    ViewData[property.ListingID + "_url"] = imageUrls;
                             //    ViewData[property.ListingID + "_thumb"] = imageThumbUrls;
                         }
+                    }
+                    else {
+                        Console.Write("NOT");
                     }
                 }
             }

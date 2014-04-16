@@ -115,52 +115,15 @@
 			});
 	      	RealEstate.debugPolygon;
 	      	RealEstate.debugRes;
-			google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-				//clear current shape if one is present
-				RealEstate.deleteShape();
-				RealEstate.polygon1 = polygon;
 
-				for (var i = 0; i < 20; i++) {
-                    propertyList.pop()
-				}
-				var latLngs = [];
-				var data = {}
-                
-				var coords = polygon.latLngs["j"][0]["j"];
-				for (var i = 0; i < coords.length; i++) {
-				    latLngs.push(coords[i]["A"] + " " + coords[i]["k"]);
-				    data["item" + i] = latLngs[i];
-				}
-
-			    $.ajax({
-                    type: "POST",
-                    url: "/Home/AllProperties",
-			        data: data,
-                    dataType: "json",
-				    context: document.body
-			    }).done(function (result) {
-
-			        RealEstate.debugRes = result.slice(0, -1);
-			        propertyList = RealEstate.debugRes;
-			        var splitList = propertyList.split("},");
-			        RealEstate.debugList = [];
-			        for (var i = 0; i < splitList.length; i++) {
-			            if (i != splitList.length - 1)
-			                RealEstate.debugList.push(JSON.parse(splitList[i] + "}"));
-			            else
-			                RealEstate.debugList.push(JSON.parse(splitList[i]));
-			        }
-			        propertyList = RealEstate.debugList;
-			        initialize()
-                    //TODO: updateListView();
-			    });
+	      	google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+			    RealEstate.searchByShape(polygon);
 			});
 
-			google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
-				RealEstate.deleteShape();
-				RealEstate.circle1 = circle;
-				console.log(circle.getRadius());
-				initialize();
+	      	google.maps.event.addListener(drawingManager, 'circlecomplete', function (circle) {
+	      	    RealEstate.debugGCircle = circle;
+
+			    RealEstate.searchByShape(circle);
 			});
 
 			google.maps.event.addListenerOnce(map, 'idle', function () {
@@ -177,7 +140,166 @@
 
 			});
 
-	   } // End Initialize()
+	      } // End Initialize
+
+          
+	      RealEstate.GenerateCirclePolygon = function(origin, radius) {
+              /*
+	          var earthRadius = 6371;
+	         
+	          //latitude in radians
+	          var lat = (origin.Latitude * Math.PI) / 180;
+
+	          //longitude in radians
+	          var lon = (origin.Longitude * Math.PI) / 180;
+	          //angular distance covered on earth's surface
+	          var d = parseFloat(radius) / earthRadius;
+	          polyPoints = new Array();
+
+	          for (i = 0; i <= 360; i++) {
+	              var point = new google.maps.LatLng(0,0);
+	              var bearing = i * Math.PI / 180; //rad
+	              point.Latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(bearing));
+	              point.Longitude = ((lon + Math.atan2(Math.sin(bearing) * Math.sin(d) * Math.cos(lat), Math.cos(d) - Math.sin(lat) * Math.sin(point.Latitude))) * 180) / Math.PI;
+	              point.Latitude = (point.Latitude * 180) / Math.PI;
+	              polyPoints.push(point);
+	          }
+	          RealEstate.debugCalculatedCircle = polyPoints;
+              */
+
+	          var d2r = Math.PI / 180;   // degrees to radians
+	          var r2d = 180 / Math.PI;   // radians to degrees
+	          var earthsradius = 6371; // 3963 is the radius of the earth in miles, 6371 in km
+
+	          var hqpoint = new google.maps.LatLng(origin.Latitude, origin.Longitude);
+	       //   var map = new GMap(document.getElementById("map"));
+
+	       //   map.addControl(new GSmallMapControl());
+	       //   map.addControl(new GMapTypeControl());
+	       //   map.centerAndZoom(hqpoint, 4);
+	       //   map.addOverlay(new GMarker(hqpoint));
+
+	       //   drawCircle(-85.578852, 38.215601, map);
+
+//	          function drawCircle(lng, lat, map) {
+	              var points = 360;
+	          //    var radius = radius;             // radius in miles
+
+	              // find the raidus in lat/lon
+	              var rlat = (radius / earthsradius) * r2d;
+	              var rlng = rlat / Math.cos(origin.Latitude * d2r);
+
+	              var extp = new Array();
+	              for (var i = 0; i < points + 1; i++) // one extra here makes sure we connect the end
+	              {
+	                  var theta = Math.PI * (i / (points / 2));
+	                  var point = {}
+	                  ex = origin.Longitude + (rlng * Math.cos(theta)); // center a + radius x * cos(theta)
+	                  ey = origin.Latitude + (rlat * Math.sin(theta)); // center b + radius y * sin(theta)
+	                  point.Latitude = ey;
+	                  point.Longitude = ex;
+	                  // extp.push(new google.maps.LatLng(ex,ey));
+	                  extp.push(point);
+	              }
+
+	        //      map.addOverlay(new GPolyline(extp, "#000000", 2));
+	 //         }
+	              RealEstate.debugNewCircle = extp;
+	          return extp;
+	      }
+
+
+	   RealEstate.searchByShape = function(shape){
+           // Clear any shapes that are already on the map
+	       RealEstate.deleteShape();
+	       var latLngs = [];
+	       var data = {}
+	       RealEstate.polygon1 = shape;
+
+	       if (!shape.getRadius) {
+
+	           var coords = shape.latLngs["j"][0]["j"];
+	           for (var i = 0; i < coords.length; i++) {
+	               latLngs.push(coords[i]["A"] + " " + coords[i]["k"]);
+	               data["item" + i] = latLngs[i];
+	           }
+
+	           $.ajax({
+	               type: "POST",
+	               url: "/Home/AllProperties",
+	               data: data,
+	               dataType: "json",
+	               context: document.body
+	           }).done(function (result) {
+
+	               RealEstate.debugRes = result.slice(0, -1);
+	               propertyList = RealEstate.debugRes;
+	               var splitList = propertyList.split("},");
+	               RealEstate.debugList = [];
+	               for (var i = 0; i < splitList.length; i++) {
+	                   if (i != splitList.length - 1)
+	                       RealEstate.debugList.push(JSON.parse(splitList[i] + "}"));
+	                   else
+	                       RealEstate.debugList.push(JSON.parse(splitList[i]));
+	               }
+	               propertyList = RealEstate.debugList;
+	               initialize();
+	               //TODO: updateListView();
+	           });
+	       }
+	       else {
+	           // is circle
+	           RealEstate.circle1 = shape;
+	           // Convert circle to 12 point polygon
+
+	           // createPolygonFromCircle
+               // center, radius -> 12 lat,longitude points along arc
+               //
+	           //
+
+	           console.log(shape.getRadius());
+	           var radius = shape.getRadius() * .000621371;  // meters to miles
+	           var center = shape.getCenter();
+	           var centerCoordinates = {};
+	           centerCoordinates.Latitude = center["k"];
+	           centerCoordinates.Longitude = center["A"];
+	           
+	           RealEstate.pointsArray = RealEstate.GenerateCirclePolygon(centerCoordinates, radius);
+
+	           // put into object so server can parse it
+	           for (var i = 0; i < RealEstate.pointsArray.length; i++) {
+	               latLngs.push(RealEstate.pointsArray[i].Longitude + " " + RealEstate.pointsArray[i].Latitude);
+	               data["item" + i] = latLngs[i];
+	           }
+
+	           $.ajax({
+	               type: "POST",
+	               url: "/Home/AllProperties",
+	               data: data,
+	               dataType: "json",
+	               context: document.body
+	           }).done(function (result) {
+
+	               RealEstate.debugRes = result.slice(0, -1);
+	               propertyList = RealEstate.debugRes;
+	               var splitList = propertyList.split("},");
+	               RealEstate.debugList = [];
+	               for (var i = 0; i < splitList.length; i++) {
+	                   if (i != splitList.length - 1)
+	                       RealEstate.debugList.push(JSON.parse(splitList[i] + "}"));
+	                   else
+	                       RealEstate.debugList.push(JSON.parse(splitList[i]));
+	               }
+	               propertyList = RealEstate.debugList;
+	               initialize();
+
+	           });
+	       }
+
+	       //TODO: updateListView();
+
+	   }
+    
 
 	   RealEstate.deleteShape = function(){
   	 		if(RealEstate.polygon1)
@@ -326,6 +448,7 @@
 
 	    var debugMarker;
 
+
 	    </script>
 
 	</head>
@@ -362,6 +485,13 @@
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
+
+
+
+
+
+
+
 
 <div class="tabbable blue-bg">
 <ul class="nav nav-tabs" id="search-results-tabs">
