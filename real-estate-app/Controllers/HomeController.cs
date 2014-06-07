@@ -60,8 +60,8 @@ namespace real_estate_app.Controllers
 
             var properties = db.GetAPStateCity("",
                 Request["cities-select-to"],
-                "",
-                "",
+               "", 
+               "",
                 "",
                 "",
                 "",
@@ -76,6 +76,7 @@ namespace real_estate_app.Controllers
                 "",
                 "",
                 ""
+               
                 
                 );
 

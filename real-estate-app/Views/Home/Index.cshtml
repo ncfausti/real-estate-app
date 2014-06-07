@@ -51,7 +51,21 @@
 		<![endif]-->
 		 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing&address=philadelphia+pa&sensor=false"></script>
         <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js">
-        </script><script type="text/javascript">
+</script><script type="text/javascript">
+    //STRING FORMAT
+    if (!String.prototype.format) {
+        String.prototype.format = function () {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function (match, number) {
+                return typeof args[number] != 'undefined'
+                  ? args[number]
+                  : match
+                ;
+            });
+        };
+    }
+
+
      	  var RealEstate = {};
      	  var map;
      	  var propertyList =[ @Html.Raw(ViewData["propertyList"]) ];
@@ -144,28 +158,7 @@
 
           
 	      RealEstate.GenerateCirclePolygon = function(origin, radius) {
-              /*
-	          var earthRadius = 6371;
-	         
-	          //latitude in radians
-	          var lat = (origin.Latitude * Math.PI) / 180;
 
-	          //longitude in radians
-	          var lon = (origin.Longitude * Math.PI) / 180;
-	          //angular distance covered on earth's surface
-	          var d = parseFloat(radius) / earthRadius;
-	          polyPoints = new Array();
-
-	          for (i = 0; i <= 360; i++) {
-	              var point = new google.maps.LatLng(0,0);
-	              var bearing = i * Math.PI / 180; //rad
-	              point.Latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(bearing));
-	              point.Longitude = ((lon + Math.atan2(Math.sin(bearing) * Math.sin(d) * Math.cos(lat), Math.cos(d) - Math.sin(lat) * Math.sin(point.Latitude))) * 180) / Math.PI;
-	              point.Latitude = (point.Latitude * 180) / Math.PI;
-	              polyPoints.push(point);
-	          }
-	          RealEstate.debugCalculatedCircle = polyPoints;
-              */
 
 	          var d2r = Math.PI / 180;   // degrees to radians
 	          var r2d = 180 / Math.PI;   // radians to degrees
@@ -243,8 +236,9 @@
 	                       RealEstate.debugList.push(JSON.parse(splitList[i]));
 	               }
 	               propertyList = RealEstate.debugList;
+	               RealEstate.updateListView(propertyList);
+
 	               initialize();
-	               //TODO: updateListView();
 	           });
 	       }
 	       else {
@@ -291,15 +285,56 @@
 	                       RealEstate.debugList.push(JSON.parse(splitList[i]));
 	               }
 	               propertyList = RealEstate.debugList;
+	               RealEstate.updateListView(propertyList);
+
 	               initialize();
 
 	           });
 	       }
 
-	       //TODO: updateListView();
-
 	   }
-    
+        
+	   RealEstate.updateListView = function(props) {
+	       console.log("UPDATING LIST VIEW");
+	       console.log(props);
+
+
+	       // Format each property div in list view and append to #inner-results-container
+	       for (i = 0; i < props.length; i++) {
+	          var prop = props[i];
+
+	       $("#inner-results-container").append(
+               '<div class="results-property linearbg" title="599900-5-3-0.17-3140.0-4" id="6016023" data-lat="41.1585546" data-lng="-75.5721963">\
+                        <div>\
+                            <div class="results-address">{0}</div>\
+                            <span class="results-city">pocono lake</span><span class="results-price badge badge-primary">\
+	       ${8}\
+       </span>\
+   </div>\
+   <div style="display:inline-block; width:274px;">\
+       <div class="has-more-pics">\
+           <div id="scroller-div" style="width:4000px;position:relative;">\
+                   <span style="float:left;">\
+                       <img src="../../Content/themes/metro/assets/img/no_image.jpg" width="120" height="120">\
+                   </span>\
+           </div>\
+       </div>\
+       <br>\
+       <span class="results-property-info" style="margin-top:-112px;">\
+           <span class="property-spans">\
+               <span class="results-property-beds">5 BEDS</span>\
+               <table class="details-table">\
+                   <tbody><tr><td class="tl"><span class="tdspanl">SQ FT.<br>3140</span></td><td class="tr"><span class="tdspanr">ACRES<br>0.17</span></td></tr>\
+                   <tr><td class="bl"><span class="tdspanl">BATHS<br>3 </span></td><td class="br"><span class="tdspanr">YEARS<br>4<br></span></td></tr>\
+               </tbody></table>\
+               <a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>\
+           </span>\
+       </span>\
+   </div>\
+</div>'.format(prop.acres, prop.address, prop.baths, prop.beds, prop.image, prop.lat, prop.listingID, prop.lng, prop.price, prop.sqFt, prop.yearBuilt));
+       // End inner-results-container append
+	       }
+	   }
 
 	   RealEstate.deleteShape = function(){
   	 		if(RealEstate.polygon1)
@@ -752,25 +787,30 @@
                     </div>
 
                     <div id="zip" class="tab-pane">
-                        <span>
-                            <div class="inl-block" style="vertical-align:top;">
-                                State:
-                                <select>
-                                    <option value="PA">PA</option>
-                                    <option value="NJ">NJ</option>
-                                    <option value="DE">DE</option>
-                                </select>
-                            </div>
-                            <div class="inl-block">
-                                House # or Street Name: <input type="text" class="w120"><button class="btn btn-sm btn-primary">Update</button><br>
-                                &nbsp;&nbsp;&nbsp;And/Or<br>
-                                Zip Code: <input style="margin-left:92px;" type="text" class="w120"><button class="btn btn-primary btn-sm">Update</button>
-                            </div>
-                        </span>
-                        <button class="btn" style="margin-left:12px;">Search</button>
+                        <div class="inner-tab-content">
+                            
+                                <div class="inl-block" style="vertical-align:top;">
+                                    State:
+                                    <select>
+                                        <option value="PA">PA</option>
+                                        <option value="NJ">NJ</option>
+                                        <option value="DE">DE</option>
+                                    </select>
+                                </div>
+                            <br>
+                                <div class="inl-block">
+                                    House # or Street Name: &nbsp;<input type="text" class="w120"><!--<button class="btn btn-sm btn-primary">Update</button><br>-->
+                                   <br>
+                                    Zip Code: <input style="margin-left:92px;" type="text" class="w120"><!--<button class="btn btn-primary btn-sm">Update</button>-->
+                                </div>
+                            
+                            <br>
+                            <input type="submit" value="Search" id="zip-search-btn" class="btn-success">
+                        </div>
                     </div>
 
                     <div id="school" class="tab-pane">
+                        <div class="inner-tab-content">
                         State:
                         <select>
                             <option value="PA">PA</option>
@@ -780,6 +820,7 @@
                         <br>
 
                         <span class="multi-select-cities">
+                            <br>
                             School Districts:<br>
                             <select multiple="multiple" class="w120 inl-block" name="schools-select-from" id="schools-select-from">
 
@@ -800,43 +841,46 @@
                             </span>
                             <select multiple="multiple" class="w120 inl-block" name="schools-select-to" id="schools-select-to"></select>
                         </span>
-                        <button class="btn">Search</button>
+                        <input type="submit" value="Search" id="school-search-btn" class="btn-success">
+                        </div>
                     </div>
 
                     <div id="county" class="tab-pane">
-                        State:
-                        <select>
-                            <option value="PA">PA</option>
-                            <option value="NJ">NJ</option>
-                            <option value="DE">DE</option>
-                        </select>
-                        <br>
-                        <span style="display:inline-block;margin-left:18px;"></span>County:<br>
-                        <select>
-                            <option value="-1">All</option>
-                            <option value="bucks">Bucks</option>
-                            <option value="montgomery">Montgomery</option>
-                            <option value="delaware">Delaware</option>
-                        </select><br>
-                        <span class="multi-select-township">
-                            Township/Area/Subdivision:<br>
-                            <select multiple="multiple" class="w120 inl-block" name="townships-select-from" id="townships-select-from">
-                                <option value="AL">Township 1</option>
-                                <option value="AL">Township 2</option>
-                                <option value="AL">Township 3</option>
-                                <option value="AL">Township 4</option>
-                                <option value="AL">Township 5</option>
-                                <option value="AL">Township 6</option>
-                                <option value="AL">Township 7</option>
+                        <div class="inner-tab-content">
+                            State:
+                            <select style="margin-left:11px;">
+                                <option value="PA">PA</option>
+                                <option value="NJ">NJ</option>
+                                <option value="DE">DE</option>
                             </select>
-                            <span class="inl-block">
-                                <a class="btn btn-sm btn-info" href="JavaScript:void(0);" id="btn-add-townships">Add >></a>
-                                <br>
-                                <a href="JavaScript:void(0);" id="btn-remove-townships" class="btn btn-sm btn-danger"><< Remove</a>
+                            <br>
+                            County: 
+                            <select>
+                                <option value="-1">All</option>
+                                <option value="bucks">Bucks</option>
+                                <option value="montgomery">Montgomery</option>
+                                <option value="delaware">Delaware</option>
+                            </select><br>
+                            <span class="multi-select-township">
+                                Township/Area/Subdivision:<br>
+                                <select multiple="multiple" class="w120 inl-block" name="townships-select-from" id="townships-select-from">
+                                    <option value="AL">Township 1</option>
+                                    <option value="AL">Township 2</option>
+                                    <option value="AL">Township 3</option>
+                                    <option value="AL">Township 4</option>
+                                    <option value="AL">Township 5</option>
+                                    <option value="AL">Township 6</option>
+                                    <option value="AL">Township 7</option>
+                                </select>
+                                <span class="inl-block">
+                                    <a class="btn btn-sm btn-info" href="JavaScript:void(0);" id="btn-add-townships">Add >></a>
+                                    <br>
+                                    <a href="JavaScript:void(0);" id="btn-remove-townships" class="btn btn-sm btn-danger"><< Remove</a>
+                                </span>
+                                <select multiple="multiple" class="w120 inl-block" name="townships-select-to" id="townships-select-to"></select>
                             </span>
-                            <select multiple="multiple" class="w120 inl-block" name="townships-select-to" id="townships-select-to"></select>
-                        </span>
-                        <button class="btn">Search</button>
+                            <input type="submit" value="Search" id="county-search-btn" class="btn-success">
+                        </div>
                     </div>
 
                 </div>

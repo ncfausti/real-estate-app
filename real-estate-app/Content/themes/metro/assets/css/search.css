@@ -474,6 +474,7 @@ border-radius:18px;
 background-color: #eee;
 border: white 2px solid;
 box-shadow: 3px 3px 12px;
+font-weight: bold;
 }
 
 .arrow:hover {
@@ -681,4 +682,54 @@ top: 91px;
 .bubble {
     padding-right:12px;
     padding-bottom:12px;
+}
+
+#zip {
+    margin: 48px 18px 0px 18px;
+
+}
+#zip-search-btn {
+border: 2px solid white;
+margin: 18px 0px 0px 214px;
+}
+
+#zip .inl-block {
+line-height: 36px;
+}
+
+#zip .inl-block input[type="text"] {
+width: 120px;
+        }
+
+#school-search-btn {
+border: 2px solid white;
+margin: 18px 0px 0px 315px;
+}
+#school {
+    margin: 48px 18px;
+}
+#county {
+    margin: 48px 18px;
+}
+#school-search-btn {
+    border: 2px solid white;
+    margin: 18px 0px 0px 315px;
+}
+.multi-select-township {
+line-height: 36px;
+}
+.multi-select-township .btn {
+    width: 94px;
+    margin: 0px 12px 6px 12px;
+    color: #333;
+    border: 2px solid #fff;
+}
+
+#county-search-btn {
+    border: 2px solid white;
+    margin: 0px 0px 0px 313px;
+}
+
+#county .inner-tab-content select {
+    margin-bottom:3px;
 }
