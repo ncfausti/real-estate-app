@@ -69,7 +69,7 @@
      	  var RealEstate = {};
      	  var map;
      	  var propertyList =[ @Html.Raw(ViewData["propertyList"]) ];
-
+          var newZoom;
 
 	      function initialize() {
 	          var startLat;
@@ -131,13 +131,13 @@
 	      	RealEstate.debugRes;
 
 	      	google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
-			    RealEstate.searchByShape(polygon);
+			    RealEstate.searchByShape(polygon, map.zoom);
 			});
 
 	      	google.maps.event.addListener(drawingManager, 'circlecomplete', function (circle) {
 	      	    RealEstate.debugGCircle = circle;
 
-			    RealEstate.searchByShape(circle);
+			    RealEstate.searchByShape(circle, map.zoom);
 			});
 
 			google.maps.event.addListenerOnce(map, 'idle', function () {
@@ -202,7 +202,7 @@
 	      }
 
 
-	   RealEstate.searchByShape = function(shape){
+	   RealEstate.searchByShape = function(shape, zoomLevel){
            // Clear any shapes that are already on the map
 	       RealEstate.deleteShape();
 	       var latLngs = [];
@@ -237,8 +237,13 @@
 	               }
 	               propertyList = RealEstate.debugList;
 	               RealEstate.updateListView(propertyList);
-
+	               console.log("should be showing results tab now");
+	               $("#results-tab-link").click()
+	               console.log(zoomLevel);
+	               newZoom = zoomLevel;
 	               initialize();
+	               map.setZoom(newZoom);
+
 	           });
 	       }
 	       else {
@@ -286,17 +291,24 @@
 	               }
 	               propertyList = RealEstate.debugList;
 	               RealEstate.updateListView(propertyList);
-
+	               newZoom = zoomLevel;
+	               console.log(zoomLevel);
 	               initialize();
+	               map.setZoom(newZoom);
 
 	           });
 	       }
 
 	   }
         
-	   RealEstate.updateListView = function(props) {
+	   RealEstate.updateListView = function(props, zoom) {
 	       console.log("UPDATING LIST VIEW");
+
 	       console.log(props);
+	       $("#results-tab-link").click()
+	       console.log("SEETTTGING MAP ZOOM");
+	       console.log("NEW ZOOME : " + zoom);
+
 
 
 	       // Format each property div in list view and append to #inner-results-container
@@ -306,9 +318,9 @@
 	       $("#inner-results-container").append(
                '<div class="results-property linearbg" title="599900-5-3-0.17-3140.0-4" id="6016023" data-lat="41.1585546" data-lng="-75.5721963">\
                         <div>\
-                            <div class="results-address">{0}</div>\
-                            <span class="results-city">pocono lake</span><span class="results-price badge badge-primary">\
-	       ${8}\
+                            <div class="results-address">{2}</div>\
+                            <span class="results-city">{6}</span><span class="results-price badge badge-primary">\
+	       ${9}\
        </span>\
    </div>\
    <div style="display:inline-block; width:274px;">\
@@ -322,16 +334,16 @@
        <br>\
        <span class="results-property-info" style="margin-top:-112px;">\
            <span class="property-spans">\
-               <span class="results-property-beds">5 BEDS</span>\
+               <span class="results-property-beds">{4} BEDS</span>\
                <table class="details-table">\
-                   <tbody><tr><td class="tl"><span class="tdspanl">SQ FT.<br>3140</span></td><td class="tr"><span class="tdspanr">ACRES<br>0.17</span></td></tr>\
-                   <tr><td class="bl"><span class="tdspanl">BATHS<br>3 </span></td><td class="br"><span class="tdspanr">YEARS<br>4<br></span></td></tr>\
+                   <tbody><tr><td class="tl"><span class="tdspanl">SQ FT.<br>{1}</span></td><td class="tr"><span class="tdspanr">ACRES<br>{0}</span></td></tr>\
+                   <tr><td class="bl"><span class="tdspanl">BATHS<br>{3} </span></td><td class="br"><span class="tdspanr">YEARS<br>{4}<br></span></td></tr>\
                </tbody></table>\
                <a href="#" class="badge badge-success results-detail-btn linearbg-dark" style="font-size:12px;height:18px;font-weight:bold;">Show Details</a>\
            </span>\
        </span>\
    </div>\
-</div>'.format(prop.acres, prop.address, prop.baths, prop.beds, prop.image, prop.lat, prop.listingID, prop.lng, prop.price, prop.sqFt, prop.yearBuilt));
+</div>'.format(prop.acres,prop.sqFt, prop.address, prop.baths, prop.beds, prop.yearBuilt, prop.city.toLowerCase(), prop.image, prop.lat, prop.listingID, prop.lng, prop.price));
        // End inner-results-container append
 	       }
 	   }

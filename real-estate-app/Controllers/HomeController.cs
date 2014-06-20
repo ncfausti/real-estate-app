@@ -231,6 +231,10 @@ namespace real_estate_app.Controllers
                             sb.Append("\"beds\":\"" + property.Beds + "\",");
                             sb.Append("\"lat\":\"" + property.Latitude + "\",");
                             sb.Append("\"lng\":\"" + property.Longitude + "\",");
+                            sb.Append("\"city\":\"" + property.CityName + "\",");
+
+                            // Add fields that belong in the propertyListView here 
+
 
                             int imageNumber = 0;
                             count += 1;
