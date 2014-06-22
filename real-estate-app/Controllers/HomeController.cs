@@ -19,6 +19,29 @@ namespace real_estate_app.Controllers
         public ActionResult Index(string Command)
         {   
             var homeList = new List<string>();
+
+            string[] optionList = { "", "Highest Price", "Lowest Price", "Most Beds", "Least Beds", "Most Baths", "Least Baths", "Smallest Size", "Largest Size", "Smallest Lot", "Largest Lot", "Newest", "Oldest" };
+            string hiddenSort = Request.Form["hidden-sort"];
+
+            StringBuilder sbSortOptions = new StringBuilder();
+            for (var index = 0; index < optionList.Length; index++)
+            {
+                if (optionList[index] == hiddenSort)
+                {
+                    sbSortOptions.Append("<option class='sort-by-setting' selected='selected'>" + optionList[index] + "</option>");
+                }
+                else
+                {
+                    //if no prev value, use Highest First
+                    if (index == 1)
+                        sbSortOptions.Append("<option class='sort-by-setting' selected='selected'>Highest Price</option>");
+                    else
+                        sbSortOptions.Append("<option class='sort-by-setting'>" + optionList[index] + "</option>");
+
+                }
+            }
+
+            ViewBag.SortOptionList = sbSortOptions.ToString();
           
             return View();
         }

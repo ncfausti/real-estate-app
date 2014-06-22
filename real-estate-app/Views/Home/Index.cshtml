@@ -216,7 +216,7 @@
 	               latLngs.push(coords[i]["A"] + " " + coords[i]["k"]);
 	               data["item" + i] = latLngs[i];
 	           }
-
+	           $("#loading-gif-div").show()
 	           $.ajax({
 	               type: "POST",
 	               url: "/Home/AllProperties",
@@ -242,7 +242,10 @@
 	               console.log(zoomLevel);
 	               newZoom = zoomLevel;
 	               initialize();
+	               $("#loading-gif-div").hide()
 	               map.setZoom(newZoom);
+	               RealEstate.polygon1.setMap(map);
+
 
 	           });
 	       }
@@ -270,7 +273,7 @@
 	               latLngs.push(RealEstate.pointsArray[i].Longitude + " " + RealEstate.pointsArray[i].Latitude);
 	               data["item" + i] = latLngs[i];
 	           }
-
+	           $("#loading-gif-div").show()
 	           $.ajax({
 	               type: "POST",
 	               url: "/Home/AllProperties",
@@ -294,7 +297,10 @@
 	               newZoom = zoomLevel;
 	               console.log(zoomLevel);
 	               initialize();
+	               $("#loading-gif-div").hide()
 	               map.setZoom(newZoom);
+	               // Redraw shape to map
+	               RealEstate.circle1.setMap(map);
 
 	           });
 	       }
@@ -343,7 +349,7 @@
            </span>\
        </span>\
    </div>\
-</div>'.format(prop.acres,prop.sqFt, prop.address, prop.baths, prop.beds, prop.yearBuilt, prop.city.toLowerCase(), prop.image, prop.lat, prop.listingID, prop.lng, prop.price));
+</div>'.format(prop.acres, prop.sqFt, prop.address, prop.baths, prop.beds, prop.yearBuilt, prop.city.toLowerCase(), prop.image, prop.lat, prop.listingID, prop.lng, accounting.formatMoney(prop.price, "$", "0")));
        // End inner-results-container append
 	       }
 	   }
@@ -494,6 +500,8 @@
 	    }
 
 	    var debugMarker;
+
+
 
 
 	    </script>
@@ -1410,6 +1418,7 @@
                 Sort:
                 <select id="sorting-select">
                     @Html.Raw(ViewBag.SortOptionList)
+
                 </select>
             </span>
 
@@ -1522,6 +1531,7 @@
 										<div id="listings-displayed-row" class="linearbg">
 											<span class="listings-showing-on-map"> 50 listings displayed</span>
 										</div>
+                                        <div id='loading-gif-div'></div>
 									   <div id="map-canvas" />
 									</div><!-- /span -->
 								</div><!-- /row -->

@@ -734,3 +734,17 @@ line-height: 36px;
 #county .inner-tab-content select {
     margin-bottom:3px;
 }
+
+#loading-gif-div {
+z-index: 9999; 
+color: red;
+min-height: 500px;
+background-color: rgba(255,255,255,0.5);
+background-image: url("img/ajax_loader.gif");
+background-repeat: no-repeat;
+background-size: 50px 50px;
+background-position:center;
+position: fixed;
+min-width:650px;
+display:none;
+}
